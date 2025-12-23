@@ -1,0 +1,9 @@
+{
+  "name": "codeplex-libraries",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/codeplex-libraries/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project codeplex-libraries --web",
+  "targets": {}
+}

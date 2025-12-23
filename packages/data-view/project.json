@@ -1,0 +1,20 @@
+{
+  "name": "data-view",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/data-view/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/data-view"
+      }
+    },
+    "lint": {
+      "command": "eslint packages/data-view/**/*.{ts,tsx,js,jsx}"
+    }
+  }
+}

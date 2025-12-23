@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@source "../../../packages/ui";
+@source "../../../packages/theme";
+@source "../../../packages/layout";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-codeplex-500: #0ea5e9;
+    --color-codeplex-700: #0369a1;
+}
