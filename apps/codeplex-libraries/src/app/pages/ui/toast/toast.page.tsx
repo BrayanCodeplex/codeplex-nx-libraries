@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexToast, CodeplexButton, CodeplexToastVariant, CodeplexToastPosition } from '@codeplex/ui';
+import { CodeplexToast, CodeplexButton, CodeplexToastVariant, CodeplexToastPosition } from '@codeplex-qwik/ui';
 
 export const ToastPage = () => {
     const [open, setOpen] = useState(false);
@@ -79,7 +79,7 @@ export const ToastPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexToast } from '@codeplex/ui';
+                        <code>{`import { CodeplexToast } from '@codeplex-qwik/ui';
 
 <CodeplexToast
   open={isOpen}
@@ -97,7 +97,7 @@ export const ToastPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexToast } from '@codeplex/ui';
+                        <code>{`import { CodeplexToast } from '@codeplex-qwik/ui';
 
 // Toast completo controlado por estado
 <CodeplexToast

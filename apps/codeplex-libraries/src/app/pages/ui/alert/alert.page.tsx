@@ -1,4 +1,4 @@
-import { CodeplexAlert, CodeplexCard } from '@codeplex/ui';
+import { CodeplexAlert, CodeplexCard } from '@codeplex-qwik/ui';
 
 export const AlertPage = () => {
     return (

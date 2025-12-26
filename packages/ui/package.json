@@ -1,16 +1,21 @@
 {
-  "name": "@codeplex/ui",
-  "version": "0.0.1",
+  "name": "@codeplex-qwik/ui",
+  "version": "0.0.2",
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
+      "types": "./index.d.ts",
       "import": "./index.mjs",
       "require": "./index.js"
     }
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "module": "./dist/index.mjs"
 }

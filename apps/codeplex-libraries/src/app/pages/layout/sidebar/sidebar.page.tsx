@@ -1,4 +1,4 @@
-import { CodeplexCard } from '@codeplex/ui';
+import { CodeplexCard } from '@codeplex-qwik/ui';
 
 export const SidebarPage = () => {
     return (
@@ -15,7 +15,7 @@ export const SidebarPage = () => {
                         Se utiliza en el layout principal envolviendo la navegación de la aplicación.
                     </p>
                     <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg mt-4 text-sm overflow-x-auto">
-                        {`import { CodeplexSidebar } from '@codeplex/layout';
+                        {`import { CodeplexSidebar } from '@codeplex-qwik/layout';
 
 <CodeplexSidebar
   items={[

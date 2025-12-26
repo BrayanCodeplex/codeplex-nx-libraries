@@ -1,4 +1,4 @@
-import { CodeplexButton, CodeplexAlert } from '@codeplex/ui';
+import { CodeplexButton, CodeplexAlert } from '@codeplex-qwik/ui';
 import { Link } from 'react-router-dom';
 
 export const HomePage = () => {

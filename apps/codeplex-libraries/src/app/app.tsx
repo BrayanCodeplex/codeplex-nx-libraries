@@ -8,15 +8,15 @@ import {
   CodeplexSmartLabel,
   CodeplexRating,
   CodeplexInputHelper
-} from '@codeplex/ui';
-import { useTheme } from '@codeplex/theme';
+} from '@codeplex-qwik/ui';
+import { useTheme } from '@codeplex-qwik/theme';
 import {
   CodeplexSidebar,
   CodeplexHeader,
   CodeplexFooter,
   CodeplexMenuItem,
   CodeplexBreadcrumb
-} from '@codeplex/layout'; // CodeplexJumbotron remains in UI
+} from '@codeplex-qwik/layout'; // CodeplexJumbotron remains in UI
 
 // Pages
 import { HomePage } from './pages/home/home.page';

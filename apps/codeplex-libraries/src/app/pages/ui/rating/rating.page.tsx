@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexRating, CodeplexCard } from '@codeplex/ui';
+import { CodeplexRating, CodeplexCard } from '@codeplex-qwik/ui';
 
 export const RatingPage = () => {
     const [ratingValue, setRatingValue] = useState(3);
@@ -86,7 +86,7 @@ export const RatingPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexRating } from '@codeplex/ui';
+                        <code>{`import { CodeplexRating } from '@codeplex-qwik/ui';
 
 <CodeplexRating value={4} onChange={(val) => console.log(val)} />`}</code>
                     </pre>
@@ -100,7 +100,7 @@ export const RatingPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexRating } from '@codeplex/ui';
+                        <code>{`import { CodeplexRating } from '@codeplex-qwik/ui';
 
 // Rating grande, de solo lectura, variante "success"
 <CodeplexRating

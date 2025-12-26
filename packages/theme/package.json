@@ -1,12 +1,23 @@
 {
-  "name": "@codeplex/theme",
-  "version": "0.0.1",
+  "name": "@codeplex-qwik/theme",
+  "version": "0.0.2",
   "type": "module",
   "main": "./index.js",
   "types": "./index.d.ts",
   "dependencies": {},
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "module": "./dist/index.mjs"
 }

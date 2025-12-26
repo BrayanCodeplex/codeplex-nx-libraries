@@ -1,4 +1,4 @@
-import { CodeplexButton, CodeplexCard } from '@codeplex/ui';
+import { CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
 
 export const ButtonPage = () => {
     return (
@@ -42,7 +42,7 @@ export const ButtonPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexButton } from '@codeplex/ui';
+                        <code>{`import { CodeplexButton } from '@codeplex-qwik/ui';
 
 <CodeplexButton variant="primary" onClick={() => console.log('Click')}>
   Guardar
@@ -58,7 +58,7 @@ export const ButtonPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexButton } from '@codeplex/ui';
+                        <code>{`import { CodeplexButton } from '@codeplex-qwik/ui';
 
 // Botón de carga con icono y ancho completo
 <CodeplexButton

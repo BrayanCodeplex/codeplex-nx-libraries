@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexBadge, CodeplexCard } from '@codeplex/ui';
+import { CodeplexBadge, CodeplexCard } from '@codeplex-qwik/ui';
 
 export const BadgePage = () => {
     const [selectedFilter, setSelectedFilter] = useState<'all' | 'active' | 'archived'>('all');
@@ -87,7 +87,7 @@ export const BadgePage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexBadge } from '@codeplex/ui';
+                        <code>{`import { CodeplexBadge } from '@codeplex-qwik/ui';
 
 <CodeplexBadge label="Nuevo" variant="primary" />`}</code>
                     </pre>
@@ -101,7 +101,7 @@ export const BadgePage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexBadge } from '@codeplex/ui';
+                        <code>{`import { CodeplexBadge } from '@codeplex-qwik/ui';
 
 // Badge interactivo tipo "pill" con icono y acción
 <CodeplexBadge

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CodeplexProgress, CodeplexCard, CodeplexButton } from '@codeplex/ui';
+import { CodeplexProgress, CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
 
 export const ProgressPage = () => {
     const [progressValue, setProgressValue] = useState(10);
@@ -117,7 +117,7 @@ export const ProgressPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexProgress } from '@codeplex/ui';
+                        <code>{`import { CodeplexProgress } from '@codeplex-qwik/ui';
 
 <CodeplexProgress value={50} />`}</code>
                     </pre>
@@ -131,7 +131,7 @@ export const ProgressPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexProgress } from '@codeplex/ui';
+                        <code>{`import { CodeplexProgress } from '@codeplex-qwik/ui';
 
 // Barra de progreso animada con gradiente y etiqueta interna
 <CodeplexProgress

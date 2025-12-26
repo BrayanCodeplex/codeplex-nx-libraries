@@ -10,16 +10,30 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@codeplex/theme": ["packages/theme/src/index.ts"],
-      "@codeplex/ui": ["packages/ui/src/index.ts"],
-      "@codeplex/data-view": ["packages/data-view/src/index.ts"],
-      "@codeplex/layout": ["packages/layout/src/index.ts"]
+      "@codeplex-qwik/theme": [
+        "packages/theme/src/index.ts"
+      ],
+      "@codeplex-qwik/ui": [
+        "packages/ui/src/index.ts"
+      ],
+      "@codeplex-qwik/data-view": [
+        "packages/data-view/src/index.ts"
+      ],
+      "@codeplex-qwik/layout": [
+        "packages/layout/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
