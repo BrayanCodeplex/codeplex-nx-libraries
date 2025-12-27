@@ -1,17 +1,19 @@
 import React from 'react';
+import CircularProgress, { CircularProgressProps } from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export type CodeplexSpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type CodeplexSpinnerColor = 'primary' | 'white' | 'gray' | 'success' | 'danger' | 'warning';
-export type CodeplexSpinnerType = 'border' | 'dots' | 'ping';
+export type CodeplexSpinnerColor = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'white' | 'gray';
+export type CodeplexSpinnerType = 'border' | 'dots' | 'ping'; // Maintaining backward compat types
 
-export interface CodeplexSpinnerProps {
-    size?: CodeplexSpinnerSize;
+export interface CodeplexSpinnerProps extends Omit<CircularProgressProps, 'size' | 'color'> {
+    size?: CodeplexSpinnerSize | number;
     color?: CodeplexSpinnerColor;
-    type?: CodeplexSpinnerType;
+    type?: CodeplexSpinnerType; // Defaults to border (Standard MUI)
     label?: string;
     labelPosition?: 'right' | 'bottom';
     fullScreen?: boolean;
-    className?: string;
 }
 
 export const CodeplexSpinner = ({
@@ -22,94 +24,140 @@ export const CodeplexSpinner = ({
     labelPosition = 'right',
     fullScreen = false,
     className = '',
+    sx,
+    ...props
 }: CodeplexSpinnerProps) => {
-    const sizeClasses = {
-        xs: 'w-3 h-3',
-        sm: 'w-4 h-4',
-        md: 'w-6 h-6',
-        lg: 'w-8 h-8',
-        xl: 'w-12 h-12',
+
+    const sizeMap = {
+        xs: 12,
+        sm: 16,
+        md: 24,
+        lg: 32,
+        xl: 48,
+    };
+    const pxSize = typeof size === 'number' ? size : sizeMap[size];
+
+    const muiColorMap: Record<string, CircularProgressProps['color']> = {
+        primary: 'primary',
+        secondary: 'secondary',
+        error: 'error',
+        danger: 'error',
+        info: 'info',
+        success: 'success',
+        warning: 'warning',
+        white: 'inherit', // Handle white/gray via SX usually
+        gray: 'inherit',
     };
 
-    const colorClasses = {
-        primary: 'text-blue-600 dark:text-blue-500',
-        white: 'text-white',
-        gray: 'text-gray-400 dark:text-gray-300',
-        success: 'text-emerald-600 dark:text-emerald-500',
-        danger: 'text-red-600 dark:text-red-500',
-        warning: 'text-yellow-500',
-    };
+    const muiColor = muiColorMap[color] || 'primary';
+    const textColor = color === 'white' ? 'white' : color === 'gray' ? 'gray' : undefined;
 
-    const renderIcon = () => {
-        const sClass = sizeClasses[size];
-        const cClass = colorClasses[color];
-
+    const renderSpinner = () => {
         if (type === 'dots') {
+            // Custom Dots implementation (kept for 'rich aesthetics')
             return (
-                <div className={`flex items-center justify-center gap-1 ${cClass} ${className}`}>
-                    <div className={`${size === 'xl' ? 'w-3 h-3' : 'w-1.5 h-1.5'} bg-current rounded-full animate-bounce [animation-delay:-0.3s]`}></div>
-                    <div className={`${size === 'xl' ? 'w-3 h-3' : 'w-1.5 h-1.5'} bg-current rounded-full animate-bounce [animation-delay:-0.15s]`}></div>
-                    <div className={`${size === 'xl' ? 'w-3 h-3' : 'w-1.5 h-1.5'} bg-current rounded-full animate-bounce`}></div>
-                </div>
+                <Box display="flex" gap={0.5} className={className}>
+                    {[0, 1, 2].map((i) => (
+                        <Box
+                            key={i}
+                            sx={{
+                                width: pxSize / 4,
+                                height: pxSize / 4,
+                                borderRadius: '50%',
+                                bgcolor: textColor || 'currentColor',
+                                animation: 'bounce 1.4s infinite ease-in-out both',
+                                animationDelay: `${i * 0.16}s`,
+                                '@keyframes bounce': {
+                                    '0%, 80%, 100%': { transform: 'scale(0)' },
+                                    '40%': { transform: 'scale(1)' },
+                                }
+                            }}
+                        />
+                    ))}
+                </Box>
             );
         }
 
         if (type === 'ping') {
+            // Custom Ping implementation
             return (
-                <span className={`relative flex ${sClass} ${className}`}>
-                    <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75 ${cClass}`}></span>
-                    <span className={`relative inline-flex rounded-full h-full w-full bg-current ${cClass}`}></span>
-                </span>
+                <Box position="relative" display="inline-flex" width={pxSize} height={pxSize} className={className}>
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: '50%',
+                            bgcolor: textColor || (muiColor === 'inherit' ? 'currentColor' : `${muiColor}.main`),
+                            opacity: 0.75,
+                            animation: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+                            '@keyframes ping': {
+                                '75%, 100%': { transform: 'scale(2)', opacity: 0 }
+                            }
+                        }}
+                    />
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: '50%',
+                            bgcolor: textColor || (muiColor === 'inherit' ? 'currentColor' : `${muiColor}.main`),
+                        }}
+                    />
+                </Box>
             );
         }
 
+        // Default MUI CircularProgress
         return (
-            <svg
-                className={`animate-spin ${sClass} ${cClass} ${className}`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-            >
-                <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                ></circle>
-                <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-            </svg>
+            <CircularProgress
+                size={pxSize}
+                color={muiColor}
+                className={className}
+                sx={{
+                    color: textColor,
+                    ...sx
+                }}
+                {...props}
+            />
         );
     };
 
     const content = (
-        <div
-            role="status"
-            className={`
-        inline-flex items-center
-        ${labelPosition === 'bottom' ? 'flex-col gap-3' : 'flex-row gap-2'}
-      `}
+        <Box
+            display="inline-flex"
+            flexDirection={labelPosition === 'bottom' ? 'column' : 'row'}
+            alignItems="center"
+            gap={labelPosition === 'bottom' ? 1.5 : 1}
         >
-            {renderIcon()}
+            {renderSpinner()}
             {label && (
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                <Typography variant="body2" color="text.secondary" fontWeight={500}>
                     {label}
-                </span>
+                </Typography>
             )}
-            {!label && <span className="sr-only">Cargando...</span>}
-        </div>
+        </Box>
     );
 
     if (fullScreen) {
         return (
-            <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm transition-opacity">
+            <Box
+                position="fixed"
+                top={0}
+                left={0}
+                right={0}
+                bottom={0}
+                zIndex={9999}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                bgcolor="rgba(255, 255, 255, 0.8)"
+                sx={{ backdropFilter: 'blur(4px)' }}
+            >
                 {content}
-            </div>
+            </Box>
         );
     }
 

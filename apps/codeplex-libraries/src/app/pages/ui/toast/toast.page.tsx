@@ -27,16 +27,15 @@ export const ToastPage = () => {
         }
 
         setOpen(true);
-        // Auto-close simulation
-        setTimeout(() => setOpen(false), 3000);
+        // Note: No setTimeout needed, Snackbar handles auto-hide via duration prop
     };
 
     return (
-        <div className="space-y-8 animate-fade-in max-w-5xl mx-auto">
+        <div className="space-y-8 animate-fade-in max-w-5xl mx-auto pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">CodeplexToast</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Toast (Snackbar)</h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                    Notificaciones flotantes controladas. Ideal para respuestas de APIs.
+                    Notificaciones flotantes temporales. Implementado con Material UI Snackbar y Alert.
                 </p>
             </div>
 
@@ -45,19 +44,20 @@ export const ToastPage = () => {
                 <div className="flex flex-wrap gap-3">
                     <CodeplexButton variant="success" onClick={() => triggerToast('success')}>Success</CodeplexButton>
                     <CodeplexButton variant="danger" onClick={() => triggerToast('error')}>Error</CodeplexButton>
-                    <CodeplexButton variant="secondary" onClick={() => triggerToast('info')}>Info</CodeplexButton>
+                    <CodeplexButton variant="primary" color="info" onClick={() => triggerToast('info')}>Info</CodeplexButton>
+                    <CodeplexButton variant="primary" color="warning" onClick={() => triggerToast('warning')}>Warning</CodeplexButton>
                 </div>
             </section>
 
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Posiciones</h2>
                 <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                    <button className="px-3 py-2 text-xs border rounded hover:bg-gray-50 dark:hover:bg-gray-800" onClick={() => triggerToast('success', 'top-left')}>Top Left</button>
-                    <button className="px-3 py-2 text-xs border rounded hover:bg-gray-50 dark:hover:bg-gray-800" onClick={() => triggerToast('info', 'top-center')}>Top Center</button>
-                    <button className="px-3 py-2 text-xs border rounded hover:bg-gray-50 dark:hover:bg-gray-800" onClick={() => triggerToast('warning', 'top-right')}>Top Right</button>
-                    <button className="px-3 py-2 text-xs border rounded hover:bg-gray-50 dark:hover:bg-gray-800" onClick={() => triggerToast('success', 'bottom-left')}>Bottom Left</button>
-                    <button className="px-3 py-2 text-xs border rounded hover:bg-gray-50 dark:hover:bg-gray-800" onClick={() => triggerToast('info', 'bottom-center')}>Bottom Center</button>
-                    <button className="px-3 py-2 text-xs border rounded hover:bg-gray-50 dark:hover:bg-gray-800" onClick={() => triggerToast('error', 'bottom-right')}>Bottom Right</button>
+                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('success', 'top-left')}>Top Left</CodeplexButton>
+                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('info', 'top-center')}>Top Center</CodeplexButton>
+                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('warning', 'top-right')}>Top Right</CodeplexButton>
+                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('success', 'bottom-left')}>Bottom Left</CodeplexButton>
+                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('info', 'bottom-center')}>Bottom Center</CodeplexButton>
+                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('error', 'bottom-right')}>Bottom Right</CodeplexButton>
                 </div>
             </section>
 
@@ -69,6 +69,7 @@ export const ToastPage = () => {
                 subtitle={subtitle}
                 showIcon
                 dismissible
+                duration={4000} // Custom duration
                 onClose={() => setOpen(false)}
             />
 
@@ -81,6 +82,7 @@ export const ToastPage = () => {
                     <pre className="text-green-400 text-sm">
                         <code>{`import { CodeplexToast } from '@codeplex-qwik/ui';
 
+/* El Snackbar se cierra automáticamente después de 6s por defecto */
 <CodeplexToast
   open={isOpen}
   title="Operación Exitosa"
@@ -108,6 +110,7 @@ export const ToastPage = () => {
   subtitle="No se pudo guardar los cambios. Intente nuevamente."
   showIcon={true}
   dismissible={true}
+  duration={3000} // 3 segundos
   onClose={() => setShowToast(false)}
 />`}</code>
                     </pre>

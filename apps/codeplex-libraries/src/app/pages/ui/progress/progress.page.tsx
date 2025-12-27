@@ -1,155 +1,98 @@
+import { CodeplexProgress, CodeplexSpinner, CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
 import { useState, useEffect } from 'react';
-import { CodeplexProgress, CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
 
 export const ProgressPage = () => {
-    const [progressValue, setProgressValue] = useState(10);
-    const [isSimulating, setIsSimulating] = useState(false);
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
+        const timer = setInterval(() => {
+            setProgress((oldProgress) => {
+                if (oldProgress === 100) {
+                    return 0;
+                }
+                const diff = Math.random() * 10;
+                return Math.min(oldProgress + diff, 100);
+            });
+        }, 800);
 
-        if (isSimulating) {
-            interval = setInterval(() => {
-                setProgressValue(prev => {
-                    if (prev >= 100) {
-                        setIsSimulating(false);
-                        return 100;
-                    }
-                    const next = prev + Math.floor(Math.random() * 10) + 1;
-                    return next > 100 ? 100 : next;
-                });
-            }, 500);
-        }
-
-        return () => clearInterval(interval);
-    }, [isSimulating]);
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
 
     return (
-        <div className="space-y-8 animate-fade-in max-w-5xl mx-auto">
+        <div className="space-y-8 animate-fade-in pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">CodeplexProgress</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Progress & Spinner</h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                    Barras de progreso responsivas, temáticas y animadas para visualizar el avance de tareas.
+                    Feedback indicators for running processes.
                 </p>
             </div>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Colores y Variantes</h2>}>
-                <div className="space-y-5 p-4">
-                    <CodeplexProgress value={45} variant="primary" label="Primary" showPercentage />
-                    <CodeplexProgress value={60} variant="success" label="Success" showPercentage />
-                    <CodeplexProgress value={75} variant="warning" label="Warning" showPercentage />
-                    <CodeplexProgress value={30} variant="danger" label="Danger" showPercentage />
-                    <CodeplexProgress value={50} variant="neutral" label="Neutral" showPercentage />
-                    <CodeplexProgress value={90} variant="gradient" label="Gradient" showPercentage />
+            {/* Circular Progress (Spinner) */}
+            <CodeplexCard header="Circular Progress (Spinner)">
+                <div className="flex flex-col gap-6 p-4">
+                    <div className="flex gap-8 items-center">
+                        <CodeplexSpinner size="sm" />
+                        <CodeplexSpinner size="md" />
+                        <CodeplexSpinner size="lg" />
+                        <CodeplexSpinner size="xl" />
+                    </div>
+                    <div className="flex gap-8 items-center">
+                        <CodeplexSpinner color="secondary" />
+                        <CodeplexSpinner color="success" />
+                        <CodeplexSpinner color="warning" />
+                        <CodeplexSpinner color="error" />
+                        <CodeplexSpinner color="info" />
+                    </div>
+                    <div className="flex gap-8 items-center">
+                        <CodeplexSpinner label="Loading..." />
+                        <CodeplexSpinner label="Processing..." labelPosition="bottom" />
+                        <CodeplexSpinner type="dots" color="primary" size="lg" />
+                        <CodeplexSpinner type="ping" color="secondary" size="lg" />
+                    </div>
                 </div>
             </CodeplexCard>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Tamaños</h2>}>
+            {/* Linear Progress */}
+            <CodeplexCard header="Linear Progress">
                 <div className="space-y-6 p-4">
-                    {['xs', 'sm', 'md', 'lg', 'xl'].map((size) => (
-                        <div key={size}>
-                            <span className="text-xs text-gray-500 mb-1 block uppercase">{size}</span>
-                            <CodeplexProgress value={50} size={size as any} />
-                        </div>
-                    ))}
-                </div>
-            </CodeplexCard>
-
-            <CodeplexCard header={<h2 className="text-xl font-bold">Etiquetado Flexible</h2>}>
-                <div className="space-y-6 p-4">
-                    <CodeplexProgress value={70} label="Etiqueta Exterior (Izquierda)" showPercentage />
-                    <CodeplexProgress value={40} label="Etiqueta Exterior (Centro)" labelAlign="center" showPercentage />
-                    <CodeplexProgress value={85} size="lg" label="Etiqueta Interior" labelInside showPercentage variant="success" />
-                </div>
-            </CodeplexCard>
-
-            <CodeplexCard header={<h2 className="text-xl font-bold">Animaciones y Estados</h2>}>
-                <div className="space-y-6 p-4">
-                    <div>
-                        <p className="text-sm text-gray-500 mb-2">Striped</p>
-                        <CodeplexProgress value={50} striped variant="warning" />
+                    {/* Basic */}
+                    <div className="space-y-2">
+                        <h4 className="font-medium text-sm">Indeterminate</h4>
+                        <CodeplexProgress indeterminate />
                     </div>
-                    <div>
-                        <p className="text-sm text-gray-500 mb-2">Animated</p>
-                        <CodeplexProgress value={75} animated variant="primary" />
-                    </div>
-                    <div>
-                        <p className="text-sm text-gray-500 mb-2">Indeterminate</p>
-                        <CodeplexProgress indeterminate variant="gradient" />
-                    </div>
-                </div>
-            </CodeplexCard>
-
-            <CodeplexCard className="border border-blue-100 dark:border-blue-900/30">
-                <div className="p-4 space-y-6">
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div>
-                            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Simulación Interactiva</h2>
-                            <p className="text-sm text-gray-500 mt-1">Prueba la animación al cambiar valores.</p>
-                        </div>
-                        <div className="flex gap-2">
-                            <CodeplexButton size="sm" variant="secondary" onClick={() => { setProgressValue(0); setIsSimulating(false); }}>Reset</CodeplexButton>
-                            <CodeplexButton
-                                size="sm"
-                                onClick={() => setIsSimulating(true)}
-                                disabled={isSimulating || progressValue >= 100}
-                            >
-                                {isSimulating ? 'Simulando...' : 'Iniciar Carga'}
-                            </CodeplexButton>
-                        </div>
+                    <div className="space-y-2">
+                        <h4 className="font-medium text-sm">Determinate ({Math.round(progress)}%)</h4>
+                        <CodeplexProgress value={progress} />
                     </div>
 
-                    <CodeplexProgress
-                        value={progressValue}
-                        label={progressValue === 100 ? "Proceso completado" : "Procesando archivos..."}
-                        showPercentage
-                        size="lg"
-                        variant={progressValue === 100 ? 'success' : 'gradient'}
-                        animated={isSimulating}
-                    />
+                    {/* Colors */}
+                    <div className="space-y-4">
+                        <h4 className="font-medium text-sm">Colors</h4>
+                        <CodeplexProgress value={50} variant="secondary" />
+                        <CodeplexProgress value={60} variant="success" />
+                        <CodeplexProgress value={70} variant="warning" />
+                        <CodeplexProgress value={80} variant="error" />
+                    </div>
+
+                    {/* Sizes */}
+                    <div className="space-y-4">
+                        <h4 className="font-medium text-sm">Sizes</h4>
+                        <CodeplexProgress value={30} size="sm" />
+                        <CodeplexProgress value={50} size="md" />
+                        <CodeplexProgress value={70} size="lg" />
+                    </div>
+
+                    {/* Features */}
+                    <div className="space-y-4">
+                        <h4 className="font-medium text-sm">Features</h4>
+                        <CodeplexProgress value={65} label="Uploading file..." showPercentage />
+                        <CodeplexProgress value={85} size="lg" label="Inside Label" labelInside showPercentage />
+                        <CodeplexProgress value={progress} striped animated label="Striped & Animated" />
+                    </div>
                 </div>
             </CodeplexCard>
-
-            {/* Código mínimo */}
-            <section className="mt-8">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Código mínimo
-                </h2>
-                <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
-                    <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexProgress } from '@codeplex-qwik/ui';
-
-<CodeplexProgress value={50} />`}</code>
-                    </pre>
-                </div>
-            </section>
-
-            {/* Código máximo */}
-            <section className="mt-8">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Código personalizado
-                </h2>
-                <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
-                    <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexProgress } from '@codeplex-qwik/ui';
-
-// Barra de progreso animada con gradiente y etiqueta interna
-<CodeplexProgress
-  value={75}
-  variant="gradient"
-  size="lg"
-  animated
-  striped
-  showPercentage
-  label="Procesando..."
-  labelInside
-/>
-
-// Estado indeterminado (Skeleton loading)
-<CodeplexProgress indeterminate variant="neutral" />`}</code>
-                    </pre>
-                </div>
-            </section>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 {
   "name": "@codeplex-qwik/layout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
@@ -16,6 +16,6 @@
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^6.0.0"
+    "react-router-dom": "^6.0.0 || ^7.0.0"
   }
 }

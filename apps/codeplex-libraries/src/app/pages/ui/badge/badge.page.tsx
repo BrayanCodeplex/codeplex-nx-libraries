@@ -1,121 +1,155 @@
-import { useState } from 'react';
-import { CodeplexBadge, CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexBadge, CodeplexCard, CodeplexAvatar } from '@codeplex-qwik/ui';
 
 export const BadgePage = () => {
-    const [selectedFilter, setSelectedFilter] = useState<'all' | 'active' | 'archived'>('all');
-
     return (
-        <div className="space-y-8 animate-fade-in max-w-6xl mx-auto">
+        <div className="space-y-8 animate-fade-in pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">CodeplexBadge</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Badge</h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                    Etiquetas compactas para estados, contadores y categorías. Se integran fácilmente con botones, cards, tablas y filtros.
+                    Badge generates a small badge to the top-right of its child(ren).
                 </p>
             </div>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Variantes de Color</h2>}>
-                <div className="flex flex-wrap gap-3 p-4">
-                    <CodeplexBadge label="Neutral" variant="neutral" />
-                    <CodeplexBadge label="Primary" variant="primary" />
-                    <CodeplexBadge label="Secondary" variant="secondary" />
-                    <CodeplexBadge label="Success" variant="success" />
-                    <CodeplexBadge label="Warning" variant="warning" />
-                    <CodeplexBadge label="Danger" variant="danger" />
+            {/* Basic Badge */}
+            <CodeplexCard header="Basic badge">
+                <div className="flex gap-8 p-4">
+                    <CodeplexBadge badgeContent={4} color="primary">
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
                 </div>
             </CodeplexCard>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Tamaños y Forma</h2>}>
-                <div className="flex flex-wrap gap-4 items-center p-4">
-                    <CodeplexBadge label="sm pill" size="sm" pill />
-                    <CodeplexBadge label="md pill" size="md" pill />
-                    <CodeplexBadge label="sm cuadrado" size="sm" pill={false} />
-                    <CodeplexBadge label="md cuadrado" size="md" pill={false} />
+            {/* Color */}
+            <CodeplexCard header="Color">
+                <div className="flex gap-8 p-4">
+                    <CodeplexBadge badgeContent={4} color="secondary">
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge badgeContent={4} color="success">
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge badgeContent={4} color="error">
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge badgeContent={4} color="info">
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge badgeContent={4} color="warning">
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
                 </div>
             </CodeplexCard>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Ejemplos de Uso</h2>}>
-                <div className="space-y-4 p-4">
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-700 dark:text-gray-300">Notificaciones</span>
-                        <CodeplexBadge label="12" variant="danger" pill />
+            {/* Badge Visibility */}
+            <CodeplexCard header="Badge visibility">
+                <div className="flex gap-8 p-4 items-center">
+                    <div className="flex flex-col gap-4 items-center">
+                        <CodeplexBadge color="secondary" badgeContent={0}>
+                            <span className="text-2xl">📧</span>
+                        </CodeplexBadge>
+                        <span className="text-xs text-gray-500">Hidden (default)</span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-700 dark:text-gray-300">Estado:</span>
-                        <CodeplexBadge label="Activo" variant="success" />
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-700 dark:text-gray-300">Rol:</span>
-                        <CodeplexBadge label="Admin" variant="secondary" iconLeft="⭐" />
+                    <div className="flex flex-col gap-4 items-center">
+                        <CodeplexBadge color="secondary" badgeContent={0} showZero>
+                            <span className="text-2xl">📧</span>
+                        </CodeplexBadge>
+                        <span className="text-xs text-gray-500">showZero</span>
                     </div>
                 </div>
             </CodeplexCard>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Badges como Filtros</h2>}>
-                <div className="p-4 space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                        <CodeplexBadge
-                            label="Todos"
-                            variant={selectedFilter === 'all' ? 'primary' : 'neutral'}
-                            onClick={() => setSelectedFilter('all')}
-                            className="cursor-pointer"
-                        />
-                        <CodeplexBadge
-                            label="Activos"
-                            variant={selectedFilter === 'active' ? 'primary' : 'neutral'}
-                            onClick={() => setSelectedFilter('active')}
-                            className="cursor-pointer"
-                        />
-                        <CodeplexBadge
-                            label="Archivados"
-                            variant={selectedFilter === 'archived' ? 'primary' : 'neutral'}
-                            onClick={() => setSelectedFilter('archived')}
-                            className="cursor-pointer"
-                        />
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Filtro seleccionado: <span className="font-semibold">{selectedFilter}</span>
-                    </p>
+            {/* Maximum Value */}
+            <CodeplexCard header="Maximum value">
+                <div className="flex gap-8 p-4">
+                    <CodeplexBadge color="secondary" badgeContent={99}>
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge color="secondary" badgeContent={100}>
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge color="secondary" badgeContent={1000} max={999}>
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
                 </div>
             </CodeplexCard>
 
-            {/* Código mínimo */}
-            <section className="mt-8">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Código mínimo
-                </h2>
-                <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
-                    <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexBadge } from '@codeplex-qwik/ui';
-
-<CodeplexBadge label="Nuevo" variant="primary" />`}</code>
-                    </pre>
+            {/* Dot Badge */}
+            <CodeplexCard header="Dot badge">
+                <div className="flex gap-8 p-4">
+                    <CodeplexBadge color="secondary" variant="dot">
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
                 </div>
-            </section>
+            </CodeplexCard>
 
-            {/* Código máximo */}
-            <section className="mt-8">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Código personalizado
-                </h2>
-                <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
-                    <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexBadge } from '@codeplex-qwik/ui';
+            {/* Badge Overlap */}
+            <CodeplexCard header="Badge overlap">
+                <div className="flex gap-8 p-4 items-center">
+                    <CodeplexBadge color="secondary" badgeContent=" ">
+                        <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-none" />
+                    </CodeplexBadge>
+                    <CodeplexBadge color="secondary" badgeContent=" " variant="dot">
+                        <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-none" />
+                    </CodeplexBadge>
+                    <CodeplexBadge color="secondary" overlap="circular" badgeContent=" ">
+                        <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-full" />
+                    </CodeplexBadge>
+                    <CodeplexBadge color="secondary" overlap="circular" badgeContent=" " variant="dot">
+                        <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-full" />
+                    </CodeplexBadge>
 
-// Badge interactivo tipo "pill" con icono y acción
-<CodeplexBadge
-  label="Admin"
-  variant="secondary"
-  size="sm"
-  pill
-  iconLeft={<span>🛡️</span>}
-  onClick={() => openRoleSettings()}
-  className="shadow-sm hover:shadow-md"
-/>`}</code>
-                    </pre>
+                    <CodeplexBadge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} variant="dot" color="success">
+                        <CodeplexAvatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
+                    </CodeplexBadge>
                 </div>
-            </section>
+            </CodeplexCard>
+
+            {/* Badge Alignment */}
+            <CodeplexCard header="Badge alignment">
+                <div className="flex gap-8 p-4">
+                    <CodeplexBadge
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right', // Default
+                        }}
+                        badgeContent={1}
+                        color="primary"
+                    >
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                        }}
+                        badgeContent={1}
+                        color="primary"
+                    >
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        badgeContent={1}
+                        color="primary"
+                    >
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                    <CodeplexBadge
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        badgeContent={1}
+                        color="primary"
+                    >
+                        <span className="text-2xl">📧</span>
+                    </CodeplexBadge>
+                </div>
+            </CodeplexCard>
         </div>
     );
 };

@@ -1,14 +1,19 @@
 import React from 'react';
+import Card, { CardProps } from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Box from '@mui/material/Box';
 
 export type CodeplexCardVariant = 'default' | 'outline' | 'soft';
 export type CodeplexCardPadding = 'none' | 'sm' | 'md' | 'lg';
 
-export interface CodeplexCardProps extends React.HTMLAttributes<HTMLElement> {
+export interface CodeplexCardProps extends Omit<CardProps, 'variant'> {
     variant?: CodeplexCardVariant;
     padding?: CodeplexCardPadding;
     hoverable?: boolean;
     clickable?: boolean;
-    media?: React.ReactNode;
+    media?: React.ReactNode; // Can be string (img src) or custom node
     header?: React.ReactNode;
     footer?: React.ReactNode;
 }
@@ -25,56 +30,59 @@ export const CodeplexCard = ({
     children,
     ...props
 }: CodeplexCardProps) => {
-    const variantClass =
-        variant === 'outline'
-            ? 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700'
-            : variant === 'soft'
-                ? 'bg-gray-50 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60'
-                : 'bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-800';
 
-    const paddingClass =
-        padding === 'none'
-            ? 'p-0'
-            : padding === 'sm'
-                ? 'p-3'
-                : padding === 'lg'
-                    ? 'p-6'
-                    : 'p-4';
+    const mapVariant = (v: CodeplexCardVariant): CardProps['variant'] | 'elevation' => {
+        if (v === 'outline' || v === 'soft') return 'outlined';
+        return 'elevation';
+    };
 
-    const interactiveClass = clickable
-        ? 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60'
-        : '';
+    const mapPadding = (p: CodeplexCardPadding): string | number => {
+        switch (p) {
+            case 'none': return 0;
+            case 'sm': return 1.5;
+            case 'lg': return 3;
+            default: return 2;
+        }
+    };
 
-    const hoverClass =
-        hoverable || clickable
-            ? 'transition-shadow transition-transform hover:shadow-md hover:-translate-y-[1px]'
-            : 'transition-shadow';
+    const ContentWrapper = clickable ? CardActionArea : React.Fragment;
+    const wrapperProps = clickable ? { component: 'div' } : {};
 
     return (
-        <article
-            className={`
-        relative
-        rounded-xl
-        shadow-sm
-        ${variantClass}
-        ${paddingClass}
-        ${hoverClass}
-        ${interactiveClass}
-        ${className}
-      `}
+        <Card
+            variant={mapVariant(variant) === 'outlined' ? 'outlined' : undefined}
+            elevation={variant === 'default' ? 2 : 0}
+            className={className}
+            sx={{
+                ...(variant === 'soft' && { bgcolor: 'action.hover', borderColor: 'divider' }),
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+            }}
             {...props}
         >
-            {/* Media opcional */}
-            {media}
+            {/* @ts-ignore - ContentWrapper logic */}
+            <ContentWrapper {...wrapperProps}>
 
-            {/* Header opcional */}
-            {header}
+                {/* Image / Media */}
+                {typeof media === 'string' ? (
+                    <CardMedia component="img" image={media} alt="Card media" height="140" />
+                ) : (
+                    media
+                )}
 
-            {/* Contenido principal */}
-            {children}
+                {/* Header Section */}
+                {header && <Box sx={{ p: mapPadding(padding), pb: 0 }}>{header}</Box>}
 
-            {/* Footer opcional */}
-            {footer}
-        </article>
+                {/* Main Content */}
+                <CardContent sx={{ p: mapPadding(padding), flexGrow: 1 }}>
+                    {children}
+                </CardContent>
+
+                {/* Footer Section */}
+                {footer && <Box sx={{ p: mapPadding(padding), pt: 0 }}>{footer}</Box>}
+
+            </ContentWrapper>
+        </Card>
     );
 };

@@ -1,143 +1,105 @@
 import React, { useState } from 'react';
+import Rating, { RatingProps } from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { styled, useTheme } from '@mui/material/styles';
 
-export type CodeplexRatingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type CodeplexRatingVariant = 'warning' | 'primary' | 'danger' | 'success';
+export type CodeplexRatingSize = 'small' | 'medium' | 'large';
+// Mapping legacy sizes for backward compat if needed, or stick to MUI standard.
+// Let's stick to MUI standard sizes for simplicity in wrapper, but handle the incoming props if we want to be nice.
+// Actually, strict wrapper is better.
 
-export interface CodeplexRatingProps {
+export type CodeplexRatingVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+
+export interface CodeplexRatingProps extends Omit<RatingProps, 'onChange'> {
     value?: number;
-    max?: number;
-    readOnly?: boolean;
-    size?: CodeplexRatingSize;
-    variant?: CodeplexRatingVariant;
     showValue?: boolean;
     tooltips?: string[];
-    className?: string;
-    onChange?: (value: number) => void;
+    variant?: CodeplexRatingVariant; // We will use this to color the stars
+    onChange?: (value: number | null) => void;
 }
 
+// Custom styled rating for different colors
+const StyledRating = styled(Rating, {
+    shouldForwardProp: (prop) => prop !== 'variantColor',
+})<{ variantColor?: string }>(({ theme, variantColor }) => ({
+    '& .MuiRating-iconFilled': {
+        color: variantColor,
+    },
+    '& .MuiRating-iconHover': {
+        color: variantColor,
+    },
+}));
+
+const getVariantColor = (variant: CodeplexRatingVariant, theme: any) => {
+    switch (variant) {
+        case 'primary': return theme.palette.primary.main;
+        case 'secondary': return theme.palette.secondary.main;
+        case 'success': return theme.palette.success.main;
+        case 'warning': return theme.palette.warning.main;
+        case 'error': return theme.palette.error.main;
+        case 'info': return theme.palette.info.main;
+        default: return theme.palette.warning.main;
+    }
+};
+
 export const CodeplexRating = ({
-    value = 0,
+    value,
     max = 5,
-    readOnly = false,
-    size = 'md',
+    readOnly,
+    size = 'medium',
     variant = 'warning',
     showValue = false,
     tooltips = [],
-    className = '',
+    className,
     onChange,
+    ...props
 }: CodeplexRatingProps) => {
-    const [hoverValue, setHoverValue] = useState<number | null>(null);
-
-    const sizeClasses = {
-        xs: 'w-3 h-3',
-        sm: 'w-4 h-4',
-        md: 'w-6 h-6',
-        lg: 'w-8 h-8',
-        xl: 'w-10 h-10',
-    };
-
-    const variantClasses = {
-        warning: 'text-yellow-400',
-        primary: 'text-blue-500',
-        danger: 'text-red-500',
-        success: 'text-emerald-500',
-    };
-
-    const activeColor = variantClasses[variant];
-    const emptyColor = 'text-gray-300 dark:text-gray-600';
-
-    const handleClick = (v: number) => {
-        if (readOnly || !onChange) return;
-        onChange(v);
-    };
-
-    const handleMouseEnter = (v: number) => {
-        if (readOnly) return;
-        setHoverValue(v);
-    };
-
-    const handleMouseLeave = () => {
-        if (readOnly) return;
-        setHoverValue(null);
-    };
-
-    const displayValue = hoverValue ?? value;
-
-    const currentTooltip = hoverValue && tooltips.length >= hoverValue
-        ? tooltips[hoverValue - 1]
-        : null;
+    const [hover, setHover] = useState(-1);
+    // We rely on styled component to handle theme access via prop passing if possible, 
+    // but cleaner is to use useTheme hook or just style it dynamically.
+    // However, since we want to suppress the prop from DOM, passing it as transient or filtered is correct.
+    // Issue: I can't easily use useTheme inside the component to get the string if I don't import useTheme.
+    // Let's import useTheme.
+    const theme = useTheme();
+    const color = getVariantColor(variant, theme);
 
     return (
-        <div className={`inline-flex flex-col ${className}`}>
-            <div className="flex items-center gap-1">
-                <div
-                    className="flex items-center"
-                    onMouseLeave={handleMouseLeave}
-                    role={readOnly ? 'img' : 'slider'}
-                    aria-label="Rating"
-                    aria-valuemin={1}
-                    aria-valuemax={max}
-                    aria-valuenow={displayValue}
-                    aria-valuetext={currentTooltip || `${displayValue} de ${max}`}
-                >
-                    {Array.from({ length: max }, (_, i) => {
-                        const starValue = i + 1;
-                        const isFilled = starValue <= displayValue;
-                        const isHovered = hoverValue === starValue;
-
-                        return (
-                            <button
-                                key={starValue}
-                                type="button"
-                                disabled={readOnly}
-                                onClick={() => handleClick(starValue)}
-                                onMouseEnter={() => handleMouseEnter(starValue)}
-                                aria-label={`Calificar ${starValue} estrellas`}
-                                className={`
-                  relative
-                  transition-transform duration-200 ease-out
-                  focus:outline-none focus-visible:scale-110
-                  ${readOnly ? 'cursor-default' : 'cursor-pointer hover:scale-110'}
-                  ${sizeClasses[size]}
-                  ${isFilled ? activeColor : emptyColor}
-                  ${isHovered && !readOnly ? 'scale-125' : ''}
-                `}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="w-full h-full drop-shadow-sm"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                            </button>
-                        );
-                    })}
-                </div>
-
-                {showValue && (
-                    <span className="ml-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-                        {value}/{max}
-                    </span>
-                )}
-            </div>
-
-            {tooltips.length > 0 && (
-                <div className="h-5 mt-1">
-                    <span className={`
-              text-xs font-medium transition-opacity duration-300
-              ${currentTooltip ? 'opacity-100' : 'opacity-0'}
-              ${variant === 'danger' ? 'text-red-600' : variant === 'success' ? 'text-emerald-600' : 'text-gray-500 dark:text-gray-400'}
-           `}>
-                        {currentTooltip || 'Select'}
-                    </span>
-                </div>
+        <Box
+            className={className}
+            sx={{
+                width: 200,
+                display: 'flex',
+                alignItems: 'center',
+            }}
+        >
+            <StyledRating
+                name="codeplex-rating"
+                value={value}
+                max={max}
+                readOnly={readOnly}
+                size={size}
+                variantColor={color}
+                onChange={(event, newValue) => {
+                    onChange?.(newValue);
+                }}
+                onChangeActive={(event, newHover) => {
+                    setHover(newHover);
+                }}
+                emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                {...props}
+            />
+            {showValue && (
+                <Box sx={{ ml: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
+                    {value !== null && value !== undefined ? `${value}/${max}` : ''}
+                </Box>
             )}
-        </div>
+            {tooltips.length > 0 && !readOnly && (
+                <Box sx={{ ml: 2, minWidth: 80, fontSize: '0.875rem', fontWeight: 500 }}>
+                    {tooltips[hover !== -1 ? hover - 1 : (value || 0) - 1]}
+                </Box>
+            )}
+        </Box>
     );
 };

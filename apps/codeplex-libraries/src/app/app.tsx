@@ -29,6 +29,18 @@ import { RatingPage } from './pages/ui/rating/rating.page';
 import { ToastPage } from './pages/ui/toast/toast.page';
 import { TooltipPage } from './pages/ui/tooltip/tooltip.page';
 import { SidebarPage } from './pages/layout/sidebar/sidebar.page';
+import { AvatarPage } from './pages/ui/avatar/avatar.page';
+import { SkeletonPage } from './pages/ui/skeleton/skeleton.page';
+import { AutocompletePage } from './pages/ui/autocomplete/autocomplete.page';
+import { ButtonGroupPage } from './pages/ui/button-group/button-group.page';
+import { CheckboxPage } from './pages/ui/checkbox/checkbox.page';
+import { NumberFieldPage } from './pages/ui/number-field/number-field.page';
+import { RadioGroupPage } from './pages/ui/radio-group/radio-group.page';
+import { SelectPage } from './pages/ui/select/select.page';
+import { SliderPage } from './pages/ui/slider/slider.page';
+import { SwitchPage } from './pages/ui/switch/switch.page';
+import { TextFieldPage } from './pages/ui/text-field/text-field.page';
+import { TransferListPage } from './pages/ui/transfer-list/transfer-list.page';
 
 
 const ThemeToggle = () => {
@@ -83,12 +95,24 @@ const baseMenuItems: CodeplexMenuItem[] = [
     children: [
       { id: 'ui-button', icon: '🔘', label: 'Button', href: '/ui/button' },
       { id: 'ui-alert', icon: '🚨', label: 'Alert', href: '/ui/alert' },
+      { id: 'ui-avatar', icon: '👤', label: 'Avatar', href: '/ui/avatar' },
       { id: 'ui-badge', icon: '🏷️', label: 'Badge', href: '/ui/badge' },
       { id: 'ui-card', icon: '🃏', label: 'Card', href: '/ui/card' },
       { id: 'ui-progress', icon: '📈', label: 'Progress', href: '/ui/progress' },
       { id: 'ui-rating', icon: '⭐', label: 'Rating', href: '/ui/rating' },
       { id: 'ui-toast', icon: '🍞', label: 'Toast', href: '/ui/toast' },
       { id: 'ui-tooltip', icon: '💬', label: 'Tooltip', href: '/ui/tooltip' },
+      { id: 'ui-skeleton', icon: '💀', label: 'Skeleton', href: '/ui/skeleton' },
+      { id: 'ui-autocomplete', icon: '🔍', label: 'Autocomplete', href: '/ui/autocomplete' },
+      { id: 'ui-button-group', icon: '🔗', label: 'Button Group', href: '/ui/button-group' },
+      { id: 'ui-checkbox', icon: '☑️', label: 'Checkbox', href: '/ui/checkbox' },
+      { id: 'ui-number-field', icon: '🔢', label: 'Number Field', href: '/ui/number-field' },
+      { id: 'ui-radio-group', icon: '🔘', label: 'Radio Group', href: '/ui/radio-group' },
+      { id: 'ui-select', icon: '🔽', label: 'Select', href: '/ui/select' },
+      { id: 'ui-slider', icon: '🎚️', label: 'Slider', href: '/ui/slider' },
+      { id: 'ui-switch', icon: '🔌', label: 'Switch', href: '/ui/switch' },
+      { id: 'ui-text-field', icon: '📝', label: 'Text Field', href: '/ui/text-field' },
+      { id: 'ui-transfer-list', icon: '⇆', label: 'Transfer List', href: '/ui/transfer-list' },
     ],
   },
   {
@@ -165,12 +189,24 @@ export function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/ui/button" element={<ButtonPage />} />
             <Route path="/ui/alert" element={<AlertPage />} />
+            <Route path="/ui/avatar" element={<AvatarPage />} />
             <Route path="/ui/badge" element={<BadgePage />} />
             <Route path="/ui/card" element={<CardPage />} />
             <Route path="/ui/progress" element={<ProgressPage />} />
             <Route path="/ui/rating" element={<RatingPage />} />
             <Route path="/ui/toast" element={<ToastPage />} />
             <Route path="/ui/tooltip" element={<TooltipPage />} />
+            <Route path="/ui/skeleton" element={<SkeletonPage />} />
+            <Route path="/ui/autocomplete" element={<AutocompletePage />} />
+            <Route path="/ui/button-group" element={<ButtonGroupPage />} />
+            <Route path="/ui/checkbox" element={<CheckboxPage />} />
+            <Route path="/ui/number-field" element={<NumberFieldPage />} />
+            <Route path="/ui/radio-group" element={<RadioGroupPage />} />
+            <Route path="/ui/select" element={<SelectPage />} />
+            <Route path="/ui/slider" element={<SliderPage />} />
+            <Route path="/ui/switch" element={<SwitchPage />} />
+            <Route path="/ui/text-field" element={<TextFieldPage />} />
+            <Route path="/ui/transfer-list" element={<TransferListPage />} />
             <Route path="/layout/sidebar" element={<SidebarPage />} />
             {/* Fallback for not implemented pages */}
             <Route path="*" element={

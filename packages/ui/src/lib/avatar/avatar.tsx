@@ -1,147 +1,84 @@
 import React from 'react';
+import Avatar, { AvatarProps } from '@mui/material/Avatar';
+import AvatarGroup, { AvatarGroupProps } from '@mui/material/AvatarGroup';
+import { SxProps, Theme } from '@mui/material/styles';
 
-export type CodeplexAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type CodeplexAvatarShape = 'circle' | 'rounded';
-export type CodeplexAvatarStatus = 'online' | 'offline' | 'busy' | 'away' | 'none';
+export type CodeplexAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-export interface CodeplexAvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-    src?: string;
+export interface CodeplexAvatarProps extends AvatarProps {
+    size?: CodeplexAvatarSize | number;
     alt?: string;
-    name?: string;
-    size?: CodeplexAvatarSize;
-    shape?: CodeplexAvatarShape;
-    status?: CodeplexAvatarStatus;
-    showBorder?: boolean;
-    showInitialsFallback?: boolean;
+    src?: string;
 }
 
+const mapSize = (size: CodeplexAvatarSize | number | undefined): SxProps<Theme> => {
+    if (typeof size === 'number') return { width: size, height: size };
+    if (!size) return {};
+
+    const sizes: Record<string, number> = {
+        xs: 24,
+        sm: 32,
+        md: 40,
+        lg: 48,
+        xl: 64,
+        xxl: 80,
+    };
+
+    const px = sizes[size as string] || 40;
+    return { width: px, height: px, fontSize: px / 2 };
+};
+
 export const CodeplexAvatar = ({
-    src,
-    alt,
-    name,
     size = 'md',
-    shape = 'circle',
-    status = 'none',
-    showBorder = false,
-    showInitialsFallback = true,
-    className = '',
+    sx,
+    children,
     ...props
 }: CodeplexAvatarProps) => {
-    const sizeClass =
-        size === 'xs'
-            ? 'w-6 h-6 text-[10px]'
-            : size === 'sm'
-                ? 'w-8 h-8 text-xs'
-                : size === 'lg'
-                    ? 'w-12 h-12 text-base'
-                    : size === 'xl'
-                        ? 'w-16 h-16 text-lg'
-                        : 'w-10 h-10 text-sm';
-
-    const radiusClass = shape === 'rounded' ? 'rounded-lg' : 'rounded-full';
-
-    const borderClass = showBorder
-        ? 'ring-2 ring-white dark:ring-gray-900'
-        : '';
-
-    const statusColor =
-        status === 'online'
-            ? 'bg-emerald-500'
-            : status === 'busy'
-                ? 'bg-red-500'
-                : status === 'away'
-                    ? 'bg-amber-400'
-                    : status === 'offline'
-                        ? 'bg-gray-400 dark:bg-gray-500'
-                        : 'bg-transparent';
-
-    const showStatus = status !== 'none';
-
-    const initials =
-        (name || alt || '?')
-            .trim()
-            .split(' ')
-            .filter(Boolean)
-            .slice(0, 2)
-            .map((p) => p[0]?.toUpperCase())
-            .join('') || '?';
-
-    const statusLabel =
-        status === 'online'
-            ? 'En línea'
-            : status === 'busy'
-                ? 'Ocupado'
-                : status === 'away'
-                    ? 'Ausente'
-                    : status === 'offline'
-                        ? 'Desconectado'
-                        : undefined;
-
     return (
-        <div
-            className={`relative inline-flex ${className}`}
-            aria-label={name}
+        <Avatar
+            sx={[
+                mapSize(size) as any,
+                ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
             {...props}
         >
-            {src ? (
-                <img
-                    src={src}
-                    alt={alt || name || 'Avatar'}
-                    className={`
-            ${sizeClass}
-            ${radiusClass}
-            object-cover
-            bg-gray-200 dark:bg-gray-700
-            ${borderClass}
-          `}
-                />
-            ) : showInitialsFallback ? (
-                <div
-                    className={`
-            ${sizeClass}
-            ${radiusClass}
-            inline-flex items-center justify-center
-            bg-gray-200 text-gray-700
-            dark:bg-gray-700 dark:text-gray-100
-            font-medium
-            ${borderClass}
-          `}
-                    role="img"
-                    aria-label={name}
-                >
-                    {initials}
-                </div>
-            ) : (
-                <div
-                    className={`
-            ${sizeClass}
-            ${radiusClass}
-            bg-gray-200 dark:bg-gray-700
-            ${borderClass}
-          `}
-                    role="img"
-                    aria-label={name}
-                />
-            )}
-
-            {showStatus && (
-                <>
-                    <span
-                        className={`
-              absolute bottom-0 right-0
-              inline-flex items-center justify-center
-              rounded-full
-              border-2 border-white dark:border-gray-900
-              ${size === 'xs' ? 'w-2.5 h-2.5' : 'w-3 h-3'}
-              ${statusColor}
-            `}
-                        aria-hidden="true"
-                    />
-                    {statusLabel && (
-                        <span className="sr-only">{statusLabel}</span>
-                    )}
-                </>
-            )}
-        </div>
+            {children}
+        </Avatar>
     );
+};
+
+export interface CodeplexAvatarGroupProps extends AvatarGroupProps {
+    total?: number;
+}
+
+export const CodeplexAvatarGroup = ({
+    children,
+    spacing = 'medium',
+    max = 5,
+    ...props
+}: CodeplexAvatarGroupProps) => {
+    return (
+        <AvatarGroup max={max} spacing={spacing} {...props}>
+            {children}
+        </AvatarGroup>
+    );
+};
+
+// Helper function to generate color from string (common MUI pattern)
+export const stringAvatar = (name: string) => {
+    let hash = 0;
+    for (let i = 0; i < name.length; i += 1) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    let color = '#';
+    for (let i = 0; i < 3; i += 1) {
+        const value = (hash >> (i * 8)) & 0xff;
+        color += `00${value.toString(16)}`.slice(-2);
+    }
+    return {
+        sx: {
+            bgcolor: color,
+        },
+        children: `${name.split(' ')[0][0]}${name.split(' ')[1]?.[0] || ''}`,
+    };
 };
