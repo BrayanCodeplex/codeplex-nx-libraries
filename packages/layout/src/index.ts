@@ -7,4 +7,6 @@ export * from './lib/sidebar/sidebar';
 export * from './lib/container/container';
 export * from './lib/row/row';
 export * from './lib/col/col';
+export * from './lib/box/box';
+export * from './lib/grid/grid';
 
