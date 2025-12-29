@@ -3,12 +3,13 @@
     "version": "0.0.1",
     "type": "module",
     "main": "./index.js",
-    "module": "./dist/index.mjs",
+    "module": "./index.js",
     "types": "./index.d.ts",
     "exports": {
         ".": {
-            "import": "./index.mjs",
-            "require": "./index.js"
+            "types": "./index.d.ts",
+            "import": "./index.js",
+            "require": "./index.cjs"
         }
     },
     "publishConfig": {
@@ -17,5 +18,14 @@
     "peerDependencies": {
         "react": "^19.0.0",
         "react-dom": "^19.0.0"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.1",
+        "@mui/icons-material": "^7.3.6",
+        "@mui/material": "^7.3.6",
+        "@mui/x-date-pickers": "^8.23.0",
+        "dayjs": "^1.11.19",
+        "material-react-table": "^3.2.1"
     }
 }

@@ -41,6 +41,7 @@ import { SliderPage } from './pages/ui/slider/slider.page';
 import { SwitchPage } from './pages/ui/switch/switch.page';
 import { TextFieldPage } from './pages/ui/text-field/text-field.page';
 import { TransferListPage } from './pages/ui/transfer-list/transfer-list.page';
+import { TablePage } from './pages/data-view/table/table.page';
 
 
 const ThemeToggle = () => {
@@ -113,6 +114,14 @@ const baseMenuItems: CodeplexMenuItem[] = [
       { id: 'ui-switch', icon: '🔌', label: 'Switch', href: '/ui/switch' },
       { id: 'ui-text-field', icon: '📝', label: 'Text Field', href: '/ui/text-field' },
       { id: 'ui-transfer-list', icon: '⇆', label: 'Transfer List', href: '/ui/transfer-list' },
+    ],
+  },
+  {
+    id: 'data-view',
+    label: 'Data View',
+    icon: '📊',
+    children: [
+      { id: 'data-table', icon: '📅', label: 'Table (MRT)', href: '/data-view/table' },
     ],
   },
   {
@@ -208,6 +217,7 @@ export function App() {
             <Route path="/ui/text-field" element={<TextFieldPage />} />
             <Route path="/ui/transfer-list" element={<TransferListPage />} />
             <Route path="/layout/sidebar" element={<SidebarPage />} />
+            <Route path="/data-view/table" element={<TablePage />} />
             {/* Fallback for not implemented pages */}
             <Route path="*" element={
               <div className="text-center py-20">
