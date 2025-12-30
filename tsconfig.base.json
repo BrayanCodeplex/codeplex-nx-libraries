@@ -29,6 +29,21 @@
       ],
       "@codeplex-qwik/layout": [
         "packages/layout/src/index.ts"
+      ],
+      "@codeplex-qwik/utils": [
+        "packages/utils/src/index.ts"
+      ],
+      "@codeplex-qwik/navigation": [
+        "packages/navigation/src/index.ts"
+      ],
+      "@codeplex-qwik/date-pickers": [
+        "packages/date-pickers/src/index.ts"
+      ],
+      "@codeplex-qwik/data-grid": [
+        "packages/data-grid/src/index.ts"
+      ],
+      "@codeplex-qwik/charts": [
+        "packages/charts/src/index.ts"
       ]
     }
   },

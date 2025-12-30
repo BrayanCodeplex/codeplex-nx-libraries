@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CodeplexTextField, CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
+import { CodeplexGrid } from '@codeplex-qwik/layout';
 import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Visibility from '@mui/icons-material/Visibility';
@@ -65,8 +66,9 @@ export const TextFieldPage = () => {
 
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Professional Validation Form</h2>
-                <div className="flex gap-6 flex-col md:flex-row">
-                    <div className="md:w-1/2">
+
+                <CodeplexGrid container spacing={4} alignItems="flex-start">
+                    <CodeplexGrid size={{ xs: 12, md: 6 }}>
                         <CodeplexCard>
                             <Box component="form" onSubmit={handleSubmit} sx={{ p: 4, display: 'flex', flexDirection: 'column', gap: 3 }}>
                                 <div>
@@ -131,10 +133,11 @@ export const TextFieldPage = () => {
                                     </button>
                                 </div>
                             </Box>
-                        </CodeplexCard>
-                    </div>
 
-                    <div className="md:w-1/2 space-y-4">
+                        </CodeplexCard>
+                    </CodeplexGrid>
+
+                    <CodeplexGrid size={{ xs: 12, md: 6 }}>
                         <div className="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-100 dark:border-blue-800">
                             <Typography variant="subtitle2" className="text-blue-800 dark:text-blue-300 font-semibold mb-2">
                                 UX Best Practices Applied:
@@ -147,18 +150,27 @@ export const TextFieldPage = () => {
                                 <li>Subtle background tints for active states</li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-            </section>
+
+                    </CodeplexGrid>
+                </CodeplexGrid>
+            </section >
 
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">States & Variants</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <CodeplexTextField label="Standard Outlined" />
-                    <CodeplexTextField label="Disabled" disabled defaultValue="Locked" />
-                    <CodeplexTextField label="Read Only" defaultValue="Read Only" slotProps={{ input: { readOnly: true } }} />
-                    <CodeplexTextField label="Error State" error defaultValue="Invalid" helperText="Please fix this" />
-                </div>
+                <CodeplexGrid container spacing={2}>
+                    <CodeplexGrid size={{ xs: 12, md: 6, lg: 3 }}>
+                        <CodeplexTextField label="Standard Outlined" fullWidth />
+                    </CodeplexGrid>
+                    <CodeplexGrid size={{ xs: 12, md: 6, lg: 3 }}>
+                        <CodeplexTextField label="Disabled" disabled defaultValue="Locked" fullWidth />
+                    </CodeplexGrid>
+                    <CodeplexGrid size={{ xs: 12, md: 6, lg: 3 }}>
+                        <CodeplexTextField label="Read Only" defaultValue="Read Only" slotProps={{ input: { readOnly: true } }} fullWidth />
+                    </CodeplexGrid>
+                    <CodeplexGrid size={{ xs: 12, md: 6, lg: 3 }}>
+                        <CodeplexTextField label="Error State" error defaultValue="Invalid" helperText="Please fix this" fullWidth />
+                    </CodeplexGrid>
+                </CodeplexGrid>
             </section>
 
             <section className="space-y-4">
@@ -197,6 +209,6 @@ export const TextFieldPage = () => {
                     </pre>
                 </div>
             </section>
-        </div>
+        </div >
     );
 };

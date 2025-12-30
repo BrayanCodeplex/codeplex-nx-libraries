@@ -1,0 +1,20 @@
+{
+    "name": "@codeplex-qwik/charts",
+    "version": "0.0.2",
+    "main": "./index.js",
+    "types": "./index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./index.mjs",
+            "require": "./index.js"
+        }
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "@mui/material": "^7.3.6"
+    },
+    "dependencies": {
+        "@mui/x-charts": "^7.23.0"
+    }
+}

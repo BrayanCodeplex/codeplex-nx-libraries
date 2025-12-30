@@ -57,7 +57,7 @@ export const CodeplexTable = <TData extends MRT_RowData>({
         },
         muiTableHeadCellProps: {
             sx: {
-                backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.background.paper, 0.8) : '#f8f9fa',
+                backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.background.paper, 0.8) : theme.palette.grey[50],
                 color: theme.palette.text.secondary,
                 fontWeight: 600,
                 textTransform: 'uppercase',
