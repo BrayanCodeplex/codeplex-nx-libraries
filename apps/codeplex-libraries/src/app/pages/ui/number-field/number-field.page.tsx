@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexNumberField } from '@codeplex-qwik/ui';
+import { CodeplexNumberField } from '@codeplex-sac/ui';
 
 export const NumberFieldPage = () => {
     const [value, setValue] = useState<number | null>(10);
@@ -69,7 +69,7 @@ export const NumberFieldPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexNumberField } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexNumberField } from '@codeplex-sac/ui';
 
 // Basic
 <CodeplexNumberField label="Age" min={0} max={100} />

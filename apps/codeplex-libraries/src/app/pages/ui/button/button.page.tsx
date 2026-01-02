@@ -1,4 +1,4 @@
-import { CodeplexButton, CodeplexCard, VisuallyHiddenInput } from '@codeplex-qwik/ui';
+import { CodeplexButton, CodeplexCard, VisuallyHiddenInput } from '@codeplex-sac/ui';
 // We use generic icons here for demo purposes, you can use MUI icons in real apps
 const CloudUploadIcon = () => <span>☁️</span>;
 const SendIcon = () => <span>📤</span>;
@@ -96,7 +96,7 @@ export const ButtonPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexButton, VisuallyHiddenInput } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexButton, VisuallyHiddenInput } from '@codeplex-sac/ui';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 // File Upload Button

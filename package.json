@@ -78,9 +78,12 @@
     "@mui/x-data-grid": "^8.23.0",
     "@mui/x-date-pickers": "^8.23.0",
     "dayjs": "^1.11.19",
+    "jspdf": "^3.0.4",
+    "jspdf-autotable": "^5.0.2",
     "material-react-table": "^3.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.11.0"
+    "react-router-dom": "^7.11.0",
+    "xlsx": "^0.18.5"
   }
 }

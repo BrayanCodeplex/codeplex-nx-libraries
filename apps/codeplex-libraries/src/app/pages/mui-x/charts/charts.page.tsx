@@ -1,5 +1,5 @@
-import { CodeplexLineChart, CodeplexBarChart, CodeplexPieChart } from '@codeplex-qwik/charts';
-import { CodeplexGrid, CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexLineChart, CodeplexBarChart, CodeplexPieChart } from '@codeplex-sac/charts';
+import { CodeplexGrid, CodeplexBox } from '@codeplex-sac/layout';
 
 export const ChartsPage = () => {
     return (

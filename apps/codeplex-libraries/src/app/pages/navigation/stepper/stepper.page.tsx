@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { CodeplexStepper, CodeplexButton, CodeplexCard, CodeplexBox, CodeplexStack } from '@codeplex-qwik/libraries'; // Assuming export barrel or use individual
+import { CodeplexStepper, CodeplexButton, CodeplexCard, CodeplexBox, CodeplexStack } from '@codeplex-sac/libraries'; // Assuming export barrel or use individual
 // Fallback if not updated yet in barrel:
-import { CodeplexStepper as StepperComponent } from '@codeplex-qwik/navigation';
-import { CodeplexButton as ButtonComponent, CodeplexCard as CardComponent } from '@codeplex-qwik/ui';
-import { CodeplexBox as BoxComponent, CodeplexStack as StackComponent } from '@codeplex-qwik/layout';
+import { CodeplexStepper as StepperComponent } from '@codeplex-sac/navigation';
+import { CodeplexButton as ButtonComponent, CodeplexCard as CardComponent } from '@codeplex-sac/ui';
+import { CodeplexBox as BoxComponent, CodeplexStack as StackComponent } from '@codeplex-sac/layout';
 
 export const StepperPage = () => {
     const [activeStep, setActiveStep] = useState(0);

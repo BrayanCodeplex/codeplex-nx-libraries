@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexRadio, CodeplexRadioGroup } from '@codeplex-qwik/ui';
+import { CodeplexRadio, CodeplexRadioGroup } from '@codeplex-sac/ui';
 
 export const RadioGroupPage = () => {
     const [value, setValue] = useState('female');
@@ -89,7 +89,7 @@ export const RadioGroupPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexRadioGroup, CodeplexRadio } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexRadioGroup, CodeplexRadio } from '@codeplex-sac/ui';
 
 // Composition
 <CodeplexRadioGroup label="Gender" defaultValue="female">

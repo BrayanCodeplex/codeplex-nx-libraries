@@ -1,6 +1,6 @@
-import { CodeplexTextareaAutosize } from '@codeplex-qwik/utils';
-import { CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexTextareaAutosize } from '@codeplex-sac/utils';
+import { CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 
 export const TextareaPage = () => {
     return (

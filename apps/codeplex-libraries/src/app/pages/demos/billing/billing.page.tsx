@@ -5,11 +5,11 @@ import {
     CodeplexToast,
     CodeplexCard,
     CodeplexBadge
-} from '@codeplex-qwik/ui';
-import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-qwik/data-view';
-import { CodeplexDatePicker } from '@codeplex-qwik/date-pickers';
-import { CodeplexTabs } from '@codeplex-qwik/navigation';
-import { CodeplexGrid, CodeplexStack, CodeplexBox, CodeplexContainer } from '@codeplex-qwik/layout';
+} from '@codeplex-sac/ui';
+import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-sac/data-view';
+import { CodeplexDatePicker } from '@codeplex-sac/date-pickers';
+import { CodeplexTabs } from '@codeplex-sac/navigation';
+import { CodeplexGrid, CodeplexStack, CodeplexBox, CodeplexContainer } from '@codeplex-sac/layout';
 import {
     Search as SearchIcon,
     Add as AddIcon,
@@ -106,6 +106,7 @@ export const BillingPage = () => {
             {
                 id: 'dates',
                 header: 'Fechas',
+                meta: { headerBackgroundColor: 'secondary.main' },
                 columns: [
                     { accessorKey: 'f_emision', header: 'F. Emisión', size: 120 },
                     { accessorKey: 'f_vcto', header: 'F. Vencimiento', size: 120 },
@@ -119,6 +120,7 @@ export const BillingPage = () => {
             {
                 id: 'montos',
                 header: 'Importes Monetarios',
+                meta: { headerBackgroundColor: 'primary.main' },
                 columns: [
                     {
                         accessorKey: 'afecto',
@@ -272,12 +274,15 @@ export const BillingPage = () => {
                     columns={columns}
                     data={MOCK_INVOICES}
                     title="Listado de Facturas"
+                    enableExport={true}
                     options={{
                         enableDensityToggle: true,
                         enableColumnFilters: true,
                         enableColumnOrdering: true,
                         enableGrouping: true, // Functional: Row grouping enabled
                         enableColumnPinning: true,
+                        enableRowPinning: true,
+                        enableStickyHeader: true,
                         enableRowActions: false, // We use custom action column
                         initialState: {
                             density: 'compact',

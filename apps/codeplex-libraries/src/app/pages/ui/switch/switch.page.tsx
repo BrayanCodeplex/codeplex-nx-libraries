@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexSwitch, CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexSwitch, CodeplexCard } from '@codeplex-sac/ui';
 import FormGroup from '@mui/material/FormGroup';
 
 export const SwitchPage = () => {
@@ -77,7 +77,7 @@ export const SwitchPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexSwitch } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexSwitch } from '@codeplex-sac/ui';
 
 /* Basic */
 <CodeplexSwitch label="Notifications" defaultChecked />

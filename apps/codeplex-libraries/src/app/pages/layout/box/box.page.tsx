@@ -1,5 +1,5 @@
-import { CodeplexBox, CodeplexStack } from '@codeplex-qwik/layout';
-import { CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
+import { CodeplexBox, CodeplexStack } from '@codeplex-sac/layout';
+import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
 
 export const BoxPage = () => {
     return (

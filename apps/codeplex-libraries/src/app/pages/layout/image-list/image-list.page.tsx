@@ -1,5 +1,5 @@
-import { CodeplexImageList, CodeplexImageListItem, CodeplexImageListItemBar } from '@codeplex-qwik/layout';
-import { CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexImageList, CodeplexImageListItem, CodeplexImageListItemBar } from '@codeplex-sac/layout';
+import { CodeplexCard } from '@codeplex-sac/ui';
 
 // Mock Data
 const itemData = [

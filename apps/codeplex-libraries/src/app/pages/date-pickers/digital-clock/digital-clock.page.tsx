@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexDigitalClock } from '@codeplex-qwik/date-pickers';
-import { CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexStack, CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexDigitalClock } from '@codeplex-sac/date-pickers';
+import { CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexStack, CodeplexBox } from '@codeplex-sac/layout';
 import dayjs, { Dayjs } from 'dayjs';
 
 export const DigitalClockPage = () => {

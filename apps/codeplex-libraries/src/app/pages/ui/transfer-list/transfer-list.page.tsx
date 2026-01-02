@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexTransferList, TransferListItem } from '@codeplex-qwik/ui';
+import { CodeplexTransferList, TransferListItem } from '@codeplex-sac/ui';
 
 export const TransferListPage = () => {
     const [left, setLeft] = useState<TransferListItem[]>([
@@ -47,7 +47,7 @@ export const TransferListPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexTransferList } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexTransferList } from '@codeplex-sac/ui';
 
 const [left, setLeft] = useState([{ id: 1, label: 'Item 1' }]);
 const [right, setRight] = useState([]);

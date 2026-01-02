@@ -1,4 +1,4 @@
-import { CodeplexCard, CodeplexBadge } from '@codeplex-qwik/ui';
+import { CodeplexCard, CodeplexBadge } from '@codeplex-sac/ui';
 
 export const CardPage = () => {
     return (

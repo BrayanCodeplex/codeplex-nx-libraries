@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexSlider, CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexSlider, CodeplexCard } from '@codeplex-sac/ui';
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import Stack from '@mui/material/Stack';
@@ -137,7 +137,7 @@ export const SliderPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexSlider } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexSlider } from '@codeplex-sac/ui';
 
 /* Continuous */
 <CodeplexSlider value={volume} onChange={handleChange} />

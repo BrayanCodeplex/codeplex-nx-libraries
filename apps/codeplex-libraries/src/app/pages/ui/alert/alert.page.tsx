@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CodeplexAlert, CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexAlert, CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
 
 export const AlertPage = () => {
     const [open, setOpen] = useState(true);
@@ -105,7 +105,7 @@ export const AlertPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexAlert, CodeplexButton } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexAlert, CodeplexButton } from '@codeplex-sac/ui';
 
 // Alerta compleja con acción y estilo filled
 <CodeplexAlert

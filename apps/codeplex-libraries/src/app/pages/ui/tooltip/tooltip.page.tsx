@@ -1,4 +1,4 @@
-import { CodeplexTooltip, CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexTooltip, CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
 
 export const TooltipPage = () => {
     return (
@@ -65,7 +65,7 @@ export const TooltipPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexTooltip } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexTooltip } from '@codeplex-sac/ui';
 
 <CodeplexTooltip content="Guardar Cambios">
   <button>Guardar</button>
@@ -81,7 +81,7 @@ export const TooltipPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexTooltip } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexTooltip } from '@codeplex-sac/ui';
 
 // Tooltip con posición forzada, sin flecha y delay
 <CodeplexTooltip

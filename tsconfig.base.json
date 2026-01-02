@@ -18,31 +18,31 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@codeplex-qwik/theme": [
+      "@codeplex-sac/theme": [
         "packages/theme/src/index.ts"
       ],
-      "@codeplex-qwik/ui": [
+      "@codeplex-sac/ui": [
         "packages/ui/src/index.ts"
       ],
-      "@codeplex-qwik/data-view": [
+      "@codeplex-sac/data-view": [
         "packages/data-view/src/index.ts"
       ],
-      "@codeplex-qwik/layout": [
+      "@codeplex-sac/layout": [
         "packages/layout/src/index.ts"
       ],
-      "@codeplex-qwik/utils": [
+      "@codeplex-sac/utils": [
         "packages/utils/src/index.ts"
       ],
-      "@codeplex-qwik/navigation": [
+      "@codeplex-sac/navigation": [
         "packages/navigation/src/index.ts"
       ],
-      "@codeplex-qwik/date-pickers": [
+      "@codeplex-sac/date-pickers": [
         "packages/date-pickers/src/index.ts"
       ],
-      "@codeplex-qwik/data-grid": [
+      "@codeplex-sac/data-grid": [
         "packages/data-grid/src/index.ts"
       ],
-      "@codeplex-qwik/charts": [
+      "@codeplex-sac/charts": [
         "packages/charts/src/index.ts"
       ]
     }

@@ -6,7 +6,7 @@ import {
     CodeplexTable,
     type MRT_Row,
     MRT_EditActionButtons
-} from '@codeplex-qwik/data-view';
+} from '@codeplex-sac/data-view';
 import {
     Box,
     Button,
@@ -39,7 +39,7 @@ import {
 } from '@mui/icons-material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { CodeplexJumbotron } from '@codeplex-qwik/ui';
+import { CodeplexJumbotron } from '@codeplex-sac/ui';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 

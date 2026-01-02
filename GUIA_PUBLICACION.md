@@ -1,6 +1,6 @@
 # 📦 Guía de Publicación a NPM (usando PNPM)
 
-Esta guía detalla paso a paso cómo compilar y subir tus paquetes (`@codeplex-qwik/ui`, `@codeplex-qwik/theme`, `@codeplex-qwik/layout`, `@codeplex-qwik/data-view`) al registro público de NPM utilizando **pnpm**.
+Esta guía detalla paso a paso cómo compilar y subir tus paquetes (`@codeplex-sac/ui`, `@codeplex-sac/theme`, `@codeplex-sac/layout`, `@codeplex-sac/data-view`) al registro público de NPM utilizando **pnpm**.
 
 ## 1. Prerrequisitos
 
@@ -108,5 +108,5 @@ pnpm publish --access public --no-git-checks --otp=123456
 Para instalar tus nuevos paquetes en otro proyecto usando pnpm:
 
 ```bash
-pnpm add @codeplex-qwik/ui @codeplex-qwik/theme
+pnpm add @codeplex-sac/ui @codeplex-sac/theme
 ```

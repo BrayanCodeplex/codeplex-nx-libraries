@@ -1,4 +1,4 @@
-import { CodeplexProgress, CodeplexSpinner, CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
+import { CodeplexProgress, CodeplexSpinner, CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
 import { useState, useEffect } from 'react';
 
 export const ProgressPage = () => {

@@ -1,4 +1,4 @@
-# @codeplex-qwik/data-view
+# @codeplex-sac/data-view
 
 Este paquete contiene componentes avanzados de visualización de datos, centrados principalmente en **CodeplexTable**.
 
@@ -24,7 +24,7 @@ pnpm add material-react-table @mui/material @mui/icons-material @emotion/react @
 ### Uso Básico
 
 ```tsx
-import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-qwik/data-view';
+import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-sac/data-view';
 import { useMemo } from 'react';
 
 // 1. Definir la forma de tus datos
@@ -140,5 +140,5 @@ Para facilitar la personalización (especialmente en Custom Toolbars), el paquet
 Importalos directamente:
 
 ```tsx
-import { MRT_GlobalFilterTextField } from '@codeplex-qwik/data-view';
+import { MRT_GlobalFilterTextField } from '@codeplex-sac/data-view';
 ```

@@ -8,15 +8,15 @@ import {
   CodeplexSmartLabel,
   CodeplexRating,
   CodeplexInputHelper
-} from '@codeplex-qwik/ui';
-import { useTheme } from '@codeplex-qwik/theme';
+} from '@codeplex-sac/ui';
+import { useTheme } from '@codeplex-sac/theme';
 import {
   CodeplexSidebar,
   CodeplexHeader,
   CodeplexFooter,
   CodeplexMenuItem,
   CodeplexBreadcrumb
-} from '@codeplex-qwik/layout'; // CodeplexJumbotron remains in UI
+} from '@codeplex-sac/layout'; // CodeplexJumbotron remains in UI
 import { ThemeProvider, createTheme, CssBaseline, PaletteMode } from '@mui/material';
 
 // Pages
@@ -72,7 +72,7 @@ import { StepperPage } from './pages/navigation/stepper/stepper.page';
 import { TabsPage } from './pages/navigation/tabs/tabs.page';
 
 // Date Pickers
-import { CodeplexDatesProvider } from '@codeplex-qwik/date-pickers';
+import { CodeplexDatesProvider } from '@codeplex-sac/date-pickers';
 import { DatePickerPage } from './pages/date-pickers/date-picker/date-picker.page';
 import { TimePickerPage } from './pages/date-pickers/time-picker/time-picker.page';
 import { DateTimePickerPage } from './pages/date-pickers/date-time-picker/date-time-picker.page';
@@ -85,6 +85,7 @@ import { ChartsPage } from './pages/mui-x/charts/charts.page';
 // Demos
 import { AdvancedCrudPage } from './pages/demos/crud/advanced-crud.page';
 import { BillingPage } from './pages/demos/billing/billing.page';
+import { EmployeeCrudPage } from './pages/demos/employee-crud/employee-crud.page';
 
 
 
@@ -237,6 +238,7 @@ const baseMenuItems: CodeplexMenuItem[] = [
     icon: '🚀',
     children: [
       { id: 'demo-crud', icon: '📝', label: 'CRUD Completo', href: '/demos/crud' },
+      { id: 'demo-employee', icon: '👥', label: 'CRUD Empleados', href: '/demos/employee-crud' },
       { id: 'demo-billing', icon: '🧾', label: 'Facturación', href: '/demos/billing' },
     ],
   }
@@ -403,6 +405,7 @@ export function App() {
 
                 {/* Demos */}
                 <Route path="/demos/crud" element={<AdvancedCrudPage />} />
+                <Route path="/demos/employee-crud" element={<EmployeeCrudPage />} />
                 <Route path="/demos/billing" element={<BillingPage />} />
 
                 {/* Fallback for not implemented pages */}

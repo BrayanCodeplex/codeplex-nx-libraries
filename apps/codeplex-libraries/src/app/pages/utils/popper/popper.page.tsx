@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
-import { CodeplexPopper } from '@codeplex-qwik/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexPopper } from '@codeplex-sac/utils';
+import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 
 export const PopperPage = () => {
     const [open, setOpen] = useState(false);

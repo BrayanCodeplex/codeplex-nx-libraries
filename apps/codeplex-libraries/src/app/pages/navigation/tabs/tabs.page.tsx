@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexTabs } from '@codeplex-qwik/navigation';
-import { CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexTabs } from '@codeplex-sac/navigation';
+import { CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 import { Typography } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import FavoriteIcon from '@mui/icons-material/Favorite';

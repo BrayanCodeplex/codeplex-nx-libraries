@@ -1,7 +1,7 @@
-import { CodeplexDataGrid, GridColDef } from '@codeplex-qwik/data-grid';
-import { CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexDataGrid, GridColDef } from '@codeplex-sac/data-grid';
+import { CodeplexCard } from '@codeplex-sac/ui';
 // Removed direct import from @mui/x-data-grid to use the re-exported one
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexBox } from '@codeplex-sac/layout';
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },

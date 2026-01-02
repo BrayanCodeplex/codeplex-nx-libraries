@@ -1,6 +1,6 @@
-import { CodeplexBreadcrumbs } from '@codeplex-qwik/navigation';
-import { CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexBreadcrumbs } from '@codeplex-sac/navigation';
+import { CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 import GrainIcon from '@mui/icons-material/Grain';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 

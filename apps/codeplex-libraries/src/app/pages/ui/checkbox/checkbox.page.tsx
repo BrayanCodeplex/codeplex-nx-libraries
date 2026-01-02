@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexCheckbox, CodeplexFormGroup, CodeplexButton } from '@codeplex-qwik/ui';
+import { CodeplexCheckbox, CodeplexFormGroup, CodeplexButton } from '@codeplex-sac/ui';
 
 export const CheckboxPage = () => {
     const [checked, setChecked] = useState(true);
@@ -85,7 +85,7 @@ export const CheckboxPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexCheckbox } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexCheckbox } from '@codeplex-sac/ui';
 
 /* Con etiqueta */
 <CodeplexCheckbox label="Acepto los términos" />

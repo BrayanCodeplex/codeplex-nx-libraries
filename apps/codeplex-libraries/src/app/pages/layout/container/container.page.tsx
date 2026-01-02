@@ -1,5 +1,5 @@
-import { CodeplexContainer, CodeplexBox } from '@codeplex-qwik/layout';
-import { CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexContainer, CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexCard } from '@codeplex-sac/ui';
 
 export const ContainerPage = () => {
     return (

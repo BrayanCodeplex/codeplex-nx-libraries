@@ -26,3 +26,4 @@ export * from './lib/slider/slider';
 export * from './lib/switch/switch';
 export * from './lib/text-field/text-field';
 export * from './lib/transfer-list/transfer-list';
+export * from './lib/dialog/dialog';

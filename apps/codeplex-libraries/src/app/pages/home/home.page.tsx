@@ -1,5 +1,5 @@
-import { CodeplexButton, CodeplexAlert, CodeplexJumbotron, CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexGrid } from '@codeplex-qwik/layout';
+import { CodeplexButton, CodeplexAlert, CodeplexJumbotron, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexGrid } from '@codeplex-sac/layout';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const HomePage = () => {

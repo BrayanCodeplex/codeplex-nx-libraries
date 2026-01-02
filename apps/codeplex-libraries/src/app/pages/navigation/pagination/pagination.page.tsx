@@ -1,6 +1,6 @@
-import { CodeplexPagination } from '@codeplex-qwik/navigation';
-import { CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexStack } from '@codeplex-qwik/layout';
+import { CodeplexPagination } from '@codeplex-sac/navigation';
+import { CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexStack } from '@codeplex-sac/layout';
 
 export const PaginationPage = () => {
     return (

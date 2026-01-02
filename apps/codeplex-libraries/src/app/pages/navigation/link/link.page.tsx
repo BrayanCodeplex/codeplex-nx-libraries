@@ -1,6 +1,6 @@
-import { CodeplexLink } from '@codeplex-qwik/navigation';
-import { CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
-import { CodeplexStack } from '@codeplex-qwik/layout';
+import { CodeplexLink } from '@codeplex-sac/navigation';
+import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
+import { CodeplexStack } from '@codeplex-sac/layout';
 
 export const LinkPage = () => {
     return (

@@ -1,4 +1,4 @@
-import { CodeplexButtonGroup, CodeplexButton } from '@codeplex-qwik/ui';
+import { CodeplexButtonGroup, CodeplexButton } from '@codeplex-sac/ui';
 import { useState } from 'react';
 
 export const ButtonGroupPage = () => {
@@ -81,7 +81,7 @@ export const ButtonGroupPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexButtonGroup, CodeplexButton } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexButtonGroup, CodeplexButton } from '@codeplex-sac/ui';
 
 <CodeplexButtonGroup variant="contained">
   <CodeplexButton>One</CodeplexButton>

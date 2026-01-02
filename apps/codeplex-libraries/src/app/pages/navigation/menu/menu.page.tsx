@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexMenu, CodeplexMenuItemType } from '@codeplex-qwik/navigation';
-import { CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexMenu, CodeplexMenuItemType } from '@codeplex-sac/navigation';
+import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';

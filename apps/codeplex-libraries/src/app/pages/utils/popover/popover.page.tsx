@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexPopover } from '@codeplex-qwik/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexPopover } from '@codeplex-sac/utils';
+import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 
 export const PopoverPage = () => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);

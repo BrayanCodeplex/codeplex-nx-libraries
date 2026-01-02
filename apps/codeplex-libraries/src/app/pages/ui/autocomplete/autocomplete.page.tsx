@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexAutocomplete, CodeplexButton } from '@codeplex-qwik/ui';
+import { CodeplexAutocomplete, CodeplexButton } from '@codeplex-sac/ui';
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
@@ -112,7 +112,7 @@ export const AutocompletePage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexAutocomplete } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexAutocomplete } from '@codeplex-sac/ui';
 
 // Basic
 <CodeplexAutocomplete

@@ -1,5 +1,5 @@
-import { CodeplexStack, CodeplexBox } from '@codeplex-qwik/layout';
-import { CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
+import { CodeplexStack, CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
 import { Paper } from '@mui/material';
 
 const Item = ({ children }: { children: React.ReactNode }) => (

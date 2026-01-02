@@ -37,7 +37,7 @@ export const VisuallyHiddenInput = styled('input')({
     left: 0,
     whiteSpace: 'nowrap',
     width: 1,
-});
+}) as React.ComponentType<React.ComponentProps<'input'>>;
 
 export const CodeplexButton = React.forwardRef<HTMLButtonElement, CodeplexButtonProps>(
     ({

@@ -1,4 +1,4 @@
-import { CodeplexBadge, CodeplexCard, CodeplexAvatar } from '@codeplex-qwik/ui';
+import { CodeplexBadge, CodeplexCard, CodeplexAvatar } from '@codeplex-sac/ui';
 
 export const BadgePage = () => {
     return (

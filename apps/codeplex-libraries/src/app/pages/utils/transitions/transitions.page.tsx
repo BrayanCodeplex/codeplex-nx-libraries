@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexCollapse, CodeplexFade, CodeplexGrow, CodeplexSlide, CodeplexZoom } from '@codeplex-qwik/utils';
-import { CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
-import { CodeplexBox, CodeplexGrid } from '@codeplex-qwik/layout';
+import { CodeplexCollapse, CodeplexFade, CodeplexGrow, CodeplexSlide, CodeplexZoom } from '@codeplex-sac/utils';
+import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
+import { CodeplexBox, CodeplexGrid } from '@codeplex-sac/layout';
 import { Paper, FormControlLabel, Switch } from '@mui/material';
 
 const BoxItem = ({ color = '#007FFF', text = 'Box' }) => (

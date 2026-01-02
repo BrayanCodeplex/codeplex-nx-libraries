@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexToast, CodeplexButton, CodeplexToastVariant, CodeplexToastPosition } from '@codeplex-qwik/ui';
+import { CodeplexToast, CodeplexButton, CodeplexToastVariant, CodeplexToastPosition } from '@codeplex-sac/ui';
 
 export const ToastPage = () => {
     const [open, setOpen] = useState(false);
@@ -80,7 +80,7 @@ export const ToastPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexToast } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexToast } from '@codeplex-sac/ui';
 
 /* El Snackbar se cierra automáticamente después de 6s por defecto */
 <CodeplexToast
@@ -99,7 +99,7 @@ export const ToastPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexToast } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexToast } from '@codeplex-sac/ui';
 
 // Toast completo controlado por estado
 <CodeplexToast

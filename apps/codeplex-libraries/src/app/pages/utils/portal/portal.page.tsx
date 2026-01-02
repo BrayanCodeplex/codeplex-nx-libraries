@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexPortal } from '@codeplex-qwik/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexPortal } from '@codeplex-sac/utils';
+import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 
 export const PortalPage = () => {
     const [show, setShow] = useState(false);

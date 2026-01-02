@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexDrawer } from '@codeplex-qwik/navigation';
-import { CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
-import { CodeplexBox, CodeplexStack } from '@codeplex-qwik/layout';
+import { CodeplexDrawer } from '@codeplex-sac/navigation';
+import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
+import { CodeplexBox, CodeplexStack } from '@codeplex-sac/layout';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Typography } from '@mui/material';

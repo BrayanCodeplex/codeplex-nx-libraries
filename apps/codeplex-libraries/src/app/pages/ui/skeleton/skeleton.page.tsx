@@ -1,4 +1,4 @@
-import { CodeplexSkeleton, CodeplexCard, CodeplexButton, CodeplexAvatar } from '@codeplex-qwik/ui';
+import { CodeplexSkeleton, CodeplexCard, CodeplexButton, CodeplexAvatar } from '@codeplex-sac/ui';
 
 export const SkeletonPage = () => {
     return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CodeplexSelect, CodeplexMenuItem, CodeplexListSubheader, CodeplexCard, CodeplexSpinner } from '@codeplex-qwik/ui';
+import { CodeplexSelect, CodeplexMenuItem, CodeplexListSubheader, CodeplexCard, CodeplexSpinner } from '@codeplex-sac/ui';
 
 export const SelectPage = () => {
     // Basic States

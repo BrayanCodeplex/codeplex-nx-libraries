@@ -1,4 +1,4 @@
-import { CodeplexAvatar, CodeplexAvatarGroup, CodeplexCard, stringAvatar } from '@codeplex-qwik/ui';
+import { CodeplexAvatar, CodeplexAvatarGroup, CodeplexCard, stringAvatar } from '@codeplex-sac/ui';
 
 export const AvatarPage = () => {
     return (

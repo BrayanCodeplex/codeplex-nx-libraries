@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexRating, CodeplexCard } from '@codeplex-qwik/ui';
+import { CodeplexRating, CodeplexCard } from '@codeplex-sac/ui';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
@@ -101,7 +101,7 @@ export const RatingPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexRating } from '@codeplex-qwik/ui';
+                        <code>{`import { CodeplexRating } from '@codeplex-sac/ui';
 
 <CodeplexRating value={4} onChange={(val) => console.log(val)} />`}</code>
                     </pre>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexBottomNavigation, CodeplexBottomNavigationItem } from '@codeplex-qwik/navigation';
-import { CodeplexCard, CodeplexButton } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexBottomNavigation, CodeplexBottomNavigationItem } from '@codeplex-sac/navigation';
+import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';

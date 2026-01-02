@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexClickAwayListener } from '@codeplex-qwik/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexClickAwayListener } from '@codeplex-sac/utils';
+import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 
 export const ClickAwayPage = () => {
     const [open, setOpen] = useState(false);

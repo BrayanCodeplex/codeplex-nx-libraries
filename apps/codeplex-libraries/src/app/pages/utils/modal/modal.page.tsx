@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexModal } from '@codeplex-qwik/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-qwik/ui';
-import { CodeplexBox } from '@codeplex-qwik/layout';
+import { CodeplexModal } from '@codeplex-sac/utils';
+import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexBox } from '@codeplex-sac/layout';
 
 export const ModalPage = () => {
     const [open, setOpen] = useState(false);

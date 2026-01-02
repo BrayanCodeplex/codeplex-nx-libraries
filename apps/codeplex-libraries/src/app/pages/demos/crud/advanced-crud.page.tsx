@@ -7,10 +7,10 @@ import {
     CodeplexSelect,
     CodeplexToast,
     CodeplexInputHelper
-} from '@codeplex-qwik/ui';
-import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-qwik/data-view';
-import { CodeplexModal } from '@codeplex-qwik/utils';
-import { CodeplexGrid, CodeplexStack, CodeplexBox, CodeplexContainer } from '@codeplex-qwik/layout';
+} from '@codeplex-sac/ui';
+import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-sac/data-view';
+import { CodeplexModal } from '@codeplex-sac/utils';
+import { CodeplexGrid, CodeplexStack, CodeplexBox, CodeplexContainer } from '@codeplex-sac/layout';
 import { Edit as EditIcon, Delete as DeleteIcon, Add as AddIcon, Save as SaveIcon } from '@mui/icons-material';
 
 // --- MOCK DATA ---

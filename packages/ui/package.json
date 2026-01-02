@@ -1,6 +1,6 @@
 {
-  "name": "@codeplex-qwik/ui",
-  "version": "0.0.8",
+  "name": "@codeplex-sac/ui",
+  "version": "0.0.2",
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
