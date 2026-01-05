@@ -1,6 +1,6 @@
 import { CodeplexTextareaAutosize } from '@codeplex-sac/utils';
-import { CodeplexCard } from '@codeplex-sac/ui';
-import { CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexTarjeta } from '@codeplex-sac/ui';
+import { CodeplexCaja } from '@codeplex-sac/layout';
 
 export const TextareaPage = () => {
     return (
@@ -12,36 +12,36 @@ export const TextareaPage = () => {
                 </p>
             </div>
 
-            <CodeplexCard header="Variantes">
-                <CodeplexBox flexCol sx={{ gap: 4, p: 4, maxWidth: 500 }}>
+            <CodeplexTarjeta cabecera="Variantes">
+                <CodeplexCaja flexColumna sx={{ gap: 4, p: 4, maxWidth: 500 }}>
                     <CodeplexTextareaAutosize
-                        variant="outlined"
+                        variante="outlined"
                         placeholder="Outlined (Default)"
                         minRows={3}
                     />
                     <CodeplexTextareaAutosize
-                        variant="filled"
+                        variante="filled"
                         placeholder="Filled Variant"
                         minRows={3}
                     />
                     <CodeplexTextareaAutosize
-                        variant="standard"
+                        variante="standard"
                         placeholder="Standard Variant"
                         minRows={3}
                     />
-                </CodeplexBox>
-            </CodeplexCard>
+                </CodeplexCaja>
+            </CodeplexTarjeta>
 
-            <CodeplexCard header="Estados (Error/Focus)">
-                <CodeplexBox flexCol sx={{ gap: 4, p: 4, maxWidth: 500 }}>
+            <CodeplexTarjeta cabecera="Estados (Error/Focus)">
+                <CodeplexCaja flexColumna sx={{ gap: 4, p: 4, maxWidth: 500 }}>
                     <CodeplexTextareaAutosize
                         error
                         placeholder="Error State"
                         minRows={2}
                         defaultValue="Texto inválido..."
                     />
-                </CodeplexBox>
-            </CodeplexCard>
+                </CodeplexCaja>
+            </CodeplexTarjeta>
         </div>
     );
 };

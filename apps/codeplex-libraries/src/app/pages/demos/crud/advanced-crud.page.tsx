@@ -1,16 +1,16 @@
 import { useState, useMemo } from 'react';
 import {
-    CodeplexButton,
-    CodeplexBadge,
-    CodeplexAvatar,
-    CodeplexTextField,
-    CodeplexSelect,
-    CodeplexToast,
-    CodeplexInputHelper
+    CodeplexBoton,
+    CodeplexInsignia,
+    CodeplexAvatarUsuario,
+    CodeplexCampoTexto,
+    CodeplexSelector,
+    CodeplexNotificacion,
+    CodeplexAyudaEntrada
 } from '@codeplex-sac/ui';
-import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-sac/data-view';
+import { CodeplexTabla, type MRT_ColumnDef } from '@codeplex-sac/data-view';
 import { CodeplexModal } from '@codeplex-sac/utils';
-import { CodeplexGrid, CodeplexStack, CodeplexBox, CodeplexContainer } from '@codeplex-sac/layout';
+import { CodeplexCuadricula, CodeplexPila, CodeplexCaja, CodeplexContenedor } from '@codeplex-sac/layout';
 import { Edit as EditIcon, Delete as DeleteIcon, Add as AddIcon, Save as SaveIcon } from '@mui/icons-material';
 
 // --- MOCK DATA ---
@@ -101,7 +101,7 @@ export const AdvancedCrudPage = () => {
                 header: '',
                 size: 60,
                 enableEditing: false,
-                Cell: ({ cell }) => <CodeplexAvatar src={cell.getValue<string>()} alt="Avatar" size="sm" />,
+                Cell: ({ cell }) => <CodeplexAvatarUsuario src={cell.getValue<string>()} alt="Avatar" tamano="sm" />,
             },
             {
                 accessorKey: 'firstName',
@@ -140,8 +140,8 @@ export const AdvancedCrudPage = () => {
                         pending: 'warning',
                     };
                     return (
-                        <CodeplexBadge
-                            badgeContent={status.toUpperCase()}
+                        <CodeplexInsignia
+                            contenido={status.toUpperCase()}
                             color={colors[status]}
                         />
                     );
@@ -150,15 +150,15 @@ export const AdvancedCrudPage = () => {
                 Edit: ({ cell, row, table }) => {
                     const val = cell.getValue<string>();
                     return (
-                        <CodeplexSelect
+                        <CodeplexSelector
                             value={val}
-                            onChange={(e) => handleSaveCell(cell, e.target.value)}
-                            options={[
-                                { value: 'active', label: 'Active' },
-                                { value: 'inactive', label: 'Inactive' },
-                                { value: 'pending', label: 'Pending' },
+                            alCambiar={(e) => handleSaveCell(cell, e.target.value)}
+                            opciones={[
+                                { valor: 'active', etiqueta: 'Activo' },
+                                { valor: 'inactive', etiqueta: 'Inactivo' },
+                                { valor: 'pending', etiqueta: 'Pendiente' },
                             ]}
-                            size="small"
+                            tamano="small"
                             fullWidth
                         />
                     )
@@ -184,31 +184,32 @@ export const AdvancedCrudPage = () => {
     );
 
     return (
-        <CodeplexContainer maxWidth="xl" sx={{ py: 4 }}>
-            <CodeplexStack spacing={4}>
+        <CodeplexContenedor anchoMaximo="xl" sx={{ py: 4 }}>
+            <CodeplexPila espaciado={4}>
                 {/* Header */}
-                <CodeplexBox display="flex" justifyContent="space-between" alignItems="center">
+                <CodeplexCaja display="flex" justifyContent="space-between" alignItems="center">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Gestión de Empleados</h1>
                         <p className="text-gray-500 dark:text-gray-400 mt-1">
                             Demo avanzada de CRUD con Edición en Línea y Modal.
                         </p>
                     </div>
-                    <CodeplexButton
-                        variant="primary"
-                        leftIcon={<AddIcon />}
-                        onClick={handleCreate}
+                    <CodeplexBoton
+                        variante="primary"
+                        color="primary"
+                        iconoIzquierda={<AddIcon />}
+                        alHacerClick={handleCreate}
                     >
                         Nuevo Empleado
-                    </CodeplexButton>
-                </CodeplexBox>
+                    </CodeplexBoton>
+                </CodeplexCaja>
 
                 {/* Table */}
-                <CodeplexTable
-                    columns={columns}
-                    data={data}
-                    title="Listado de Personal"
-                    options={{
+                <CodeplexTabla
+                    columnas={columns}
+                    datos={data}
+                    titulo="Listado de Personal"
+                    opciones={{
                         enableEditing: true,
                         editDisplayMode: 'cell', // Inline cell editing
                         enableRowActions: true,
@@ -221,27 +222,27 @@ export const AdvancedCrudPage = () => {
                         positionActionsColumn: 'last',
                         renderRowActions: ({ row }) => (
                             <div className="flex gap-2">
-                                <CodeplexButton
-                                    variant="ghost"
-                                    size="xs"
+                                <CodeplexBoton
+                                    variante="ghost"
+                                    tamano="xs"
                                     color="primary"
-                                    onClick={() => handleEdit(row.original)}
+                                    alHacerClick={() => handleEdit(row.original)}
                                 >
                                     <EditIcon fontSize="small" />
-                                </CodeplexButton>
-                                <CodeplexButton
-                                    variant="ghost"
-                                    size="xs"
+                                </CodeplexBoton>
+                                <CodeplexBoton
+                                    variante="ghost"
+                                    tamano="xs"
                                     sx={{ color: 'error.main' }}
-                                    onClick={() => handleDelete(row.original.id)}
+                                    alHacerClick={() => handleDelete(row.original.id)}
                                 >
                                     <DeleteIcon fontSize="small" />
-                                </CodeplexButton>
+                                </CodeplexBoton>
                             </div>
                         ),
                     }}
                 />
-            </CodeplexStack>
+            </CodeplexPila>
 
             {/* Modal for Create/Edit */}
             <EmployeeModal
@@ -252,13 +253,13 @@ export const AdvancedCrudPage = () => {
             />
 
             {/* Feedback Toast */}
-            <CodeplexToast
+            <CodeplexNotificacion
                 open={toast.open}
-                message={toast.message}
-                variant={toast.severity}
+                subtitulo={toast.message}
+                variante={toast.severity}
                 onClose={() => setToast((prev) => ({ ...prev, open: false }))}
             />
-        </CodeplexContainer>
+        </CodeplexContenedor>
     );
 };
 
@@ -305,80 +306,80 @@ const EmployeeModal = ({
         <CodeplexModal
             open={open}
             onClose={onClose}
-            title={initialData ? 'Editar Empleado' : 'Nuevo Empleado'}
-            width={600}
+            titulo={initialData ? 'Editar Empleado' : 'Nuevo Empleado'}
+            ancho={600}
         >
             <form onSubmit={handleSubmit}>
-                <CodeplexGrid container spacing={2} sx={{ mt: 1 }}>
-                    <CodeplexGrid size={{ xs: 6 }}>
-                        <CodeplexTextField
-                            label="Nombres"
+                <CodeplexCuadricula contenedor espaciado={2} sx={{ mt: 1 }}>
+                    <CodeplexCuadricula elemento xs={6}>
+                        <CodeplexCampoTexto
+                            etiqueta="Nombres"
                             fullWidth
                             value={formData.firstName}
                             onChange={(e) => handleChange('firstName', e.target.value)}
                             required
                         />
-                    </CodeplexGrid>
-                    <CodeplexGrid size={{ xs: 6 }}>
-                        <CodeplexTextField
-                            label="Apellidos"
+                    </CodeplexCuadricula>
+                    <CodeplexCuadricula elemento xs={6}>
+                        <CodeplexCampoTexto
+                            etiqueta="Apellidos"
                             fullWidth
                             value={formData.lastName}
                             onChange={(e) => handleChange('lastName', e.target.value)}
                             required
                         />
-                    </CodeplexGrid>
-                    <CodeplexGrid size={{ xs: 12 }}>
-                        <CodeplexTextField
-                            label="Email"
+                    </CodeplexCuadricula>
+                    <CodeplexCuadricula elemento xs={12}>
+                        <CodeplexCampoTexto
+                            etiqueta="Email"
                             type="email"
                             fullWidth
                             value={formData.email}
                             onChange={(e) => handleChange('email', e.target.value)}
                             required
                         />
-                    </CodeplexGrid>
-                    <CodeplexGrid size={{ xs: 6 }}>
-                        <CodeplexTextField
-                            label="Rol / Cargo"
+                    </CodeplexCuadricula>
+                    <CodeplexCuadricula elemento xs={6}>
+                        <CodeplexCampoTexto
+                            etiqueta="Rol / Cargo"
                             fullWidth
                             value={formData.role}
                             onChange={(e) => handleChange('role', e.target.value)}
                         />
-                    </CodeplexGrid>
-                    <CodeplexGrid size={{ xs: 6 }}>
-                        <CodeplexTextField
-                            label="Salario Anual"
+                    </CodeplexCuadricula>
+                    <CodeplexCuadricula elemento xs={6}>
+                        <CodeplexCampoTexto
+                            etiqueta="Salario Anual"
                             type="number"
                             fullWidth
                             value={formData.salary}
                             onChange={(e) => handleChange('salary', Number(e.target.value))}
                             InputProps={{ startAdornment: <span className="text-gray-500 mr-1">$</span> }}
                         />
-                    </CodeplexGrid>
-                    <CodeplexGrid size={{ xs: 12 }}>
-                        <CodeplexSelect
-                            label="Estado"
+                    </CodeplexCuadricula>
+                    <CodeplexCuadricula elemento xs={12}>
+                        <CodeplexSelector
+                            etiqueta="Estado"
                             fullWidth
                             value={formData.status}
-                            onChange={(e) => handleChange('status', e.target.value)}
-                            options={[
-                                { value: 'active', label: 'Activo' },
-                                { value: 'inactive', label: 'Inactivo' },
-                                { value: 'pending', label: 'Pendiente' },
+                            alCambiar={(e) => handleChange('status', e.target.value)}
+                            opciones={[
+                                { valor: 'active', etiqueta: 'Activo' },
+                                { valor: 'inactive', etiqueta: 'Inactivo' },
+                                { valor: 'pending', etiqueta: 'Pendiente' },
                             ]}
                         />
-                    </CodeplexGrid>
-                </CodeplexGrid>
+                    </CodeplexCuadricula>
+                </CodeplexCuadricula>
 
-                <CodeplexBox display="flex" justifyContent="flex-end" gap={2} mt={4}>
-                    <CodeplexButton variant="ghost" onClick={onClose}>
+                <CodeplexCaja display="flex" justifyContent="flex-end" gap={2} mt={4}>
+                    <CodeplexBoton variante="ghost" alHacerClick={onClose}>
                         Cancelar
-                    </CodeplexButton>
-                    <CodeplexButton type="submit" variant="primary" leftIcon={<SaveIcon />}>
+                    </CodeplexBoton>
+                    <CodeplexBoton type="submit" variante="primary" color="primary" iconoIzquierda={<SaveIcon />}>
                         Guardar Cambios
-                    </CodeplexButton>
-                </CodeplexBox>
+                    </CodeplexBoton>
+                </CodeplexCaja>
             </form>
         </CodeplexModal>
     );

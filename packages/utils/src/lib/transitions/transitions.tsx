@@ -12,23 +12,23 @@ const DEFAULT_TIMEOUT = {
     exit: 200,
 };
 
-export interface CodeplexCollapseProps extends MuiCollapseProps { }
-export const CodeplexCollapse = ({ timeout = 'auto', ...props }: CodeplexCollapseProps) => (
+export interface CodeplexColapsoProps extends MuiCollapseProps { }
+export const CodeplexColapso = ({ timeout = 'auto', ...props }: CodeplexColapsoProps) => (
     <MuiCollapse timeout={timeout} {...props} />
 );
 
-export interface CodeplexFadeProps extends MuiFadeProps { }
-export const CodeplexFade = ({ timeout = DEFAULT_TIMEOUT, ...props }: CodeplexFadeProps) => (
+export interface CodeplexDesvanecimientoProps extends MuiFadeProps { }
+export const CodeplexDesvanecimiento = ({ timeout = DEFAULT_TIMEOUT, ...props }: CodeplexDesvanecimientoProps) => (
     <MuiFade timeout={timeout} {...props} />
 );
 
-export interface CodeplexGrowProps extends MuiGrowProps { }
-export const CodeplexGrow = ({ timeout = DEFAULT_TIMEOUT, ...props }: CodeplexGrowProps) => (
+export interface CodeplexCrecimientoProps extends MuiGrowProps { }
+export const CodeplexCrecimiento = ({ timeout = DEFAULT_TIMEOUT, ...props }: CodeplexCrecimientoProps) => (
     <MuiGrow timeout={timeout} {...props} />
 );
 
-export interface CodeplexSlideProps extends MuiSlideProps { }
-export const CodeplexSlide = ({ timeout = DEFAULT_TIMEOUT, direction = 'up', ...props }: CodeplexSlideProps) => (
+export interface CodeplexDeslizamientoProps extends MuiSlideProps { }
+export const CodeplexDeslizamiento = ({ timeout = DEFAULT_TIMEOUT, direction = 'up', ...props }: CodeplexDeslizamientoProps) => (
     <MuiSlide timeout={timeout} direction={direction} {...props} />
 );
 

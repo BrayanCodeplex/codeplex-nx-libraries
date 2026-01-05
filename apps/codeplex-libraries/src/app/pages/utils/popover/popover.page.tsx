@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CodeplexPopover } from '@codeplex-sac/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
-import { CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexBoton, CodeplexTarjeta } from '@codeplex-sac/ui';
+import { CodeplexCaja } from '@codeplex-sac/layout';
 
 export const PopoverPage = () => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -25,12 +25,12 @@ export const PopoverPage = () => {
                 </p>
             </div>
 
-            <CodeplexCard header="Demo Popover">
-                <CodeplexBox flexRow centered sx={{ p: 4 }}>
-                    <CodeplexButton variant="primary" onClick={handleClick}>
+            <CodeplexTarjeta cabecera="Demo Popover">
+                <CodeplexCaja flexFila centrado sx={{ p: 4 }}>
+                    <CodeplexBoton variante="primary" alHacerClick={handleClick}>
                         Abrir Popover
-                    </CodeplexButton>
-                </CodeplexBox>
+                    </CodeplexBoton>
+                </CodeplexCaja>
 
                 <CodeplexPopover
                     open={open}
@@ -42,10 +42,10 @@ export const PopoverPage = () => {
                 >
                     <div className="p-2">
                         <p className="text-sm text-gray-600">Este es el contenido del popover.</p>
-                        <CodeplexButton size="xs" variant="ghost" className="mt-2 text-primary-600">Acción</CodeplexButton>
+                        <CodeplexBoton tamano="xs" variante="ghost" className="mt-2 text-primary-600">Acción</CodeplexBoton>
                     </div>
                 </CodeplexPopover>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             <section className="mt-8">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Código</h2>

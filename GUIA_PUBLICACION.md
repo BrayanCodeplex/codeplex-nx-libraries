@@ -63,7 +63,7 @@ cd ../../..
 #### B. Publicar UI
 ```bash
 cd dist/packages/ui
-pnpm publish --access public --no-git-checks
+bun publish --access public --no-git-checks
 cd ../../..
 ```
 

@@ -2,24 +2,24 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useTheme } from '@mui/material';
 import {
-    CodeplexButton,
-    CodeplexToast,
-    CodeplexCard,
-    CodeplexTextField,
-    CodeplexSelect,
-    CodeplexDialog,
-    CodeplexDialogTitle,
-    CodeplexDialogContent,
-    CodeplexDialogContentText,
-    CodeplexDialogActions
+    CodeplexBoton,
+    CodeplexNotificacion,
+    CodeplexTarjeta,
+    CodeplexCampoTexto,
+    CodeplexSelector,
+    CodeplexDialogo,
+    CodeplexDialogoTitulo,
+    CodeplexDialogoContenido,
+    CodeplexDialogoTexto,
+    CodeplexDialogoAcciones
 } from '@codeplex-sac/ui';
 import { CodeplexModal } from '@codeplex-sac/utils';
 import {
-    CodeplexContainer,
-    CodeplexBox,
-    CodeplexStack
+    CodeplexContenedor,
+    CodeplexCaja,
+    CodeplexPila
 } from '@codeplex-sac/layout';
-import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-sac/data-view';
+import { CodeplexTabla, type MRT_ColumnDef } from '@codeplex-sac/data-view';
 import {
     Add as AddIcon,
     Edit as EditIcon,
@@ -224,7 +224,7 @@ export const EmployeeCrudPage = () => {
                         header: 'Departamento',
                         size: 150,
                         filterVariant: 'select', // Filtro tipo Select nativo de MRT
-                        filterSelectOptions: ['Engineering', 'HR', 'Marketing', 'Sales'],
+                        filterSelectOptions: ['Engineering', 'HR', 'Marketing', 'Sales'], // Should verify if these need translation mapping or if strict values
                     },
                     {
                         accessorKey: 'status',
@@ -238,6 +238,12 @@ export const EmployeeCrudPage = () => {
                                 'Inactive': theme.palette.error.main,
                                 'On Leave': theme.palette.warning.main
                             };
+                            const labelMap: Record<string, string> = {
+                                'Active': 'Activo',
+                                'Inactive': 'Inactivo',
+                                'On Leave': 'De Vacaciones'
+                            };
+
                             return (
                                 <span style={{
                                     padding: '4px 8px',
@@ -248,7 +254,7 @@ export const EmployeeCrudPage = () => {
                                     fontWeight: 'bold',
                                     whiteSpace: 'nowrap'
                                 }}>
-                                    {val}
+                                    {labelMap[val] || val}
                                 </span>
                             );
                         }
@@ -273,22 +279,22 @@ export const EmployeeCrudPage = () => {
                 enablePinning: true, // Importante para UX: Fijar a la izquierda
                 Cell: ({ row }) => (
                     <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-                        <CodeplexButton
-                            variant="ghost"
-                            size="xs"
-                            onClick={() => handleOpenEdit(row.original)}
+                        <CodeplexBoton
+                            variante="ghost"
+                            tamano="xs"
+                            alHacerClick={() => handleOpenEdit(row.original)}
                             sx={{ color: 'primary.main' }}
                         >
                             <EditIcon fontSize="small" />
-                        </CodeplexButton>
-                        <CodeplexButton
-                            variant="ghost"
-                            size="xs"
-                            onClick={() => handleDeleteClick(row.original.id)}
+                        </CodeplexBoton>
+                        <CodeplexBoton
+                            variante="ghost"
+                            tamano="xs"
+                            alHacerClick={() => handleDeleteClick(row.original.id)}
                             sx={{ color: 'error.main' }}
                         >
                             <DeleteIcon fontSize="small" />
-                        </CodeplexButton>
+                        </CodeplexBoton>
                     </div>
                 )
             },
@@ -301,36 +307,37 @@ export const EmployeeCrudPage = () => {
     // Estructura visual de la página.
     // --------------------------------------------------------------------------------------------
     return (
-        <CodeplexContainer maxWidth="xl" sx={{ py: 4 }}>
+        <CodeplexContenedor anchoMaximo="xl" sx={{ py: 4 }}>
 
             {/* --- HEADER DE LA PÁGINA --- */}
-            <CodeplexBox mb={4} display="flex" justifyContent="space-between" alignItems="center">
-                <CodeplexStack direction="row" spacing={2} alignItems="center">
-                    <CodeplexBox sx={{ p: 1, bgcolor: 'primary.light', color: 'primary.contrastText', borderRadius: 2 }}>
+            <CodeplexCaja mb={4} display="flex" justifyContent="space-between" alignItems="center">
+                <CodeplexPila direccion="row" espaciado={2} alignItems="center">
+                    <CodeplexCaja sx={{ p: 1, bgcolor: 'primary.light', color: 'primary.contrastText', borderRadius: 2 }}>
                         <PeopleIcon />
-                    </CodeplexBox>
+                    </CodeplexCaja>
                     <div>
                         <Typography variant="h5" fontWeight="bold">Gestión de Empleados</Typography>
                         <Typography variant="body2" color="text.secondary">Administra el personal completa (Demo CRUD)</Typography>
                     </div>
-                </CodeplexStack>
-                <CodeplexButton
-                    variant="primary"
-                    leftIcon={<AddIcon />}
-                    onClick={handleOpenCreate}
+                </CodeplexPila>
+                <CodeplexBoton
+                    variante="primary"
+                    iconoIzquierda={<AddIcon />}
+                    alHacerClick={handleOpenCreate}
                 >
                     Nuevo Empleado
-                </CodeplexButton>
-            </CodeplexBox>
+                </CodeplexBoton>
+            </CodeplexCaja>
 
             {/* --- TABLA PRINCIPAL --- */}
-            <CodeplexCard>
-                <CodeplexTable
-                    columns={columns}
-                    data={employees}
-                    enableExport={true} // Activamos exportación
+            <CodeplexTarjeta>
+                <CodeplexTabla
+                    columnas={columns}
+                    datos={employees}
+                    habilitarExportacion={true} // Activamos exportación
+                    titulo="Listado de Empleados"
 
-                    options={{
+                    opciones={{
                         enableColumnPinning: true,
                         enableRowSelection: true,
                         enableStickyHeader: true, // Fix sticky header
@@ -350,145 +357,146 @@ export const EmployeeCrudPage = () => {
                         }
                     }}
                 />
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* --- MODAL (CREAR / EDITAR) --- */}
             <CodeplexModal
                 open={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title={editingEmployee ? "Editar Empleado" : "Nuevo Empleado"}
-                width={600}
+                titulo={editingEmployee ? "Editar Empleado" : "Nuevo Empleado"}
+                ancho={600}
             >
-                <CodeplexStack spacing={3} sx={{ mt: 2 }}>
-                    <CodeplexTextField
-                        label="Nombre Completo"
+                <CodeplexPila espaciado={3} sx={{ mt: 2 }}>
+                    <CodeplexCampoTexto
+                        etiqueta="Nombre Completo"
                         fullWidth
                         value={formData.fullName || ''}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     />
 
-                    <CodeplexStack direction="row" spacing={2}>
-                        <CodeplexTextField
-                            label="Email"
+                    <CodeplexPila direccion="row" espaciado={2}>
+                        <CodeplexCampoTexto
+                            etiqueta="Email"
                             fullWidth
                             value={formData.email || ''}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         />
-                        <CodeplexTextField
-                            label="Cargo"
+                        <CodeplexCampoTexto
+                            etiqueta="Cargo"
                             fullWidth
                             value={formData.position || ''}
                             onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                         />
-                    </CodeplexStack>
+                    </CodeplexPila>
 
-                    <CodeplexStack direction="row" spacing={2}>
-                        <CodeplexSelect
-                            label="Departamento"
+                    <CodeplexPila direccion="row" espaciado={2}>
+                        <CodeplexSelector
+                            etiqueta="Departamento"
                             fullWidth
                             value={formData.department || ''}
-                            options={[
-                                { value: 'Engineering', label: 'Ingeniería' },
-                                { value: 'HR', label: 'Recursos Humanos' },
-                                { value: 'Marketing', label: 'Marketing' },
-                                { value: 'Sales', label: 'Ventas' },
+                            opciones={[
+                                { valor: 'Engineering', etiqueta: 'Ingeniería' },
+                                { valor: 'HR', etiqueta: 'Recursos Humanos' },
+                                { valor: 'Marketing', etiqueta: 'Marketing' },
+                                { valor: 'Sales', etiqueta: 'Ventas' },
                             ]}
-                            onChange={(e) => setFormData({ ...formData, department: e.target.value as any })}
+                            alCambiar={(e) => setFormData({ ...formData, department: e.target.value as any })}
                         />
-                        <CodeplexSelect
-                            label="Estado"
+                        <CodeplexSelector
+                            etiqueta="Estado"
                             fullWidth
                             value={formData.status || ''}
-                            options={[
-                                { value: 'Active', label: 'Activo' },
-                                { value: 'Inactive', label: 'Inactivo' },
-                                { value: 'On Leave', label: 'De Vacaciones' },
+                            opciones={[
+                                { valor: 'Active', etiqueta: 'Activo' },
+                                { valor: 'Inactive', etiqueta: 'Inactivo' },
+                                { valor: 'On Leave', etiqueta: 'De Vacaciones' },
                             ]}
-                            onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
+                            alCambiar={(e) => setFormData({ ...formData, status: e.target.value as any })}
                         />
-                    </CodeplexStack>
+                    </CodeplexPila>
 
-                    <CodeplexTextField
-                        label="Salario Anual"
+                    <CodeplexCampoTexto
+                        etiqueta="Salario Anual"
                         type="number"
                         fullWidth
                         value={formData.salary || ''}
                         onChange={(e) => setFormData({ ...formData, salary: Number(e.target.value) })}
                     />
 
-                    <CodeplexStack direction="row" spacing={2}>
-                        <CodeplexTextField
-                            label="Teléfono"
+                    <CodeplexPila direccion="row" espaciado={2}>
+                        <CodeplexCampoTexto
+                            etiqueta="Teléfono"
                             fullWidth
                             value={formData.phoneNumber || ''}
                             onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                         />
-                        <CodeplexSelect
-                            label="Oficina"
+                        <CodeplexSelector
+                            etiqueta="Oficina"
                             fullWidth
                             value={formData.officeLocation || ''}
-                            options={[
-                                { value: 'Lima HQ', label: 'Lima HQ' },
-                                { value: 'Arequipa Branch', label: 'Arequipa Branch' },
-                                { value: 'Remote', label: 'Remote' },
+                            opciones={[
+                                { valor: 'Lima HQ', etiqueta: 'Lima HQ' },
+                                { valor: 'Arequipa Branch', etiqueta: 'Arequipa Branch' },
+                                { valor: 'Remote', etiqueta: 'Remoto' }, // Translated 'Remote'->Remoto?
                             ]}
-                            onChange={(e) => setFormData({ ...formData, officeLocation: e.target.value as string })}
+                            alCambiar={(e) => setFormData({ ...formData, officeLocation: e.target.value as string })}
                         />
-                    </CodeplexStack>
+                    </CodeplexPila>
 
-                    <CodeplexBox display="flex" justifyContent="flex-end" gap={2} mt={2}>
-                        <CodeplexButton variant="secondary" onClick={() => setIsModalOpen(false)}>Cancelar</CodeplexButton>
-                        <CodeplexButton variant="primary" leftIcon={<SaveIcon />} onClick={handleSave}>Guardar</CodeplexButton>
-                    </CodeplexBox>
-                </CodeplexStack>
+                    <CodeplexCaja display="flex" justifyContent="flex-end" gap={2} mt={2}>
+                        <CodeplexBoton variante="secondary" alHacerClick={() => setIsModalOpen(false)}>Cancelar</CodeplexBoton>
+                        <CodeplexBoton variante="primary" iconoIzquierda={<SaveIcon />} alHacerClick={handleSave}>Guardar</CodeplexBoton>
+                    </CodeplexCaja>
+                </CodeplexPila>
             </CodeplexModal>
 
             {/* --- DIALOGO DE CONFIRMACIÓN (Eliminar) --- */}
             {/* Nota: Usamos Dialog nativo de MUI si no hay CodeplexConfirm, o implementamos uno simple */}
             {/* --- DIALOGO DE CONFIRMACIÓN (Eliminar) --- */}
-            {/* Nota: Usamos CodeplexDialog desde packages/ui */}
-            <CodeplexDialog open={deleteConfirmOpen} onClose={() => setDeleteConfirmOpen(false)}>
-                <CodeplexDialogTitle>Confirmar Eliminación</CodeplexDialogTitle>
-                <CodeplexDialogContent>
-                    <CodeplexDialogContentText>
+            {/* Nota: Usamos CodeplexDialogo desde packages/ui */}
+            <CodeplexDialogo open={deleteConfirmOpen} onClose={() => setDeleteConfirmOpen(false)}>
+                <CodeplexDialogoTitulo>Confirmar Eliminación</CodeplexDialogoTitulo>
+                <CodeplexDialogoContenido>
+                    <CodeplexDialogoTexto>
                         ¿Estás seguro de querer eliminar este empleado? Esta acción no se puede deshacer.
-                    </CodeplexDialogContentText>
-                </CodeplexDialogContent>
-                <CodeplexDialogActions>
-                    <CodeplexButton onClick={() => setDeleteConfirmOpen(false)}>Cancelar</CodeplexButton>
-                    <CodeplexButton onClick={handleConfirmDelete} color="error" variant="primary">Eliminar</CodeplexButton>
-                </CodeplexDialogActions>
-            </CodeplexDialog>
+                    </CodeplexDialogoTexto>
+                </CodeplexDialogoContenido>
+                <CodeplexDialogoAcciones>
+                    <CodeplexBoton alHacerClick={() => setDeleteConfirmOpen(false)}>Cancelar</CodeplexBoton>
+                    <CodeplexBoton alHacerClick={handleConfirmDelete} color="error" variante="primary">Eliminar</CodeplexBoton>
+                </CodeplexDialogoAcciones>
+            </CodeplexDialogo>
 
             {/* --- DIALOGO DE CONFIRMACIÓN (Guardar/Agregar) --- */}
-            <CodeplexDialog open={saveConfirmOpen} onClose={() => setSaveConfirmOpen(false)}>
-                <CodeplexDialogTitle>
+            <CodeplexDialogo open={saveConfirmOpen} onClose={() => setSaveConfirmOpen(false)}>
+                <CodeplexDialogoTitulo>
                     {editingEmployee ? 'Confirmar Edición' : 'Confirmar Creación'}
-                </CodeplexDialogTitle>
-                <CodeplexDialogContent>
-                    <CodeplexDialogContentText>
+                </CodeplexDialogoTitulo>
+                <CodeplexDialogoContenido>
+                    <CodeplexDialogoTexto>
                         {editingEmployee
                             ? '¿Estás seguro de guardar los cambios para este empleado?'
                             : '¿Estás seguro de agregar este nuevo empleado al sistema?'}
-                    </CodeplexDialogContentText>
-                </CodeplexDialogContent>
-                <CodeplexDialogActions>
-                    <CodeplexButton onClick={() => setSaveConfirmOpen(false)}>Cancelar</CodeplexButton>
-                    <CodeplexButton onClick={performSave} variant="primary">Confirmar</CodeplexButton>
-                </CodeplexDialogActions>
-            </CodeplexDialog>
+                    </CodeplexDialogoTexto>
+                </CodeplexDialogoContenido>
+                <CodeplexDialogoAcciones>
+                    <CodeplexBoton alHacerClick={() => setSaveConfirmOpen(false)}>Cancelar</CodeplexBoton>
+                    <CodeplexBoton alHacerClick={performSave} variante="primary">Confirmar</CodeplexBoton>
+                </CodeplexDialogoAcciones>
+            </CodeplexDialogo>
 
             {/* --- TOAST NOTIFICATION --- */}
-            <CodeplexToast
+            {/* --- TOAST NOTIFICATION --- */}
+            <CodeplexNotificacion
                 open={toastOpen}
-                variant={toastVariant}
-                title={toastVariant === 'success' ? 'Éxito' : 'Error'}
-                subtitle={toastMessage}
+                variante={toastVariant}
+                titulo={toastVariant === 'success' ? 'Éxito' : 'Error'}
+                subtitulo={toastMessage}
                 onClose={() => setToastOpen(false)}
-                position="bottom-right"
-                duration={3000}
+                posicion="bottom-right"
+                duracion={3000}
             />
 
-        </CodeplexContainer>
+        </CodeplexContenedor>
     );
 };

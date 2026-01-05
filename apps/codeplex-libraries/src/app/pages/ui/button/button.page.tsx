@@ -1,4 +1,5 @@
-import { CodeplexButton, CodeplexCard, VisuallyHiddenInput } from '@codeplex-sac/ui';
+import { CodeplexBoton, CodeplexTarjeta, EntradaOcultaVisualmente } from '@codeplex-sac/ui';
+
 // We use generic icons here for demo purposes, you can use MUI icons in real apps
 const CloudUploadIcon = () => <span>☁️</span>;
 const SendIcon = () => <span>📤</span>;
@@ -8,7 +9,7 @@ export const ButtonPage = () => {
     return (
         <div className="space-y-8 animate-fade-in pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Button</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Boton</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     Componente mejorado con Material UI. Soporta variantes avanzadas, carga de archivos,
                     navegación y personalización profunda.
@@ -16,78 +17,78 @@ export const ButtonPage = () => {
             </div>
 
             {/* Basic Variants */}
-            <CodeplexCard header="Variantes Básicas">
+            <CodeplexTarjeta cabecera="Variantes Básicas">
                 <div className="flex flex-wrap gap-4 p-4">
-                    <CodeplexButton variant="primary">Primary</CodeplexButton>
-                    <CodeplexButton variant="secondary">Secondary</CodeplexButton>
-                    <CodeplexButton variant="outline">Outline</CodeplexButton>
-                    <CodeplexButton variant="ghost">Ghost</CodeplexButton>
-                    <CodeplexButton variant="danger">Danger</CodeplexButton>
-                    <CodeplexButton variant="success">Success</CodeplexButton>
-                    <CodeplexButton disabled>Disabled</CodeplexButton>
-                    <CodeplexButton href="#text-buttons">Link (href)</CodeplexButton>
+                    <CodeplexBoton variante="primary">Primary (Contained)</CodeplexBoton>
+                    <CodeplexBoton variante="secondary">Secondary</CodeplexBoton>
+                    <CodeplexBoton variante="outline">Outline</CodeplexBoton>
+                    <CodeplexBoton variante="ghost">Ghost</CodeplexBoton>
+                    <CodeplexBoton variante="danger">Danger</CodeplexBoton>
+                    <CodeplexBoton variante="success">Success</CodeplexBoton>
+                    <CodeplexBoton disabled>Disabled</CodeplexBoton>
+                    <CodeplexBoton href="#text-buttons">Link (href)</CodeplexBoton>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Sizes */}
-            <CodeplexCard header="Tamaños">
+            <CodeplexTarjeta cabecera="Tamaños">
                 <div className="flex flex-wrap items-center gap-4 p-4">
-                    <CodeplexButton size="xs">Extra Small (xs)</CodeplexButton>
-                    <CodeplexButton size="sm">Small (sm)</CodeplexButton>
-                    <CodeplexButton size="md">Medium (md)</CodeplexButton>
-                    <CodeplexButton size="lg">Large (lg)</CodeplexButton>
+                    <CodeplexBoton tamano="xs">Extra Pequeño (xs)</CodeplexBoton>
+                    <CodeplexBoton tamano="sm">Pequeño (sm)</CodeplexBoton>
+                    <CodeplexBoton tamano="md">Mediano (md)</CodeplexBoton>
+                    <CodeplexBoton tamano="lg">Grande (lg)</CodeplexBoton>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* With Icons */}
-            <CodeplexCard header="Con Iconos">
+            <CodeplexTarjeta cabecera="Con Iconos">
                 <div className="flex flex-wrap gap-4 p-4">
-                    <CodeplexButton variant="outline" startIcon={<DeleteIcon />}>Delete</CodeplexButton>
-                    <CodeplexButton variant="primary" endIcon={<SendIcon />}>Send</CodeplexButton>
-                    <CodeplexButton variant="secondary" leftIcon="🏠">Legacy Left</CodeplexButton>
+                    <CodeplexBoton variante="outline" iconoIzquierda={<DeleteIcon />}>Delete</CodeplexBoton>
+                    <CodeplexBoton variante="primary" iconoDerecha={<SendIcon />}>Send</CodeplexBoton>
+                    <CodeplexBoton variante="secondary" iconoIzquierda="🏠">Legacy Left</CodeplexBoton>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* File Upload */}
-            <CodeplexCard header="Carga de Archivos (File Upload)">
+            <CodeplexTarjeta cabecera="Carga de Archivos (File Upload)">
                 <div className="p-4 flex flex-col gap-4">
                     <p className="text-sm text-gray-500 mb-2">
-                        Usa el componente <code>VisuallyHiddenInput</code> junto con <code>component="label"</code> para crear botones de subida nativos y accesibles.
+                        Usa el componente <code>EntradaOcultaVisualmente</code> junto con <code>component="label"</code> para crear botones de subida nativos y accesibles.
                     </p>
                     <div className="flex gap-4">
-                        <CodeplexButton
+                        <CodeplexBoton
                             component="label"
-                            variant="primary"
-                            startIcon={<CloudUploadIcon />}
+                            variante="primary"
+                            iconoIzquierda={<CloudUploadIcon />}
                         >
                             Upload files
-                            <VisuallyHiddenInput
+                            <EntradaOcultaVisualmente
                                 type="file"
                                 onChange={(event) => console.log(event.target.files)}
                                 multiple
                             />
-                        </CodeplexButton>
+                        </CodeplexBoton>
 
-                        <CodeplexButton
+                        <CodeplexBoton
                             component="label"
-                            variant="outline"
-                            startIcon={<CloudUploadIcon />}
+                            variante="outline"
+                            iconoIzquierda={<CloudUploadIcon />}
                         >
                             Upload single
-                            <VisuallyHiddenInput type="file" />
-                        </CodeplexButton>
+                            <EntradaOcultaVisualmente type="file" />
+                        </CodeplexBoton>
                     </div>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Loading & States */}
-            <CodeplexCard header="Estados de Carga">
+            <CodeplexTarjeta cabecera="Estados de Carga">
                 <div className="flex flex-wrap gap-4 p-4">
-                    <CodeplexButton loading>Loading Default</CodeplexButton>
-                    <CodeplexButton variant="primary" loading>Processing...</CodeplexButton>
-                    <CodeplexButton variant="outline" loading startIcon={<CloudUploadIcon />}>Saving</CodeplexButton>
+                    <CodeplexBoton cargando>Loading Default</CodeplexBoton>
+                    <CodeplexBoton variante="primary" cargando>Processing...</CodeplexBoton>
+                    <CodeplexBoton variante="outline" cargando iconoIzquierda={<CloudUploadIcon />}>Saving</CodeplexBoton>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Customization Code */}
             <section className="mt-8">
@@ -96,28 +97,28 @@ export const ButtonPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexButton, VisuallyHiddenInput } from '@codeplex-sac/ui';
+                        <code>{`import { CodeplexBoton, EntradaOcultaVisualmente } from '@codeplex-sac/ui';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-// File Upload Button
-<CodeplexButton
+// Botón de carga de archivos
+<CodeplexBoton
   component="label"
-  variant="primary"
-  startIcon={<CloudUploadIcon />}
+  variante="primary"
+  iconoIzquierda={<CloudUploadIcon />}
 >
-  Upload files
-  <VisuallyHiddenInput type="file" onChange={(e) => console.log(e)} />
-</CodeplexButton>
+  Subir archivos
+  <EntradaOcultaVisualmente type="file" onChange={(e) => console.log(e)} />
+</CodeplexBoton>
 
-// Submit Button with Loading
-<CodeplexButton
-  loading={isLoading}
-  onClick={handleSubmit}
-  variant="success"
-  size="lg"
+// Botón de envío con estado de carga
+<CodeplexBoton
+  cargando={isLoading}
+  alHacerClick={handleSubmit}
+  variante="success"
+  tamano="lg"
 >
-  Submit form
-</CodeplexButton>`}</code>
+  Enviar formulario
+</CodeplexBoton>`}</code>
                     </pre>
                 </div>
             </section>

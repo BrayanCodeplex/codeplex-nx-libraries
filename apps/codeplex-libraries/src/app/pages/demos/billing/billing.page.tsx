@@ -1,15 +1,15 @@
 import { useState, useMemo } from 'react';
 import {
-    CodeplexButton,
-    CodeplexSwitch,
-    CodeplexToast,
-    CodeplexCard,
-    CodeplexBadge
+    CodeplexBoton,
+    CodeplexInterruptor,
+    CodeplexNotificacion,
+    CodeplexTarjeta,
+    CodeplexInsignia
 } from '@codeplex-sac/ui';
-import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-sac/data-view';
-import { CodeplexDatePicker } from '@codeplex-sac/date-pickers';
-import { CodeplexTabs } from '@codeplex-sac/navigation';
-import { CodeplexGrid, CodeplexStack, CodeplexBox, CodeplexContainer } from '@codeplex-sac/layout';
+import { CodeplexTabla, type MRT_ColumnDef } from '@codeplex-sac/data-view';
+import { CodeplexSelectorFecha } from '@codeplex-sac/date-pickers';
+import { CodeplexPestanas } from '@codeplex-sac/navigation';
+import { CodeplexCuadricula, CodeplexPila, CodeplexCaja, CodeplexContenedor } from '@codeplex-sac/layout';
 import {
     Search as SearchIcon,
     Add as AddIcon,
@@ -52,7 +52,7 @@ export const BillingPage = () => {
     const [mes, setMes] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
 
-    // Columns Definition with Grouping and Formatting
+    // columns Definition with Grouping and Formatting
     const columns = useMemo<MRT_ColumnDef<Invoice>[]>(
         () => [
             {
@@ -63,11 +63,11 @@ export const BillingPage = () => {
                 enableColumnFilter: false,
                 enablePinning: true,
                 Cell: () => (
-                    <CodeplexBox display="flex" justifyContent="center">
-                        <CodeplexButton variant="ghost" size="xs">
+                    <CodeplexCaja display="flex" justifyContent="center">
+                        <CodeplexBoton variante="ghost" tamano="xs">
                             <SettingsIcon fontSize="small" />
-                        </CodeplexButton>
-                    </CodeplexBox>
+                        </CodeplexBoton>
+                    </CodeplexCaja>
                 ),
             },
             {
@@ -92,8 +92,8 @@ export const BillingPage = () => {
                                 'PENDIENTE': 'warning'
                             };
                             return (
-                                <CodeplexBadge
-                                    badgeContent={status}
+                                <CodeplexInsignia
+                                    contenido={status}
                                     color={colorMap[status] || 'default'}
                                     sx={{ '& .MuiBadge-badge': { transform: 'none', position: 'static' } }}
                                 />
@@ -139,7 +139,7 @@ export const BillingPage = () => {
                         Cell: ({ cell }) => cell.getValue<number>().toFixed(2),
                         Footer: () => {
                             const total = MOCK_INVOICES.reduce((acc, curr) => acc + curr.total_igv, 0);
-                            return <CodeplexBox fontWeight="bold" textAlign="right">{total.toFixed(2)}</CodeplexBox>
+                            return <CodeplexCaja fontWeight="bold" textAlign="right">{total.toFixed(2)}</CodeplexCaja>
                         }
                     },
                     {
@@ -151,7 +151,7 @@ export const BillingPage = () => {
                         Cell: ({ cell }) => cell.getValue<number>().toFixed(2),
                         Footer: () => {
                             const total = MOCK_INVOICES.reduce((acc, curr) => acc + curr.total, 0);
-                            return <CodeplexBox fontWeight="bold" textAlign="right">{total.toFixed(2)}</CodeplexBox>
+                            return <CodeplexCaja fontWeight="bold" textAlign="right">{total.toFixed(2)}</CodeplexCaja>
                         }
                     },
                     {
@@ -163,7 +163,7 @@ export const BillingPage = () => {
                         Cell: ({ cell }) => cell.getValue<number>().toFixed(2),
                         Footer: () => {
                             const total = MOCK_INVOICES.reduce((acc, curr) => acc + curr.tot_soles, 0);
-                            return <CodeplexBox fontWeight="bold" textAlign="right">{total.toFixed(2)}</CodeplexBox>
+                            return <CodeplexCaja fontWeight="bold" textAlign="right">{total.toFixed(2)}</CodeplexCaja>
                         }
                     },
                 ]
@@ -174,20 +174,20 @@ export const BillingPage = () => {
     );
 
     return (
-        <CodeplexContainer maxWidth={false} sx={{ px: 2, py: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <CodeplexContenedor fluido sx={{ px: 2, py: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
 
             {/* --- HEADER --- */}
-            <CodeplexBox mb={2}>
-                <CodeplexStack direction="row" alignItems="center" spacing={1} sx={{ color: 'text.secondary', mb: 0.5, fontSize: '0.875rem' }}>
+            <CodeplexCaja mb={2}>
+                <CodeplexPila direccion="row" alignItems="center" espaciado={1} sx={{ color: 'text.secondary', mb: 0.5, fontSize: '0.875rem' }}>
                     <DescriptionIcon fontSize="small" />
                     <span>/</span>
                     <span>Facturación</span>
                     <span>/</span>
                     <Typography color="primary" variant="body2" component="span" fontWeight="medium">Facturación de Compras</Typography>
-                </CodeplexStack>
+                </CodeplexPila>
 
-                <CodeplexStack direction="row" alignItems="center" spacing={2}>
-                    <CodeplexBox
+                <CodeplexPila direccion="row" alignItems="center" espaciado={2}>
+                    <CodeplexCaja
                         sx={{
                             backgroundColor: 'primary.main',
                             color: 'primary.contrastText',
@@ -197,85 +197,87 @@ export const BillingPage = () => {
                         }}
                     >
                         <AssignmentIcon />
-                    </CodeplexBox>
+                    </CodeplexCaja>
                     <Typography variant="h5" component="h1" fontWeight="bold">
                         Facturación de Compras
                     </Typography>
-                </CodeplexStack>
-            </CodeplexBox>
+                </CodeplexPila>
+            </CodeplexCaja>
 
             {/* --- FILTERS --- */}
-            <CodeplexCard sx={{ mb: 2, p: 2 }}>
-                <CodeplexGrid container spacing={2} alignItems="center">
+            <CodeplexTarjeta sx={{ mb: 2, p: 2 }}>
+                <CodeplexCuadricula contenedor espaciado={2} alignItems="center">
                     {/* Toggles */}
-                    <CodeplexGrid size={{ xs: 'auto' }}>
-                        <CodeplexSwitch
+                    <CodeplexCuadricula elemento xs={'auto'}>
+                        <CodeplexInterruptor
                             checked={verTodo}
                             onChange={(e) => setVerTodo(e.target.checked)}
-                            label="Ver Todo"
-                            size="small"
+                            etiqueta="Ver Todo"
+                            tamano="small"
                         />
-                    </CodeplexGrid>
-                    <CodeplexGrid size={{ xs: 'auto' }}>
-                        <CodeplexSwitch
+                    </CodeplexCuadricula>
+                    <CodeplexCuadricula elemento xs={'auto'}>
+                        <CodeplexInterruptor
                             checked={mes}
                             onChange={(e) => setMes(e.target.checked)}
-                            label="Mes"
-                            size="small"
+                            etiqueta="Mes"
+                            tamano="small"
                         />
-                    </CodeplexGrid>
+                    </CodeplexCuadricula>
 
                     {/* Date Pickers */}
-                    <CodeplexGrid size={{ xs: 12, md: 3 }}>
-                        <CodeplexDatePicker
+                    <CodeplexCuadricula elemento xs={12} md={3}>
+                        <CodeplexSelectorFecha
                             value={startDate}
                             onChange={setStartDate}
-                            slotProps={{ textField: { label: "Fecha Inicio *", size: 'small', fullWidth: true } }}
+                            etiqueta="Fecha Inicio *"
+                            slotProps={{ textField: { size: 'small' } }}
                         />
-                    </CodeplexGrid>
-                    <CodeplexGrid size={{ xs: 12, md: 3 }}>
-                        <CodeplexDatePicker
+                    </CodeplexCuadricula>
+                    <CodeplexCuadricula elemento xs={12} md={3}>
+                        <CodeplexSelectorFecha
                             value={endDate}
                             onChange={setEndDate}
-                            slotProps={{ textField: { label: "Fecha Fin *", size: 'small', fullWidth: true } }}
+                            etiqueta="Fecha Fin *"
+                            slotProps={{ textField: { size: 'small' } }}
                         />
-                    </CodeplexGrid>
+                    </CodeplexCuadricula>
 
                     {/* Action Buttons */}
-                    <CodeplexGrid size={{ xs: 12, md: 'grow' }} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
-                        <CodeplexButton variant="success" leftIcon={<SearchIcon />}>
+                    <CodeplexCuadricula elemento xs={12} md sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                        <CodeplexBoton variante="success" iconoIzquierda={<SearchIcon />}>
                             BUSCAR
-                        </CodeplexButton>
-                        <CodeplexButton variant="secondary">
+                        </CodeplexBoton>
+                        <CodeplexBoton variante="secondary">
                             <FilterIcon />
-                        </CodeplexButton>
-                        <CodeplexButton variant="primary" leftIcon={<AddIcon />}>
+                        </CodeplexBoton>
+                        <CodeplexBoton variante="primary" iconoIzquierda={<AddIcon />}>
                             AGREGAR
-                        </CodeplexButton>
-                    </CodeplexGrid>
-                </CodeplexGrid>
-            </CodeplexCard>
+                        </CodeplexBoton>
+                    </CodeplexCuadricula>
+                </CodeplexCuadricula>
+            </CodeplexTarjeta>
 
             {/* --- TABS --- */}
-            <CodeplexBox mb={0}>
-                <CodeplexTabs
-                    value={activeTab}
-                    onChange={(e, v) => setActiveTab(v)}
-                    items={[
-                        { label: 'REGISTROS', value: 0, icon: <AssignmentIcon fontSize="small" />, iconPosition: 'start' },
-                        { label: 'DETALLES', value: 1, icon: <DescriptionIcon fontSize="small" />, iconPosition: 'start' }
+            <CodeplexCaja mb={0}>
+                <CodeplexPestanas
+                    valor={activeTab}
+                    alCambiar={(e, v) => setActiveTab(v)}
+                    elementos={[
+                        { etiqueta: 'REGISTROS', valor: 0, icono: <AssignmentIcon fontSize="small" />, posicionIcono: 'start' },
+                        { etiqueta: 'DETALLES', valor: 1, icono: <DescriptionIcon fontSize="small" />, posicionIcono: 'start' }
                     ]}
                 />
-            </CodeplexBox>
+            </CodeplexCaja>
 
             {/* --- TABLE --- */}
-            <CodeplexBox flexGrow={1}>
-                <CodeplexTable
-                    columns={columns}
-                    data={MOCK_INVOICES}
-                    title="Listado de Facturas"
-                    enableExport={true}
-                    options={{
+            <CodeplexCaja flexGrow={1}>
+                <CodeplexTabla
+                    columnas={columns}
+                    datos={MOCK_INVOICES}
+                    titulo="Listado de Facturas"
+                    habilitarExportacion={true}
+                    opciones={{
                         enableDensityToggle: true,
                         enableColumnFilters: true,
                         enableColumnOrdering: true,
@@ -300,9 +302,9 @@ export const BillingPage = () => {
                         }
                     }}
                 />
-            </CodeplexBox>
+            </CodeplexCaja>
 
-        </CodeplexContainer>
+        </CodeplexContenedor>
     );
 };
 

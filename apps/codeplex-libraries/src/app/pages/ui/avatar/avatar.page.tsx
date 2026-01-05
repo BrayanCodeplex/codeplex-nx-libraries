@@ -1,4 +1,4 @@
-import { CodeplexAvatar, CodeplexAvatarGroup, CodeplexCard, stringAvatar } from '@codeplex-sac/ui';
+import { CodeplexAvatarUsuario, CodeplexGrupoAvatares, CodeplexTarjeta, avatarCadena } from '@codeplex-sac/ui';
 
 export const AvatarPage = () => {
     return (
@@ -11,112 +11,112 @@ export const AvatarPage = () => {
             </div>
 
             {/* Image Avatars */}
-            <CodeplexCard header="Image Avatars">
+            <CodeplexTarjeta cabecera="Image Avatars">
                 <div className="flex gap-4 p-4">
-                    <CodeplexAvatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
-                    <CodeplexAvatar alt="Travis Howard" src="https://mui.com/static/images/avatar/2.jpg" />
-                    <CodeplexAvatar alt="Cindy Baker" src="https://mui.com/static/images/avatar/3.jpg" />
+                    <CodeplexAvatarUsuario alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
+                    <CodeplexAvatarUsuario alt="Travis Howard" src="https://mui.com/static/images/avatar/2.jpg" />
+                    <CodeplexAvatarUsuario alt="Cindy Baker" src="https://mui.com/static/images/avatar/3.jpg" />
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Letter Avatars */}
-            <CodeplexCard header="Letter Avatars">
+            <CodeplexTarjeta cabecera="Letter Avatars">
                 <div className="flex gap-4 p-4 items-center">
-                    <CodeplexAvatar>H</CodeplexAvatar>
-                    <CodeplexAvatar sx={{ bgcolor: '#ff5722' }}>N</CodeplexAvatar>
-                    <CodeplexAvatar sx={{ bgcolor: '#673ab7' }}>OP</CodeplexAvatar>
+                    <CodeplexAvatarUsuario>H</CodeplexAvatarUsuario>
+                    <CodeplexAvatarUsuario sx={{ bgcolor: '#ff5722' }}>N</CodeplexAvatarUsuario>
+                    <CodeplexAvatarUsuario sx={{ bgcolor: '#673ab7' }}>OP</CodeplexAvatarUsuario>
                 </div>
                 <div className="flex gap-4 p-4 items-center">
-                    {/* stringAvatar helper automatically handles colors */}
-                    <CodeplexAvatar {...stringAvatar('Kent Dodds')} />
-                    <CodeplexAvatar {...stringAvatar('Jed Watson')} />
-                    <CodeplexAvatar {...stringAvatar('Tim Neutkens')} />
+                    {/* avatarCadena helper automatically handles colors */}
+                    <CodeplexAvatarUsuario {...avatarCadena('Kent Dodds')} />
+                    <CodeplexAvatarUsuario {...avatarCadena('Jed Watson')} />
+                    <CodeplexAvatarUsuario {...avatarCadena('Tim Neutkens')} />
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Sizes */}
-            <CodeplexCard header="Sizes">
+            <CodeplexTarjeta cabecera="Sizes">
                 <div className="flex gap-4 p-4 items-end">
-                    <CodeplexAvatar
+                    <CodeplexAvatarUsuario
                         alt="Remy Sharp"
                         src="https://mui.com/static/images/avatar/1.jpg"
-                        size="xs"
+                        tamano="xs"
                     />
-                    <CodeplexAvatar
+                    <CodeplexAvatarUsuario
                         alt="Remy Sharp"
                         src="https://mui.com/static/images/avatar/1.jpg"
-                        size="sm"
+                        tamano="sm"
                     />
-                    <CodeplexAvatar
+                    <CodeplexAvatarUsuario
                         alt="Remy Sharp"
                         src="https://mui.com/static/images/avatar/1.jpg"
-                        size="md"
+                        tamano="md"
                     />
-                    <CodeplexAvatar
+                    <CodeplexAvatarUsuario
                         alt="Remy Sharp"
                         src="https://mui.com/static/images/avatar/1.jpg"
-                        size="lg"
+                        tamano="lg"
                     />
-                    <CodeplexAvatar
+                    <CodeplexAvatarUsuario
                         alt="Remy Sharp"
                         src="https://mui.com/static/images/avatar/1.jpg"
-                        size="xl"
+                        tamano="xl"
                     />
-                    <CodeplexAvatar
+                    <CodeplexAvatarUsuario
                         alt="Remy Sharp"
                         src="https://mui.com/static/images/avatar/1.jpg"
-                        size="xxl"
+                        tamano="xxl"
                     />
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Icon Avatars (using Emojis/Spans for demo simplicity) */}
-            <CodeplexCard header="Icon Avatars">
+            <CodeplexTarjeta cabecera="Icon Avatars">
                 <div className="flex gap-4 p-4">
-                    <CodeplexAvatar>
+                    <CodeplexAvatarUsuario>
                         <span>📁</span>
-                    </CodeplexAvatar>
-                    <CodeplexAvatar sx={{ bgcolor: '#e91e63' }}>
+                    </CodeplexAvatarUsuario>
+                    <CodeplexAvatarUsuario sx={{ bgcolor: '#e91e63' }}>
                         <span>🔍</span>
-                    </CodeplexAvatar>
-                    <CodeplexAvatar sx={{ bgcolor: '#4caf50' }}>
+                    </CodeplexAvatarUsuario>
+                    <CodeplexAvatarUsuario sx={{ bgcolor: '#4caf50' }}>
                         <span>📋</span>
-                    </CodeplexAvatar>
+                    </CodeplexAvatarUsuario>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Variants */}
-            <CodeplexCard header="Variants">
+            <CodeplexTarjeta cabecera="Variants">
                 <div className="flex gap-4 p-4">
-                    <CodeplexAvatar sx={{ bgcolor: '#ff5722' }} variant="square">
+                    <CodeplexAvatarUsuario sx={{ bgcolor: '#ff5722' }} variante="square">
                         N
-                    </CodeplexAvatar>
-                    <CodeplexAvatar sx={{ bgcolor: '#4caf50' }} variant="rounded">
+                    </CodeplexAvatarUsuario>
+                    <CodeplexAvatarUsuario sx={{ bgcolor: '#4caf50' }} variante="rounded">
                         <span>📋</span>
-                    </CodeplexAvatar>
+                    </CodeplexAvatarUsuario>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Grouped */}
-            <CodeplexCard header="Grouped">
+            <CodeplexTarjeta cabecera="Grouped">
                 <div className="p-4 space-y-4">
-                    <CodeplexAvatarGroup max={4}>
-                        <CodeplexAvatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
-                        <CodeplexAvatar alt="Travis Howard" src="https://mui.com/static/images/avatar/2.jpg" />
-                        <CodeplexAvatar alt="Cindy Baker" src="https://mui.com/static/images/avatar/3.jpg" />
-                        <CodeplexAvatar alt="Agnes Walker" src="https://mui.com/static/images/avatar/4.jpg" />
-                        <CodeplexAvatar alt="Trevor Henderson" src="https://mui.com/static/images/avatar/5.jpg" />
-                    </CodeplexAvatarGroup>
+                    <CodeplexGrupoAvatares maximo={4}>
+                        <CodeplexAvatarUsuario alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
+                        <CodeplexAvatarUsuario alt="Travis Howard" src="https://mui.com/static/images/avatar/2.jpg" />
+                        <CodeplexAvatarUsuario alt="Cindy Baker" src="https://mui.com/static/images/avatar/3.jpg" />
+                        <CodeplexAvatarUsuario alt="Agnes Walker" src="https://mui.com/static/images/avatar/4.jpg" />
+                        <CodeplexAvatarUsuario alt="Trevor Henderson" src="https://mui.com/static/images/avatar/5.jpg" />
+                    </CodeplexGrupoAvatares>
 
                     <h3 className="font-semibold text-sm mt-4">With total prop</h3>
-                    <CodeplexAvatarGroup total={24}>
-                        <CodeplexAvatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
-                        <CodeplexAvatar alt="Travis Howard" src="https://mui.com/static/images/avatar/2.jpg" />
-                        <CodeplexAvatar alt="Agnes Walker" src="https://mui.com/static/images/avatar/4.jpg" />
-                        <CodeplexAvatar alt="Trevor Henderson" src="https://mui.com/static/images/avatar/5.jpg" />
-                    </CodeplexAvatarGroup>
+                    <CodeplexGrupoAvatares total={24}>
+                        <CodeplexAvatarUsuario alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
+                        <CodeplexAvatarUsuario alt="Travis Howard" src="https://mui.com/static/images/avatar/2.jpg" />
+                        <CodeplexAvatarUsuario alt="Agnes Walker" src="https://mui.com/static/images/avatar/4.jpg" />
+                        <CodeplexAvatarUsuario alt="Trevor Henderson" src="https://mui.com/static/images/avatar/5.jpg" />
+                    </CodeplexGrupoAvatares>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
         </div>
     );
 };

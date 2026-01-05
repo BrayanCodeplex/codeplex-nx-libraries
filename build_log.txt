@@ -1,0 +1,88 @@
+
+ NX   Running target build for project codeplex-libraries and 9 tasks it depends on:
+
+
+
+> nx run ui:build  [existing outputs match the cache, left as is]
+
+
+> nx run data-view:build  [existing outputs match the cache, left as is]
+
+
+> nx run date-pickers:build  [existing outputs match the cache, left as is]
+
+
+> nx run navigation:build  [existing outputs match the cache, left as is]
+
+
+> nx run utils:build  [existing outputs match the cache, left as is]
+
+
+> nx run layout:build  [existing outputs match the cache, left as is]
+
+
+> nx run data-grid:build  [existing outputs match the cache, left as is]
+
+
+> nx run charts:build  [existing outputs match the cache, left as is]
+
+
+> nx run theme:build:production
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 5 modules transformed.
+[33m
+[1m(!)[22m outDir [37m[2m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/theme[22m[33m is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+[39m
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[2m../../dist/packages/theme/[22m[36mindex.js  [39m[1m[2m1.39 kB[22m[1m[22m[2m │ gzip: 0.68 kB[22m
+[vite:dts] Declaration files built in 345ms.
+
+[2m../../dist/packages/theme/[22m[36mindex.cjs  [39m[1m[2m1.16 kB[22m[1m[22m[2m │ gzip: 0.62 kB[22m
+[32m✓ built in 396ms[39m
+
+> nx run codeplex-libraries:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 13341 modules transformed.
+[31m✗[39m Build failed in 5.26s
+[31merror during build:
+[31msrc/app/pages/utils/modal/modal.page.tsx (4:9): "CodeplexBox" is not exported by "../../packages/layout/src/index.ts", imported by "src/app/pages/utils/modal/modal.page.tsx".[31m
+file: [36m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/apps/codeplex-libraries/src/app/pages/utils/modal/modal.page.tsx:4:9[31m
+[33m
+2: import { CodeplexModal } from '@codeplex-sac/utils';
+3: import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
+4: import { CodeplexBox } from '@codeplex-sac/layout';
+            ^
+5: 
+6: export const ModalPage = () => {
+[31m
+    at getRollupError (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:17022:16)
+    at Module.traceVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:17478:29)
+    at ModuleScope.findVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:15141:39)
+    at ReturnValueScope.findVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at FunctionBodyScope.findVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at Identifier.bind (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:5462:40)
+    at CallExpression.bind (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at CallExpression.bind (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:12172:15)[39m
+Warning: command "vite build" exited with non-zero status code
+
+
+ NX   Running target build for project codeplex-libraries and 9 tasks it depends on failed
+
+Failed tasks:
+
+- codeplex-libraries:build
+
+Hint: run the command with --verbose for more details.
+

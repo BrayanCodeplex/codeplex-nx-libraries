@@ -1,7 +1,9 @@
 import { ClickAwayListener as MuiClickAwayListener, ClickAwayListenerProps as MuiClickAwayListenerProps } from '@mui/material';
 
-export interface CodeplexClickAwayListenerProps extends MuiClickAwayListenerProps { }
+export interface CodeplexDetectorClickFueraProps extends Omit<MuiClickAwayListenerProps, 'onClickAway'> {
+    alHacerClickFuera: (event: MouseEvent | TouchEvent) => void;
+}
 
-export const CodeplexClickAwayListener = (props: CodeplexClickAwayListenerProps) => {
-    return <MuiClickAwayListener {...props} />;
+export const CodeplexDetectorClickFuera = ({ alHacerClickFuera, ...props }: CodeplexDetectorClickFueraProps) => {
+    return <MuiClickAwayListener onClickAway={alHacerClickFuera} {...props} />;
 };

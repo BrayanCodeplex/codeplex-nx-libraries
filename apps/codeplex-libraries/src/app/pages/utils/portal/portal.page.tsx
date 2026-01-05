@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CodeplexPortal } from '@codeplex-sac/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
-import { CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexBoton, CodeplexTarjeta } from '@codeplex-sac/ui';
+import { CodeplexCaja } from '@codeplex-sac/layout';
 
 export const PortalPage = () => {
     const [show, setShow] = useState(false);
@@ -15,11 +15,11 @@ export const PortalPage = () => {
                 </p>
             </div>
 
-            <CodeplexCard header="Demo Portal">
-                <CodeplexBox flexCol sx={{ p: 4, gap: 4 }}>
-                    <CodeplexButton onClick={() => setShow(!show)}>
+            <CodeplexTarjeta cabecera="Demo Portal">
+                <CodeplexCaja flexColumna sx={{ p: 4, gap: 4 }}>
+                    <CodeplexBoton alHacerClick={() => setShow(!show)}>
                         {show ? 'Desmontar' : 'Montar en Círculo Azul'}
-                    </CodeplexButton>
+                    </CodeplexBoton>
 
                     {/* Este div está aquí, pero el contenido se renderizará en el 'target-container' */}
                     {show && (
@@ -37,8 +37,8 @@ export const PortalPage = () => {
                             {/* Portal content will appear here */}
                         </div>
                     </div>
-                </CodeplexBox>
-            </CodeplexCard>
+                </CodeplexCaja>
+            </CodeplexTarjeta>
         </div>
     );
 };

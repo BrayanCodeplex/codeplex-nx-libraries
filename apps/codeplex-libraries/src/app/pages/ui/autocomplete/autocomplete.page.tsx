@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexAutocomplete, CodeplexButton } from '@codeplex-sac/ui';
+import { CodeplexAutocompletado, CodeplexTarjeta } from '@codeplex-sac/ui';
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
@@ -32,7 +32,7 @@ export const AutocompletePage = () => {
     return (
         <div className="space-y-8 animate-fade-in max-w-5xl mx-auto pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Autocomplete</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Autocompletado</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     Un campo de texto mejorado con sugerencias seleccionables. Wrapper de MUI Autocomplete.
                 </p>
@@ -41,24 +41,24 @@ export const AutocompletePage = () => {
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Combo Box</h2>
                 <div className="p-4 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <CodeplexAutocomplete
+                    <CodeplexAutocompletado
                         disablePortal
                         id="combo-box-demo"
-                        options={top100Films}
+                        opciones={top100Films}
                         sx={{ width: 300 }}
-                        label="Movie"
+                        etiqueta="Película"
                     />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Controlled</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Controlado</h2>
                 <div className="p-4 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800 space-y-4">
-                    <CodeplexAutocomplete
+                    <CodeplexAutocompletado
                         id="controlled-demo"
-                        options={top100Films}
+                        opciones={top100Films}
                         sx={{ width: 300 }}
-                        label="Controlled"
+                        etiqueta="Controlado"
                         value={value}
                         onChange={(event: React.SyntheticEvent, newValue: any) => {
                             setValue(newValue);
@@ -69,37 +69,37 @@ export const AutocompletePage = () => {
                         }}
                     />
                     <div className="text-sm text-gray-500">
-                        <div>{`value: ${value !== null ? `'${value.label}'` : 'null'}`}</div>
-                        <div>{`inputValue: '${inputValue}'`}</div>
+                        <div>{`valor: ${value !== null ? `'${value.label}'` : 'nulo'}`}</div>
+                        <div>{`valorEntrada: '${inputValue}'`}</div>
                     </div>
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Multiple Values</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Múltiples Valores</h2>
                 <div className="p-4 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <CodeplexAutocomplete
+                    <CodeplexAutocompletado
                         multiple
                         id="tags-standard"
-                        options={top100Films}
+                        opciones={top100Films}
                         getOptionLabel={(option: { label: string; year: number }) => option.label}
                         defaultValue={[top100Films[13]]}
-                        label="Favorites"
-                        placeholder="Favorites"
+                        etiqueta="Favoritos"
+                        marcador="Favoritos"
                         sx={{ width: '100%' }}
                     />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Free Solo</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Entrada Libre (Free Solo)</h2>
                 <div className="p-4 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <CodeplexAutocomplete
+                    <CodeplexAutocompletado
                         freeSolo
                         id="free-solo-2-demo"
                         disableClearable
-                        options={top100Films.map((option) => option.label)}
-                        label="Search input"
+                        opciones={top100Films.map((option) => option.label)}
+                        etiqueta="Entrada de búsqueda"
                         sx={{ width: 300 }}
                     />
                 </div>
@@ -115,16 +115,16 @@ export const AutocompletePage = () => {
                         <code>{`import { CodeplexAutocomplete } from '@codeplex-sac/ui';
 
 // Basic
-<CodeplexAutocomplete
-  options={top100Films}
-  label="Movie"
+<CodeplexAutocompletado
+  opciones={top100Films}
+  etiqueta="Movie"
 />
 
 // Multiple
-<CodeplexAutocomplete
+<CodeplexAutocompletado
   multiple
-  options={top100Films}
-  label="Favorites"
+  opciones={top100Films}
+  etiqueta="Favorites"
 />`}</code>
                     </pre>
                 </div>

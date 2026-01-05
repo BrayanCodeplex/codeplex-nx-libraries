@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { CodeplexPopper } from '@codeplex-sac/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
-import { CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexBoton, CodeplexTarjeta } from '@codeplex-sac/ui';
+import { CodeplexCaja } from '@codeplex-sac/layout';
 
 export const PopperPage = () => {
     const [open, setOpen] = useState(false);
@@ -27,19 +27,19 @@ export const PopperPage = () => {
                 </p>
             </div>
 
-            <CodeplexCard header="Demo Popper Inteligente">
-                <CodeplexBox flexRow centered sx={{ p: 4, gap: 2 }}>
-                    <CodeplexButton
+            <CodeplexTarjeta cabecera="Demo Popper Inteligente">
+                <CodeplexCaja flexFila centrado sx={{ p: 4, gap: 2 }}>
+                    <CodeplexBoton
                         ref={anchorRef}
-                        variant="secondary"
-                        onClick={handleToggle}
+                        variante="secondary"
+                        alHacerClick={handleToggle}
                         aria-controls={open ? 'composition-menu' : undefined}
                         aria-expanded={open ? 'true' : undefined}
                         aria-haspopup="true"
                     >
                         Toggle Popper
-                    </CodeplexButton>
-                </CodeplexBox>
+                    </CodeplexBoton>
+                </CodeplexCaja>
 
                 <CodeplexPopper
                     open={open}
@@ -58,7 +58,7 @@ export const PopperPage = () => {
                         <div className="p-2 hover:bg-gray-100 cursor-pointer rounded">Item 3</div>
                     </div>
                 </CodeplexPopper>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             <section className="mt-8">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Código</h2>

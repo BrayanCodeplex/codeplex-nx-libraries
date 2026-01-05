@@ -1,10 +1,10 @@
-import { CodeplexCard, CodeplexBadge } from '@codeplex-sac/ui';
+import { CodeplexTarjeta, CodeplexInsignia } from '@codeplex-sac/ui';
 
 export const CardPage = () => {
     return (
         <div className="space-y-8 animate-fade-in max-w-7xl mx-auto">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">CodeplexCard</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">CodeplexTarjeta</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     Contenedor versátil para agrupar contenido: soporta variantes visuales, distintos niveles de padding y slots para media, header, contenido y footer.
                 </p>
@@ -13,8 +13,8 @@ export const CardPage = () => {
             <section>
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Variantes Visuales</h2>
                 <div className="grid gap-6 md:grid-cols-3">
-                    <CodeplexCard
-                        header={
+                    <CodeplexTarjeta
+                        cabecera={
                             <div className="mb-2">
                                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Default</h3>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">Fondo sólido + borde sutil</p>
@@ -24,11 +24,11 @@ export const CardPage = () => {
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                             Ideal para tarjetas de contenido general, paneles de configuración y formularios embebidos.
                         </p>
-                    </CodeplexCard>
+                    </CodeplexTarjeta>
 
-                    <CodeplexCard
-                        variant="outline"
-                        header={
+                    <CodeplexTarjeta
+                        variante="outline"
+                        cabecera={
                             <div className="mb-2">
                                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Outline</h3>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">Enfatiza el borde, mantiene fondo neutro</p>
@@ -38,11 +38,11 @@ export const CardPage = () => {
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                             Útil cuando el fondo de la página ya tiene color o patrones marcados.
                         </p>
-                    </CodeplexCard>
+                    </CodeplexTarjeta>
 
-                    <CodeplexCard
-                        variant="soft"
-                        header={
+                    <CodeplexTarjeta
+                        variante="soft"
+                        cabecera={
                             <div className="mb-2">
                                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Soft</h3>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">Fondo sutil con borde ligero</p>
@@ -52,48 +52,48 @@ export const CardPage = () => {
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                             Perfecta para resaltar secciones sin un contraste excesivo.
                         </p>
-                    </CodeplexCard>
+                    </CodeplexTarjeta>
                 </div>
             </section>
 
             <section>
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Control de Padding</h2>
                 <div className="grid gap-6 md:grid-cols-4">
-                    <CodeplexCard padding="none">
+                    <CodeplexTarjeta relleno="none">
                         <div className="border border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-3 m-2">
                             <p className="text-xs text-gray-600 dark:text-gray-300"><span className="font-semibold">none</span></p>
                         </div>
-                    </CodeplexCard>
-                    <CodeplexCard padding="sm">
+                    </CodeplexTarjeta>
+                    <CodeplexTarjeta relleno="sm">
                         <p className="text-xs text-gray-600 dark:text-gray-300"><span className="font-semibold">sm:</span> compactas</p>
-                    </CodeplexCard>
-                    <CodeplexCard padding="md">
+                    </CodeplexTarjeta>
+                    <CodeplexTarjeta relleno="md">
                         <p className="text-xs text-gray-600 dark:text-gray-300"><span className="font-semibold">md:</span> default</p>
-                    </CodeplexCard>
-                    <CodeplexCard padding="lg">
+                    </CodeplexTarjeta>
+                    <CodeplexTarjeta relleno="lg">
                         <p className="text-xs text-gray-600 dark:text-gray-300"><span className="font-semibold">lg:</span> amplio</p>
-                    </CodeplexCard>
+                    </CodeplexTarjeta>
                 </div>
             </section>
 
             <section>
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Media, Header y Footer</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Multimedia, Cabecera y Pie</h2>
                 <div className="grid gap-6 md:grid-cols-2">
-                    <CodeplexCard
-                        variant="soft"
-                        hoverable
-                        media={
-                            <div className="h-32 bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center text-white text-sm font-medium rounded-t-xl">
+                    <CodeplexTarjeta
+                        variante="soft"
+                        efectoHover
+                        multimedia={
+                            <div className="h-32 bg-linear-to-r from-blue-500 to-indigo-500 flex items-center justify-center text-white text-sm font-medium rounded-t-xl">
                                 Banner / Media Slot
                             </div>
                         }
-                        header={
+                        cabecera={
                             <div className="mb-2">
                                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Card con Media</h3>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">Resúmenes de producto</p>
                             </div>
                         }
-                        footer={
+                        pie={
                             <div className="mt-4 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                                 <span>Actualizado hace 5 min</span>
                                 <button className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-300">Ver detalles →</button>
@@ -103,18 +103,18 @@ export const CardPage = () => {
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                             El slot media se coloca arriba, ideal para imágenes o gráficos.
                         </p>
-                    </CodeplexCard>
+                    </CodeplexTarjeta>
 
-                    <CodeplexCard
-                        variant="outline"
-                        padding="sm"
-                        header={
+                    <CodeplexTarjeta
+                        variante="outline"
+                        relleno="sm"
+                        cabecera={
                             <div className="flex items-center justify-between mb-2">
                                 <div>
                                     <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Métricas</h3>
                                     <p className="text-xs text-gray-500 dark:text-gray-400">Contenido denso</p>
                                 </div>
-                                <CodeplexBadge label="+18%" variant="success" size="sm" pill />
+                                <CodeplexInsignia contenido="+18%" color="success" />
                             </div>
                         }
                     >
@@ -128,7 +128,7 @@ export const CardPage = () => {
                                 <dd className="text-sm font-semibold text-gray-900 dark:text-white">27%</dd>
                             </div>
                         </dl>
-                    </CodeplexCard>
+                    </CodeplexTarjeta>
                 </div>
             </section>
         </div>

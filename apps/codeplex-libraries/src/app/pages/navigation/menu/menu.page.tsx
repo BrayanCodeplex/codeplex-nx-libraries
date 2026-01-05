@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexMenu, CodeplexMenuItemType } from '@codeplex-sac/navigation';
-import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
-import { CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexMenu, CodeplexElementoMenu } from '@codeplex-sac/navigation';
+import { CodeplexTarjeta, CodeplexBoton } from '@codeplex-sac/ui';
+import { CodeplexCaja } from '@codeplex-sac/layout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
@@ -18,55 +18,55 @@ export const MenuPage = () => {
         setAnchorEl(null);
     };
 
-    const items: CodeplexMenuItemType[] = [
-        { label: 'Profile', icon: <PersonIcon />, onClick: handleClose },
-        { label: 'My account', icon: <SettingsIcon />, onClick: handleClose },
-        { label: 'Logout', icon: <LogoutIcon />, onClick: handleClose, divider: true },
+    const items: CodeplexElementoMenu[] = [
+        { etiqueta: 'Perfil', icono: <PersonIcon />, alHacerClick: handleClose },
+        { etiqueta: 'Mi Cuenta', icono: <SettingsIcon />, alHacerClick: handleClose },
+        { etiqueta: 'Cerrar Sesión', icono: <LogoutIcon />, alHacerClick: handleClose, divider: true },
     ];
 
     return (
         <div className="space-y-8 animate-fade-in pb-20">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Menu</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Menú</h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                    Menú desplegable vitaminado con propiedad <code>items</code>.
+                    Menú desplegable vitaminado con propiedad <code>elementos</code>.
                 </p>
             </div>
 
-            <CodeplexCard header="Data-Driven Menu">
+            <CodeplexTarjeta cabecera="Menú Basado en Datos">
                 <CodeplexBox centered sx={{ p: 4, height: 200 }}>
-                    <CodeplexButton
+                    <CodeplexBoton
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
-                        onClick={handleClick}
-                        variant="primary"
+                        alHacerClick={handleClick}
+                        variante="primary"
                     >
-                        Dashboard
-                    </CodeplexButton>
+                        Panel de Control
+                    </CodeplexBoton>
                     <CodeplexMenu
                         id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
+                        elementoAnclaje={anchorEl}
+                        abierto={open}
+                        alCerrar={handleClose}
                         MenuListProps={{ 'aria-labelledby': 'basic-button' }}
-                        items={items}
+                        elementos={items}
                     />
                 </CodeplexBox>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             <section className="mt-8">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Código</h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
                         <code>{`<CodeplexMenu
-  open={open}
-  anchorEl={anchorEl}
-  onClose={handleClose}
-  items={[
-    { label: 'Profile', icon: <PersonIcon /> },
-    { label: 'Logout', onClick: logout }
+  abierto={open}
+  elementoAnclaje={anchorEl}
+  alCerrar={handleClose}
+  elementos={[
+    { etiqueta: 'Perfil', icono: <PersonIcon /> },
+    { etiqueta: 'Cerrar Sesión', alHacerClick: logout }
   ]}
 />`}</code>
                     </pre>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CodeplexAlert, CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexAlerta, CodeplexBoton, CodeplexTarjeta } from '@codeplex-sac/ui';
 
 export const AlertPage = () => {
     const [open, setOpen] = useState(true);
@@ -14,89 +14,90 @@ export const AlertPage = () => {
             </div>
 
             {/* Basic Severity */}
-            <CodeplexCard header="Severidad (Variantes)">
+            <CodeplexTarjeta cabecera="Severidad (Variantes)">
                 <div className="p-4 space-y-4">
-                    <CodeplexAlert variant="info" title="Información">
+                    <CodeplexAlerta variante="info" titulo="Información">
                         This is an info alert — check it out!
-                    </CodeplexAlert>
-                    <CodeplexAlert variant="success" title="Éxito">
+                    </CodeplexAlerta>
+                    <CodeplexAlerta variante="success" titulo="Éxito">
                         This is a success alert — check it out!
-                    </CodeplexAlert>
-                    <CodeplexAlert variant="warning" title="Advertencia">
+                    </CodeplexAlerta>
+                    <CodeplexAlerta variante="warning" titulo="Advertencia">
                         This is a warning alert — check it out!
-                    </CodeplexAlert>
-                    <CodeplexAlert variant="danger" title="Error">
+                    </CodeplexAlerta>
+                    <CodeplexAlerta variante="danger" titulo="Error">
                         This is an error/danger alert — check it out!
-                    </CodeplexAlert>
+                    </CodeplexAlerta>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Styles: Filled & Outlined */}
-            <CodeplexCard header="Estilos Visuales (Design)">
+            <CodeplexTarjeta cabecera="Estilos Visuales (Design)">
                 <div className="p-4 space-y-6">
                     <div>
                         <h3 className="text-sm font-semibold mb-2">Filled</h3>
                         <div className="space-y-2">
-                            <CodeplexAlert design="filled" variant="success" title="Filled Success" />
-                            <CodeplexAlert design="filled" variant="danger" title="Filled Error" />
+                            <CodeplexAlerta diseno="filled" variante="success" titulo="Filled Success" />
+                            <CodeplexAlerta diseno="filled" variante="danger" titulo="Filled Error" />
                         </div>
                     </div>
                     <div>
                         <h3 className="text-sm font-semibold mb-2">Outlined</h3>
                         <div className="space-y-2">
-                            <CodeplexAlert design="outlined" variant="info" title="Outlined Info" />
-                            <CodeplexAlert design="outlined" variant="warning" title="Outlined Warning" />
+                            <CodeplexAlerta diseno="outlined" variante="info" titulo="Outlined Info" />
+                            <CodeplexAlerta diseno="outlined" variante="warning" titulo="Outlined Warning" />
                         </div>
                     </div>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Actions */}
-            <CodeplexCard header="Acciones Personalizadas">
+            <CodeplexTarjeta cabecera="Acciones Personalizadas">
                 <div className="p-4 space-y-4">
-                    <CodeplexAlert
-                        variant="warning"
-                        onClose={() => alert('Closed!')}
-                        title="Alert with close action"
+                    <CodeplexAlerta
+                        variante="warning"
+                        alCerrar={() => alert('Closed!')}
+                        titulo="Alert with close action"
                     >
                         Click the X to close me (triggers callback).
-                    </CodeplexAlert>
+                    </CodeplexAlerta>
 
-                    <CodeplexAlert
-                        variant="success"
-                        action={
-                            <CodeplexButton color="inherit" size="sm" variant="ghost">
+                    <CodeplexAlerta
+                        className="mb-2"
+                        variante="success"
+                        accion={
+                            <CodeplexBoton color="inherit" tamano="sm" variante="ghost">
                                 UNDO
-                            </CodeplexButton>
+                            </CodeplexBoton>
                         }
                     >
                         This alert has a custom action button.
-                    </CodeplexAlert>
+                    </CodeplexAlerta>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Dismissible Interaction */}
-            <CodeplexCard header="Interacción: Dismissible">
+            <CodeplexTarjeta cabecera="Interacción: Dismissible">
                 <div className="p-4">
-                    <CodeplexButton
-                        variant="primary"
+                    <CodeplexBoton
+                        variante="primary"
                         disabled={open}
-                        onClick={() => setOpen(true)}
+                        alHacerClick={() => setOpen(true)}
                         className="mb-4"
                     >
                         Re-open Alert
-                    </CodeplexButton>
+                    </CodeplexBoton>
 
-                    <CodeplexAlert
-                        open={open}
-                        onClose={() => setOpen(false)}
-                        variant="info"
-                        title="Dismissible Alert"
+                    <CodeplexAlerta
+                        abierto={open}
+                        alCerrar={() => setOpen(false)}
+                        variante="info"
+                        titulo="Dismissible Alert"
                     >
                         This alert handles its open state externally via props.
-                    </CodeplexAlert>
+                    </CodeplexAlerta>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Complete Example Code */}
             <section className="mt-8">
@@ -108,28 +109,28 @@ export const AlertPage = () => {
                         <code>{`import { CodeplexAlert, CodeplexButton } from '@codeplex-sac/ui';
 
 // Alerta compleja con acción y estilo filled
-<CodeplexAlert
-  design="filled"
-  variant="warning"
-  title="Confirmación Requerida"
-  action={
-    <CodeplexButton color="inherit" size="sm">
+<CodeplexAlerta
+  diseno="filled"
+  variante="warning"
+  titulo="Confirmación Requerida"
+  accion={
+    <CodeplexBoton color="inherit" size="sm">
       VERIFICAR
-    </CodeplexButton>
+    </CodeplexBoton>
   }
 >
   Es necesario verificar tu correo electrónico para continuar.
-</CodeplexAlert>
+</CodeplexAlerta>
 
 // Alerta simple outline
-<CodeplexAlert 
-  design="outlined" 
-  variant="info" 
-  title="Nota Informativa" 
+<CodeplexAlerta 
+  diseno="outlined" 
+  variante="info" 
+  titulo="Nota Informativa" 
 />`}</code>
                     </pre>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 };

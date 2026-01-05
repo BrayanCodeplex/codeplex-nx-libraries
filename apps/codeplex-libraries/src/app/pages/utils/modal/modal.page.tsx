@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CodeplexModal } from '@codeplex-sac/utils';
-import { CodeplexButton, CodeplexCard } from '@codeplex-sac/ui';
-import { CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexBoton, CodeplexTarjeta } from '@codeplex-sac/ui';
+import { CodeplexCaja } from '@codeplex-sac/layout';
 
 export const ModalPage = () => {
     const [open, setOpen] = useState(false);
@@ -16,47 +16,47 @@ export const ModalPage = () => {
                 </p>
             </div>
 
-            <CodeplexCard header="Smart Modal">
-                <CodeplexBox flexRow centered sx={{ p: 4 }}>
-                    <CodeplexButton variant="primary" onClick={() => setOpen(true)}>
+            <CodeplexTarjeta cabecera="Smart Modal">
+                <CodeplexCaja centrado sx={{ p: 4, display: 'flex', flexDirection: 'row' }}>
+                    <CodeplexBoton variante="primary" alHacerClick={() => setOpen(true)}>
                         Abrir Modal Básica
-                    </CodeplexButton>
-                </CodeplexBox>
+                    </CodeplexBoton>
+                </CodeplexCaja>
 
                 <CodeplexModal
                     open={open}
                     onClose={() => setOpen(false)}
-                    title="¡Hola Mundo!"
-                    description="Este es un modal inteligente de Codeplex. Ya viene con título, botón de cerrar y estilos."
-                    width={500}
+                    titulo="¡Hola Mundo!"
+                    descripcion="Este es un modal inteligente de Codeplex. Ya viene con título, botón de cerrar y estilos."
+                    ancho={500}
                 >
-                    <CodeplexButton variant="outline" onClick={() => setOpen(false)} className="mt-4">
+                    <CodeplexBoton variante="outline" alHacerClick={() => setOpen(false)} className="mt-4">
                         Entendido
-                    </CodeplexButton>
+                    </CodeplexBoton>
                 </CodeplexModal>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
-            <CodeplexCard header="Custom Content Modal">
-                <CodeplexBox flexRow centered sx={{ p: 4 }}>
-                    <CodeplexButton variant="secondary" onClick={() => setOpenCustom(true)}>
+            <CodeplexTarjeta cabecera="Custom Content Modal">
+                <CodeplexCaja centrado sx={{ p: 4, display: 'flex', flexDirection: 'row' }}>
+                    <CodeplexBoton variante="secondary" alHacerClick={() => setOpenCustom(true)}>
                         Abrir Modal Custom
-                    </CodeplexButton>
-                </CodeplexBox>
+                    </CodeplexBoton>
+                </CodeplexCaja>
 
                 <CodeplexModal
                     open={openCustom}
                     onClose={() => setOpenCustom(false)}
-                    title="Login"
-                    showCloseIcon={false}
-                    width={400}
+                    titulo="Login"
+                    mostrarIconoCierre={false}
+                    ancho={400}
                 >
                     <form className="flex flex-col gap-4">
                         <input className="border p-2 rounded" placeholder="Email" />
                         <input className="border p-2 rounded" type="password" placeholder="Password" />
-                        <CodeplexButton variant="primary" onClick={() => setOpenCustom(false)}>Login</CodeplexButton>
+                        <CodeplexBoton variante="primary" alHacerClick={() => setOpenCustom(false)}>Login</CodeplexBoton>
                     </form>
                 </CodeplexModal>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             <section className="mt-8">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Código</h2>

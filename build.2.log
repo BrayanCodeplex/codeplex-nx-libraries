@@ -1,0 +1,253 @@
+
+ NX   Running target build for project codeplex-libraries and 9 tasks it depends on:
+
+
+
+> nx run date-pickers:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 787 modules transformed.
+[33m
+[1m(!)[22m outDir [37m[2m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/date-pickers[22m[33m is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+[39m
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+[96msrc/lib/digital-clock/digital-clock.tsx[0m:[93m6[0m:[93m52[0m - [91merror[0m[90m TS2314: [0mGeneric type 'DigitalClockProps<TDate>' requires 1 type argument(s).
+
+[7m6[0m export interface CodeplexDigitalClockProps extends DigitalClockProps {
+[7m [0m [91m                                                   ~~~~~~~~~~~~~~~~~[0m
+[96msrc/lib/digital-clock/digital-clock.tsx[0m:[93m10[0m:[93m58[0m - [91merror[0m[90m TS2339: [0mProperty 'sx' does not exist on type 'CodeplexDigitalClockProps'.
+
+[7m10[0m export const CodeplexDigitalClock = ({ withPaper = true, sx, ...props }: CodeplexDigitalClockProps) => {
+[7m  [0m [91m                                                         ~~[0m
+[96msrc/lib/time-picker/time-picker.tsx[0m:[93m5[0m:[93m50[0m - [91merror[0m[90m TS2707: [0mGeneric type 'TimePickerProps<TDate, TEnableAccessibleFieldDOMStructure>' requires between 1 and 2 type arguments.
+
+[7m5[0m export interface CodeplexTimePickerProps extends TimePickerProps {
+[7m [0m [91m                                                 ~~~~~~~~~~~~~~~[0m
+[96msrc/lib/time-picker/time-picker.tsx[0m:[93m13[0m:[93m5[0m - [91merror[0m[90m TS2339: [0mProperty 'slotProps' does not exist on type 'CodeplexTimePickerProps'.
+
+[7m13[0m     slotProps,
+[7m  [0m [91m    ~~~~~~~~~[0m
+[96msrc/lib/time-picker/time-picker.tsx[0m:[93m17[0m:[93m5[0m - [91merror[0m[90m TS2339: [0mProperty 'sx' does not exist on type 'CodeplexTimePickerProps'.
+
+[7m17[0m     sx,
+[7m  [0m [91m    ~~[0m
+
+computing gzip size...
+[vite:dts] Declaration files built in 2694ms.
+
+[2m../../dist/packages/date-pickers/[22m[36mindex.mjs  [39m[1m[33m1,079.69 kB[39m[22m[2m │ gzip: 233.20 kB[22m
+[2m../../dist/packages/date-pickers/[22m[36mindex.js  [39m[1m[33m559.84 kB[39m[22m[2m │ gzip: 158.91 kB[22m
+[32m✓ built in 4.66s[39m
+
+> nx run data-view:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 253 modules transformed.
+[33m
+[1m(!)[22m outDir [37m[2m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/data-view[22m[33m is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+[39m
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[vite:dts] Outside emitted: /Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/dist/qwik-prefetch-service-worker.d.ts
+[vite:dts] Outside emitted: /Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/dist/build/q-CNeX8Bv1.d.ts
+[vite:dts] Outside emitted: /Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/dist/build/q-CWtDSj7T.d.ts
+[vite:dts] Outside emitted: /Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/vite.config.d.ts
+[vite:dts] Declaration files built in 3124ms.
+
+[2m../../dist/packages/data-view/[22m[36mindex.js                     [39m[1m[2m    0.12 kB[22m[1m[22m[2m │ gzip:   0.12 kB[22m
+[2m../../dist/packages/data-view/[22m[36mpurify.es-DIxY135m.js        [39m[1m[2m   29.32 kB[22m[1m[22m[2m │ gzip:   9.61 kB[22m
+[2m../../dist/packages/data-view/[22m[36mindex.es-CoPXrCi7.js         [39m[1m[2m  224.11 kB[22m[1m[22m[2m │ gzip:  60.83 kB[22m
+[2m../../dist/packages/data-view/[22m[36mhtml2canvas.esm-BWVIUcAF.js  [39m[1m[2m  253.07 kB[22m[1m[22m[2m │ gzip:  52.68 kB[22m
+[2m../../dist/packages/data-view/[22m[36mindex-m7RGZiv3.js            [39m[1m[33m1,035.68 kB[39m[22m[2m │ gzip: 269.92 kB[22m
+[2m../../dist/packages/data-view/[22m[36mindex.cjs                     [39m[1m[2m  0.35 kB[22m[1m[22m[2m │ gzip:   0.25 kB[22m
+[2m../../dist/packages/data-view/[22m[36mpurify.es-DSa7RKfV.cjs        [39m[1m[2m 22.53 kB[22m[1m[22m[2m │ gzip:   8.67 kB[22m
+[2m../../dist/packages/data-view/[22m[36mindex.es-B-uJN-5u.cjs         [39m[1m[2m159.27 kB[22m[1m[22m[2m │ gzip:  52.98 kB[22m
+[2m../../dist/packages/data-view/[22m[36mhtml2canvas.esm-B5qzocYs.cjs  [39m[1m[2m201.12 kB[22m[1m[22m[2m │ gzip:  47.47 kB[22m
+[2m../../dist/packages/data-view/[22m[36mindex-Ce3e2ok1.cjs            [39m[1m[33m708.20 kB[39m[22m[2m │ gzip: 232.82 kB[22m
+[32m✓ built in 5.40s[39m
+
+> nx run ui:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 924 modules transformed.
+[33m
+[1m(!)[22m outDir [37m[2m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/ui[22m[33m is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+[39m
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[vite:dts] Declaration files built in 4475ms.
+
+[2m../../dist/packages/ui/[22m[35mindex.css  [39m[1m[2m  0.00 kB[22m[1m[22m[2m │ gzip:   0.02 kB[22m
+[2m../../dist/packages/ui/[22m[36mindex.mjs  [39m[1m[33m905.42 kB[39m[22m[2m │ gzip: 206.55 kB[22m
+[2m../../dist/packages/ui/[22m[35mindex.css  [39m[1m[2m  0.00 kB[22m[1m[22m[2m │ gzip:   0.02 kB[22m
+[2m../../dist/packages/ui/[22m[36mindex.js   [39m[1m[2m489.08 kB[22m[1m[22m[2m │ gzip: 141.92 kB[22m
+[32m✓ built in 6.26s[39m
+
+> nx run navigation:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 900 modules transformed.
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[vite:dts] Declaration files built in 2042ms.
+
+[2m../../dist/packages/navigation/[22m[36mindex.mjs  [39m[1m[33m557.85 kB[39m[22m[2m │ gzip: 134.40 kB[22m
+[32m✓ built in 4.36s[39m
+
+> nx run charts:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 825 modules transformed.
+[33m
+[1m(!)[22m outDir [37m[2m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/charts[22m[33m is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+[39m
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[vite:dts] Declaration files built in 1708ms.
+
+[2m../../dist/packages/charts/[22m[36mindex.mjs  [39m[1m[33m585.42 kB[39m[22m[2m │ gzip: 147.15 kB[22m
+[2m../../dist/packages/charts/[22m[36mindex.js  [39m[1m[2m369.21 kB[22m[1m[22m[2m │ gzip: 115.49 kB[22m
+[32m✓ built in 4.09s[39m
+
+> nx run layout:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 900 modules transformed.
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[2m../../dist/packages/layout/[22m[36mindex.mjs  [39m[1m[2m229.33 kB[22m[1m[22m[2m │ gzip: 59.54 kB[22m
+[vite:dts] Declaration files built in 2685ms.
+
+[32m✓ built in 4.24s[39m
+
+> nx run data-grid:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 244 modules transformed.
+[33m
+[1m(!)[22m outDir [37m[2m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/data-grid[22m[33m is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+[39m
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[vite:dts] Declaration files built in 1924ms.
+
+[2m../../dist/packages/data-grid/[22m[36mindex.mjs  [39m[1m[2m118.74 kB[22m[1m[22m[2m │ gzip: 32.85 kB[22m
+[2m../../dist/packages/data-grid/[22m[36mindex.js  [39m[1m[2m80.57 kB[22m[1m[22m[2m │ gzip: 26.75 kB[22m
+[32m✓ built in 2.43s[39m
+
+> nx run theme:build:production
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 5 modules transformed.
+[33m
+[1m(!)[22m outDir [37m[2m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/dist/packages/theme[22m[33m is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+[39m
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[2m../../dist/packages/theme/[22m[36mindex.js  [39m[1m[2m1.39 kB[22m[1m[22m[2m │ gzip: 0.68 kB[22m
+[vite:dts] Declaration files built in 468ms.
+
+[2m../../dist/packages/theme/[22m[36mindex.cjs  [39m[1m[2m1.16 kB[22m[1m[22m[2m │ gzip: 0.62 kB[22m
+[32m✓ built in 523ms[39m
+
+> nx run utils:build
+
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 896 modules transformed.
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+[vite:dts] Declaration files built in 1735ms.
+
+[2m../../dist/packages/utils/[22m[36mindex.mjs  [39m[1m[2m358.47 kB[22m[1m[22m[2m │ gzip: 93.74 kB[22m
+[32m✓ built in 2.97s[39m
+
+> nx run codeplex-libraries:build
+
+> vite build
+
+(node:6483) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 14 exit listeners added to [process]. MaxListeners is 13. Use emitter.setMaxListeners() to increase limit
+(Use `node --trace-warnings ...` to show where the warning was created)
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 13341 modules transformed.
+[31m✗[39m Build failed in 5.06s
+[31merror during build:
+[31msrc/app/pages/ui/checkbox/checkbox.page.tsx (2:27): "CodeplexFormGroup" is not exported by "../../packages/ui/src/index.ts", imported by "src/app/pages/ui/checkbox/checkbox.page.tsx".[31m
+file: [36m/Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/apps/codeplex-libraries/src/app/pages/ui/checkbox/checkbox.page.tsx:2:27[31m
+[33m
+1: import { useState } from 'react';
+2: import { CodeplexCheckbox, CodeplexFormGroup, CodeplexButton } from '@codeplex-sac/ui';
+                              ^
+3: 
+4: export const CheckboxPage = () => {
+[31m
+    at getRollupError (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:17022:16)
+    at Module.traceVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:17478:29)
+    at ModuleScope.findVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:15141:39)
+    at ReturnValueScope.findVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at FunctionBodyScope.findVariable (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:5688:38)
+    at Identifier.bind (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:5462:40)
+    at CallExpression.bind (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at CallExpression.bind (file:///Users/lorem/Documents/codeplex-libraries/codeplex-nx-libraries/node_modules/.bun/rollup@4.54.0/node_modules/rollup/dist/es/shared/node-entry.js:12172:15)[39m
+Warning: command "vite build" exited with non-zero status code
+
+
+ NX   Running target build for project codeplex-libraries and 9 tasks it depends on failed
+
+Failed tasks:
+
+- codeplex-libraries:build
+
+Hint: run the command with --verbose for more details.
+

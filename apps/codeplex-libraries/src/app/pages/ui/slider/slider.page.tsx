@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexSlider, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexDeslizador, CodeplexTarjeta } from '@codeplex-sac/ui';
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import Stack from '@mui/material/Stack';
@@ -17,7 +17,7 @@ export const SliderPage = () => {
         setRangeValue(newValue);
     };
 
-    const marks = [
+    const marcas = [
         { value: 0, label: '0°C' },
         { value: 20, label: '20°C' },
         { value: 37, label: '37°C' },
@@ -31,102 +31,102 @@ export const SliderPage = () => {
     return (
         <div className="space-y-8 animate-fade-in max-w-5xl mx-auto pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Slider</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Deslizador (Slider)</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     Componente deslizante elegante para seleccionar valores o rangos.
                 </p>
             </div>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Continuous Slider</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Deslizador Continuo</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
                     <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
                         <VolumeDown className="text-gray-400" />
-                        <CodeplexSlider
-                            aria-label="Volume"
-                            value={value}
-                            onChange={handleChange}
+                        <CodeplexDeslizador
+                            aria-label="Volumen"
+                            valor={value}
+                            alCambiar={handleChange}
                         />
                         <VolumeUp className="text-gray-400" />
                     </Stack>
-                    <CodeplexSlider disabled defaultValue={30} aria-label="Disabled slider" label="Disabled" />
+                    <CodeplexDeslizador disabled defaultValue={30} aria-label="Deslizador deshabilitado" etiqueta="Deshabilitado" />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Sizes</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Tamaños</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <CodeplexSlider
-                        size="small"
+                    <CodeplexDeslizador
+                        tamano="small"
                         defaultValue={70}
-                        aria-label="Small"
-                        valueLabelDisplay="auto"
-                        label="Small Size"
+                        aria-label="Pequeño"
+                        mostrarEtiquetaValor="auto"
+                        etiqueta="Tamaño Pequeño"
                     />
-                    <CodeplexSlider
+                    <CodeplexDeslizador
                         defaultValue={50}
-                        aria-label="Default"
-                        valueLabelDisplay="auto"
-                        label="Default Size"
+                        aria-label="Predeterminado"
+                        mostrarEtiquetaValor="auto"
+                        etiqueta="Tamaño Predeterminado"
                     />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Discrete & Custom Marks</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Discreto y Marcas Personalizadas</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800 space-y-8">
-                    <CodeplexSlider
-                        aria-label="Temperature"
+                    <CodeplexDeslizador
+                        aria-label="Temperatura"
                         defaultValue={30}
                         getAriaValueText={valuetext}
-                        valueLabelDisplay="auto"
-                        step={10}
-                        marks
-                        min={10}
-                        max={110}
-                        label="Steps (10)"
+                        mostrarEtiquetaValor="auto"
+                        paso={10}
+                        marcas
+                        minimo={10}
+                        maximo={110}
+                        etiqueta="Pasos (10)"
                     />
-                    <CodeplexSlider
-                        aria-label="Restricted values"
+                    <CodeplexDeslizador
+                        aria-label="Valores restringidos"
                         defaultValue={20}
-                        valueLabelDisplay="auto"
-                        step={null}
-                        marks={marks}
-                        label="Restricted Values (Custom Marks Only)"
+                        mostrarEtiquetaValor="auto"
+                        paso={null}
+                        marcas={marcas}
+                        etiqueta="Valores Restringidos (Solo Marcas)"
                     />
-                    <CodeplexSlider
-                        aria-label="Always visible"
+                    <CodeplexDeslizador
+                        aria-label="Siempre visible"
                         defaultValue={80}
                         getAriaValueText={valuetext}
-                        step={10}
-                        marks={marks}
-                        valueLabelDisplay="on"
-                        label="Always Visible Label"
+                        paso={10}
+                        marcas={marcas}
+                        mostrarEtiquetaValor="on"
+                        etiqueta="Etiqueta Siempre Visible"
                     />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Range Slider</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Deslizador de Rango</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <CodeplexSlider
-                        getAriaLabel={() => 'Temperature range'}
-                        value={rangeValue}
-                        onChange={handleRangeChange}
-                        valueLabelDisplay="auto"
+                    <CodeplexDeslizador
+                        getAriaLabel={() => 'Rango de temperatura'}
+                        valor={rangeValue}
+                        alCambiar={handleRangeChange}
+                        mostrarEtiquetaValor="auto"
                         getAriaValueText={valuetext}
-                        marks={marks}
-                        label="Select Range"
+                        marcas={marcas}
+                        etiqueta="Seleccionar Rango"
                     />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Colors</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Colores</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800 space-y-4">
-                    <CodeplexSlider defaultValue={30} color="secondary" label="Secondary" />
-                    <CodeplexSlider defaultValue={50} color="success" label="Success" />
-                    <CodeplexSlider defaultValue={70} color="error" label="Error" />
+                    <CodeplexDeslizador defaultValue={30} color="secondary" etiqueta="Secundario" />
+                    <CodeplexDeslizador defaultValue={50} color="success" etiqueta="Éxito" />
+                    <CodeplexDeslizador defaultValue={70} color="error" etiqueta="Error" />
                 </div>
             </section>
 
@@ -140,21 +140,21 @@ export const SliderPage = () => {
                         <code>{`import { CodeplexSlider } from '@codeplex-sac/ui';
 
 /* Continuous */
-<CodeplexSlider value={volume} onChange={handleChange} />
+<CodeplexDeslizador valor={volume} alCambiar={handleChange} />
 
 /* Range */
-<CodeplexSlider 
-  value={[20, 37]} 
-  valueLabelDisplay="auto"
-  marks={marks} 
+<CodeplexDeslizador 
+  valor={[20, 37]} 
+  mostrarEtiquetaValor="auto"
+  marcas={marcas} 
 />
 
 /* Discrete with Steps */
-<CodeplexSlider 
-  step={10} 
-  marks 
-  min={0} 
-  max={100} 
+<CodeplexDeslizador 
+  paso={10} 
+  marcas 
+  minimo={0} 
+  maximo={100} 
 />`}</code>
                     </pre>
                 </div>

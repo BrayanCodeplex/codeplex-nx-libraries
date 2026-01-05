@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CodeplexCollapse, CodeplexFade, CodeplexGrow, CodeplexSlide, CodeplexZoom } from '@codeplex-sac/utils';
-import { CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
-import { CodeplexBox, CodeplexGrid } from '@codeplex-sac/layout';
+import { CodeplexColapso, CodeplexDesvanecimiento, CodeplexCrecimiento, CodeplexDeslizamiento, CodeplexZoom } from '@codeplex-sac/utils';
+import { CodeplexTarjeta, CodeplexBoton } from '@codeplex-sac/ui';
+import { CodeplexCaja, CodeplexCuadricula } from '@codeplex-sac/layout';
 import { Paper, FormControlLabel, Switch } from '@mui/material';
 
 const BoxItem = ({ color = '#007FFF', text = 'Box' }) => (
@@ -16,7 +16,7 @@ export const TransitionsPage = () => {
     return (
         <div className="space-y-8 animate-fade-in pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Transitions</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Transiciones (Transitions)</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     Animaciones suaves pre-configuradas. Controla la visibilidad con <code>in</code>.
                 </p>
@@ -28,48 +28,48 @@ export const TransitionsPage = () => {
                 </div>
             </div>
 
-            <CodeplexGrid container spacing={2}>
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
-                    <CodeplexCard header="Collapse">
-                        <CodeplexBox sx={{ minHeight: 120 }}>
-                            <CodeplexCollapse in={checked}>
+            <CodeplexCuadricula contenedor espaciado={2}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
+                    <CodeplexTarjeta cabecera="Colapso (Collapse)">
+                        <CodeplexCaja sx={{ minHeight: 120 }}>
+                            <CodeplexColapso in={checked}>
                                 <BoxItem color="#4caf50" text="Collapse" />
                                 <p className="p-2">Texto colapsable...</p>
-                            </CodeplexCollapse>
-                        </CodeplexBox>
-                    </CodeplexCard>
-                </CodeplexGrid>
+                            </CodeplexColapso>
+                        </CodeplexCaja>
+                    </CodeplexTarjeta>
+                </CodeplexCuadricula>
 
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
-                    <CodeplexCard header="Fade">
-                        <CodeplexBox sx={{ minHeight: 120 }}>
-                            <CodeplexFade in={checked}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
+                    <CodeplexTarjeta cabecera="Desvanecimiento (Fade)">
+                        <CodeplexCaja sx={{ minHeight: 120 }}>
+                            <CodeplexDesvanecimiento in={checked}>
                                 <div><BoxItem color="#f44336" text="Fade" /></div>
-                            </CodeplexFade>
-                        </CodeplexBox>
-                    </CodeplexCard>
-                </CodeplexGrid>
+                            </CodeplexDesvanecimiento>
+                        </CodeplexCaja>
+                    </CodeplexTarjeta>
+                </CodeplexCuadricula>
 
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
-                    <CodeplexCard header="Zoom">
-                        <CodeplexBox sx={{ minHeight: 120 }}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
+                    <CodeplexTarjeta cabecera="Zoom">
+                        <CodeplexCaja sx={{ minHeight: 120 }}>
                             <CodeplexZoom in={checked}>
                                 <div><BoxItem color="#ff9800" text="Zoom" /></div>
                             </CodeplexZoom>
-                        </CodeplexBox>
-                    </CodeplexCard>
-                </CodeplexGrid>
+                        </CodeplexCaja>
+                    </CodeplexTarjeta>
+                </CodeplexCuadricula>
 
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
-                    <CodeplexCard header="Grow">
-                        <CodeplexBox sx={{ minHeight: 120 }}>
-                            <CodeplexGrow in={checked}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
+                    <CodeplexTarjeta cabecera="Crecimiento (Grow)">
+                        <CodeplexCaja sx={{ minHeight: 120 }}>
+                            <CodeplexCrecimiento in={checked}>
                                 <div><BoxItem color="#9c27b0" text="Grow" /></div>
-                            </CodeplexGrow>
-                        </CodeplexBox>
-                    </CodeplexCard>
-                </CodeplexGrid>
-            </CodeplexGrid>
+                            </CodeplexCrecimiento>
+                        </CodeplexCaja>
+                    </CodeplexTarjeta>
+                </CodeplexCuadricula>
+            </CodeplexCuadricula>
         </div>
     );
 };

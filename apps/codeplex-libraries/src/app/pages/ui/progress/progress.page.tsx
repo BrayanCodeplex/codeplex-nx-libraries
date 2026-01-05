@@ -1,4 +1,4 @@
-import { CodeplexProgress, CodeplexSpinner, CodeplexCard, CodeplexButton } from '@codeplex-sac/ui';
+import { CodeplexProgreso, CodeplexCargando, CodeplexTarjeta, CodeplexBoton } from '@codeplex-sac/ui';
 import { useState, useEffect } from 'react';
 
 export const ProgressPage = () => {
@@ -30,69 +30,69 @@ export const ProgressPage = () => {
             </div>
 
             {/* Circular Progress (Spinner) */}
-            <CodeplexCard header="Circular Progress (Spinner)">
+            <CodeplexTarjeta cabecera="Circular Progress (Spinner)">
                 <div className="flex flex-col gap-6 p-4">
                     <div className="flex gap-8 items-center">
-                        <CodeplexSpinner size="sm" />
-                        <CodeplexSpinner size="md" />
-                        <CodeplexSpinner size="lg" />
-                        <CodeplexSpinner size="xl" />
+                        <CodeplexCargando tamano="sm" />
+                        <CodeplexCargando tamano="md" />
+                        <CodeplexCargando tamano="lg" />
+                        <CodeplexCargando tamano="xl" />
                     </div>
                     <div className="flex gap-8 items-center">
-                        <CodeplexSpinner color="secondary" />
-                        <CodeplexSpinner color="success" />
-                        <CodeplexSpinner color="warning" />
-                        <CodeplexSpinner color="error" />
-                        <CodeplexSpinner color="info" />
+                        <CodeplexCargando color="secondary" />
+                        <CodeplexCargando color="success" />
+                        <CodeplexCargando color="warning" />
+                        <CodeplexCargando color="error" />
+                        <CodeplexCargando color="info" />
                     </div>
                     <div className="flex gap-8 items-center">
-                        <CodeplexSpinner label="Loading..." />
-                        <CodeplexSpinner label="Processing..." labelPosition="bottom" />
-                        <CodeplexSpinner type="dots" color="primary" size="lg" />
-                        <CodeplexSpinner type="ping" color="secondary" size="lg" />
+                        <CodeplexCargando etiqueta="Loading..." />
+                        <CodeplexCargando etiqueta="Processing..." posicionEtiqueta="bottom" />
+                        <CodeplexCargando tipo="dots" color="primary" tamano="lg" />
+                        <CodeplexCargando tipo="ping" color="secondary" tamano="lg" />
                     </div>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Linear Progress */}
-            <CodeplexCard header="Linear Progress">
+            <CodeplexTarjeta cabecera="Linear Progress">
                 <div className="space-y-6 p-4">
                     {/* Basic */}
                     <div className="space-y-2">
                         <h4 className="font-medium text-sm">Indeterminate</h4>
-                        <CodeplexProgress indeterminate />
+                        <CodeplexProgreso indeterminado />
                     </div>
                     <div className="space-y-2">
                         <h4 className="font-medium text-sm">Determinate ({Math.round(progress)}%)</h4>
-                        <CodeplexProgress value={progress} />
+                        <CodeplexProgreso valor={progress} />
                     </div>
 
                     {/* Colors */}
                     <div className="space-y-4">
                         <h4 className="font-medium text-sm">Colors</h4>
-                        <CodeplexProgress value={50} variant="secondary" />
-                        <CodeplexProgress value={60} variant="success" />
-                        <CodeplexProgress value={70} variant="warning" />
-                        <CodeplexProgress value={80} variant="error" />
+                        <CodeplexProgreso valor={50} variante="secondary" />
+                        <CodeplexProgreso valor={60} variante="success" />
+                        <CodeplexProgreso valor={70} variante="warning" />
+                        <CodeplexProgreso valor={80} variante="error" />
                     </div>
 
                     {/* Sizes */}
                     <div className="space-y-4">
                         <h4 className="font-medium text-sm">Sizes</h4>
-                        <CodeplexProgress value={30} size="sm" />
-                        <CodeplexProgress value={50} size="md" />
-                        <CodeplexProgress value={70} size="lg" />
+                        <CodeplexProgreso valor={30} tamano="sm" />
+                        <CodeplexProgreso valor={50} tamano="md" />
+                        <CodeplexProgreso valor={70} tamano="lg" />
                     </div>
 
                     {/* Features */}
                     <div className="space-y-4">
                         <h4 className="font-medium text-sm">Features</h4>
-                        <CodeplexProgress value={65} label="Uploading file..." showPercentage />
-                        <CodeplexProgress value={85} size="lg" label="Inside Label" labelInside showPercentage />
-                        <CodeplexProgress value={progress} striped animated label="Striped & Animated" />
+                        <CodeplexProgreso valor={65} etiqueta="Uploading file..." mostrarPorcentaje />
+                        <CodeplexProgreso valor={85} tamano="lg" etiqueta="Inside Label" etiquetaInterna mostrarPorcentaje />
+                        <CodeplexProgreso valor={progress} rayado animado etiqueta="Striped & Animated" />
                     </div>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
         </div>
     );
 };

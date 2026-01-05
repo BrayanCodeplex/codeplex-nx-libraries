@@ -1,3 +1,4 @@
-export * from './lib/types';
-export * from './lib/provider';
-export * from './lib/hooks';
+export * from './lib/tipos';
+export * from './lib/proveedor';
+export * from './lib/ganchos';
+export * from './lib/tema'; // Exporting the dummy function if needed

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { CodeplexSwitch, CodeplexCard } from '@codeplex-sac/ui';
-import FormGroup from '@mui/material/FormGroup';
+import { CodeplexInterruptor, CodeplexTarjeta, CodeplexGrupoFormulario } from '@codeplex-sac/ui';
 
 export const SwitchPage = () => {
     const [checked, setChecked] = useState(true);
@@ -12,61 +11,61 @@ export const SwitchPage = () => {
     return (
         <div className="space-y-8 animate-fade-in max-w-5xl mx-auto pb-10">
             <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Switch</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Interruptor (Switch)</h1>
                 <p className="text-gray-600 dark:text-gray-400">
                     Interruptores de palanca con estilo premium para configuraciones booleanas.
                 </p>
             </div>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Basic</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Básico</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800 flex flex-col gap-4">
-                    <CodeplexSwitch defaultChecked label="Default Checked" />
-                    <CodeplexSwitch label="Unchecked" />
-                    <CodeplexSwitch disabled defaultChecked label="Disabled Checked" />
-                    <CodeplexSwitch disabled label="Disabled" />
+                    <CodeplexInterruptor defaultChecked etiqueta="Marcado por defecto" />
+                    <CodeplexInterruptor etiqueta="Desmarcado" />
+                    <CodeplexInterruptor disabled defaultChecked etiqueta="Deshabilitado Marcado" />
+                    <CodeplexInterruptor disabled etiqueta="Deshabilitado" />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Controlled</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Controlado</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <CodeplexSwitch
+                    <CodeplexInterruptor
                         checked={checked}
                         onChange={handleChange}
-                        label={checked ? "Active" : "Inactive"}
+                        etiqueta={checked ? "Activo" : "Inactivo"}
                     />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Colors</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Colores</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800 flex flex-wrap gap-8">
-                    <CodeplexSwitch defaultChecked color="primary" label="Primary" />
-                    <CodeplexSwitch defaultChecked color="secondary" label="Secondary" />
-                    <CodeplexSwitch defaultChecked color="success" label="Success" />
-                    <CodeplexSwitch defaultChecked color="error" label="Error" />
-                    <CodeplexSwitch defaultChecked color="warning" label="Warning" />
+                    <CodeplexInterruptor defaultChecked color="primary" etiqueta="Primario" />
+                    <CodeplexInterruptor defaultChecked color="secondary" etiqueta="Secundario" />
+                    <CodeplexInterruptor defaultChecked color="success" etiqueta="Éxito" />
+                    <CodeplexInterruptor defaultChecked color="error" etiqueta="Error" />
+                    <CodeplexInterruptor defaultChecked color="warning" etiqueta="Advertencia" />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Sizes</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Tamaños</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-8">
-                    <CodeplexSwitch defaultChecked size="medium" label="Medium" />
-                    <CodeplexSwitch defaultChecked size="small" label="Small" />
+                    <CodeplexInterruptor defaultChecked tamano="medium" etiqueta="Mediano" />
+                    <CodeplexInterruptor defaultChecked tamano="small" etiqueta="Pequeño" />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Label Placement</h2>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Posición de Etiqueta</h2>
                 <div className="p-6 border rounded-lg dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <FormGroup row>
-                        <CodeplexSwitch defaultChecked label="Top" labelPlacement="top" />
-                        <CodeplexSwitch defaultChecked label="Start" labelPlacement="start" />
-                        <CodeplexSwitch defaultChecked label="Bottom" labelPlacement="bottom" />
-                        <CodeplexSwitch defaultChecked label="End" labelPlacement="end" />
-                    </FormGroup>
+                    <CodeplexGrupoFormulario row>
+                        <CodeplexInterruptor defaultChecked etiqueta="Arriba" posicionEtiqueta="top" />
+                        <CodeplexInterruptor defaultChecked etiqueta="Inicio" posicionEtiqueta="start" />
+                        <CodeplexInterruptor defaultChecked etiqueta="Abajo" posicionEtiqueta="bottom" />
+                        <CodeplexInterruptor defaultChecked etiqueta="Fin" posicionEtiqueta="end" />
+                    </CodeplexGrupoFormulario>
                 </div>
             </section>
 
@@ -77,20 +76,20 @@ export const SwitchPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexSwitch } from '@codeplex-sac/ui';
+                        <code>{`import { CodeplexInterruptor } from '@codeplex-sac/ui';
 
-/* Basic */
-<CodeplexSwitch label="Notifications" defaultChecked />
+/* Básico */
+<CodeplexInterruptor etiqueta="Notificaciones" defaultChecked />
 
-/* Controlled */
-<CodeplexSwitch 
-  checked={enabled} 
-  onChange={(e) => setEnabled(e.target.checked)} 
-  label="Enable Feature" 
+/* Controlado */
+<CodeplexInterruptor 
+  checked={activo} 
+  onChange={(e) => setActivo(e.target.checked)} 
+  etiqueta="Habilitar Función" 
 />
 
-/* Colors */
-<CodeplexSwitch color="success" label="Success" />`}</code>
+/* Colores */
+<CodeplexInterruptor color="success" etiqueta="Éxito" />`}</code>
                     </pre>
                 </div>
             </section>

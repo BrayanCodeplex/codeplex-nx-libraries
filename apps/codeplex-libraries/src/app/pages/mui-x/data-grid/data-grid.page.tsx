@@ -1,7 +1,7 @@
 import { CodeplexDataGrid, GridColDef } from '@codeplex-sac/data-grid';
 import { CodeplexCard } from '@codeplex-sac/ui';
 // Removed direct import from @mui/x-data-grid to use the re-exported one
-import { CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexCaja } from '@codeplex-sac/layout';
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -56,26 +56,26 @@ export const DataGridPage = () => {
                 </p>
             </div>
 
-            <CodeplexCard header="Data Grid Básico">
-                <CodeplexBox sx={{ p: 4, height: 400, width: '100%' }}>
+            <CodeplexCard cabecera="Data Grid Básico">
+                <CodeplexCaja sx={{ p: 4, height: 400, width: '100%' }}>
                     <CodeplexDataGrid
                         rows={rows}
                         columns={columns}
                         title="Usuarios del Sistema"
                         checkboxSelection
                     />
-                </CodeplexBox>
+                </CodeplexCaja>
             </CodeplexCard>
 
-            <CodeplexCard header="Sin Paper (Plain)">
-                <CodeplexBox sx={{ p: 4, height: 300, width: '100%' }}>
+            <CodeplexCard cabecera="Sin Paper (Plain)">
+                <CodeplexCaja sx={{ p: 4, height: 300, width: '100%' }}>
                     <CodeplexDataGrid
                         rows={rows}
                         columns={columns}
                         withPaper={false}
                         hideFooter
                     />
-                </CodeplexBox>
+                </CodeplexCaja>
             </CodeplexCard>
         </div>
     );

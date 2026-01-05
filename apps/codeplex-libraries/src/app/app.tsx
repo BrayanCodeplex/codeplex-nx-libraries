@@ -1,23 +1,27 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import {
-  CodeplexButton,
-  CodeplexBadge,
-  CodeplexSpinner,
-  CodeplexKbd,
-  CodeplexSmartLabel,
-  CodeplexRating,
-  CodeplexInputHelper
+  CodeplexBoton,
+  CodeplexInsignia,
+  CodeplexCargando,
+  CodeplexTeclado,
+  CodeplexEtiquetaInteligente,
+  CodeplexValoracion,
+  CodeplexAyudaEntrada,
+  // CodeplexJumbotron remains undefined in prompt/UI list, checking later if needed or remove utils
 } from '@codeplex-sac/ui';
-import { useTheme } from '@codeplex-sac/theme';
+import { usarTema } from '@codeplex-sac/theme';
 import {
-  CodeplexSidebar,
-  CodeplexHeader,
-  CodeplexFooter,
-  CodeplexMenuItem,
-  CodeplexBreadcrumb
-} from '@codeplex-sac/layout'; // CodeplexJumbotron remains in UI
+  CodeplexBarraLateral,
+  CodeplexCabecera,
+  CodeplexPiePagina,
+  CodeplexElementoMenuLateral,
+  CodeplexElementoMigaPan
+} from '@codeplex-sac/layout';
 import { ThemeProvider, createTheme, CssBaseline, PaletteMode } from '@mui/material';
+
+// CodeplexProveedorFechas is now from @codeplex-sac/date-pickers (verified in task.md)
+import { CodeplexProveedorFechas } from '@codeplex-sac/date-pickers';
 
 // Pages
 import { HomePage } from './pages/home/home.page';
@@ -29,7 +33,6 @@ import { ProgressPage } from './pages/ui/progress/progress.page';
 import { RatingPage } from './pages/ui/rating/rating.page';
 import { ToastPage } from './pages/ui/toast/toast.page';
 import { TooltipPage } from './pages/ui/tooltip/tooltip.page';
-import { SidebarPage } from './pages/layout/sidebar/sidebar.page';
 import { AvatarPage } from './pages/ui/avatar/avatar.page';
 import { SkeletonPage } from './pages/ui/skeleton/skeleton.page';
 import { AutocompletePage } from './pages/ui/autocomplete/autocomplete.page';
@@ -42,14 +45,6 @@ import { SliderPage } from './pages/ui/slider/slider.page';
 import { SwitchPage } from './pages/ui/switch/switch.page';
 import { TextFieldPage } from './pages/ui/text-field/text-field.page';
 import { TransferListPage } from './pages/ui/transfer-list/transfer-list.page';
-import { TablePage } from './pages/data-view/table/table.page';
-
-// Layout Pages
-import { BoxPage } from './pages/layout/box/box.page';
-import { StackPage } from './pages/layout/stack/stack.page';
-import { GridPage } from './pages/layout/grid/grid.page';
-import { ContainerPage } from './pages/layout/container/container.page';
-import { ImageListPage } from './pages/layout/image-list/image-list.page';
 
 // Utils Pages
 import { ModalPage } from './pages/utils/modal/modal.page';
@@ -60,23 +55,22 @@ import { ClickAwayPage } from './pages/utils/click-away/click-away.page';
 import { TextareaPage } from './pages/utils/textarea-autosize/textarea-autosize.page';
 import { TransitionsPage } from './pages/utils/transitions/transitions.page';
 
-// Navigation Pages
-import { BottomNavigationPage } from './pages/navigation/bottom-navigation/bottom-navigation.page';
-import { BreadcrumbsPage } from './pages/navigation/breadcrumbs/breadcrumbs.page';
-import { DrawerPage } from './pages/navigation/drawer/drawer.page';
+// Navigation Pages (imports unchanged, assuming files exist and export default or named)
+import { BottomNavigationPage } from './pages/navigation/navegacion-inferior/navegacion-inferior.page';
+import { BreadcrumbsPage } from './pages/navigation/migas-pan/migas-pan.page';
+import { DrawerPage } from './pages/navigation/cajon-lateral/cajon-lateral.page';
 import { MenuPage } from './pages/navigation/menu/menu.page';
-import { LinkPage } from './pages/navigation/link/link.page';
-import { PaginationPage } from './pages/navigation/pagination/pagination.page';
-import { SpeedDialPage } from './pages/navigation/speed-dial/speed-dial.page';
-import { StepperPage } from './pages/navigation/stepper/stepper.page';
-import { TabsPage } from './pages/navigation/tabs/tabs.page';
+import { LinkPage } from './pages/navigation/enlace/enlace.page';
+import { PaginationPage } from './pages/navigation/paginacion/paginacion.page';
+import { SpeedDialPage } from './pages/navigation/marcacion-rapida/marcacion-rapida.page';
+import { StepperPage } from './pages/navigation/pasos/pasos.page';
+import { TabsPage } from './pages/navigation/pestanas/pestanas.page';
 
-// Date Pickers
-import { CodeplexDatesProvider } from '@codeplex-sac/date-pickers';
-import { DatePickerPage } from './pages/date-pickers/date-picker/date-picker.page';
-import { TimePickerPage } from './pages/date-pickers/time-picker/time-picker.page';
-import { DateTimePickerPage } from './pages/date-pickers/date-time-picker/date-time-picker.page';
-import { DigitalClockPage } from './pages/date-pickers/digital-clock/digital-clock.page';
+// Date Pickers Pages
+import { DatePickerPage } from './pages/date-pickers/selector-fecha/selector-fecha.page';
+import { TimePickerPage } from './pages/date-pickers/selector-hora/selector-hora.page';
+import { DateTimePickerPage } from './pages/date-pickers/selector-fecha-hora/selector-fecha-hora.page';
+import { DigitalClockPage } from './pages/date-pickers/reloj-digital/reloj-digital.page';
 
 // MUI X Pages
 import { DataGridPage } from './pages/mui-x/data-grid/data-grid.page';
@@ -86,22 +80,29 @@ import { ChartsPage } from './pages/mui-x/charts/charts.page';
 import { AdvancedCrudPage } from './pages/demos/crud/advanced-crud.page';
 import { BillingPage } from './pages/demos/billing/billing.page';
 import { EmployeeCrudPage } from './pages/demos/employee-crud/employee-crud.page';
+import { SidebarPage } from './pages/layout/barra-lateral/barra-lateral.page';
+import { TablePage } from './pages/data-view/tabla/tabla.page';
+import { BoxPage } from './pages/layout/caja/caja.page';
+import { StackPage } from './pages/layout/pila/pila.page';
+import { GridPage } from './pages/layout/cuadricula/cuadricula.page';
+import { ContainerPage } from './pages/layout/contenedor/contenedor.page';
+import { ImageListPage } from './pages/layout/lista-imagenes/lista-imagenes.page';
 
 
 
 const ThemeToggle = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { tema, alternarTema } = usarTema();
 
   return (
     <button
       type="button"
       className="p-2 rounded-lg transition-all hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-yellow-400"
-      onClick={toggleTheme}
-      aria-label={`Cambiar a modo ${theme === 'light' ? 'oscuro' : 'claro'}`}
-      title={`Cambiar a modo ${theme === 'light' ? 'oscuro' : 'claro'}`}
+      onClick={alternarTema}
+      aria-label={`Cambiar a modo ${tema === 'light' ? 'oscuro' : 'claro'}`}
+      title={`Cambiar a modo ${tema === 'light' ? 'oscuro' : 'claro'}`}
     >
       <div className="flex items-center gap-2">
-        {theme === 'light' ? (
+        {tema === 'light' ? (
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
           </svg>
@@ -122,124 +123,123 @@ const ThemeToggle = () => {
 // -------------------------------------------------
 // MENÚ BASE
 // -------------------------------------------------
-// Helper to recursively mark active items based on current path
-const markActive = (items: CodeplexMenuItem[], currentPath: string): CodeplexMenuItem[] => {
+const markActive = (items: CodeplexElementoMenuLateral[], currentPath: string): CodeplexElementoMenuLateral[] => {
   return items.map(item => ({
     ...item,
-    active: item.href === currentPath,
-    children: item.children ? markActive(item.children, currentPath) : undefined
+    activo: item.href === currentPath,
+    hijos: item.hijos ? markActive(item.hijos, currentPath) : undefined
   }));
 };
 
 
-const baseMenuItems: CodeplexMenuItem[] = [
-  { id: 'home', label: 'Inicio', icon: '🏠', href: '/' },
+const baseMenuItems: CodeplexElementoMenuLateral[] = [
+  { id: 'home', etiqueta: 'Inicio', icono: '🏠', href: '/' },
   {
     id: 'ui',
-    label: 'UI',
-    icon: '🧩',
-    children: [
-      { id: 'ui-button', icon: '🔘', label: 'Button', href: '/ui/button' },
-      { id: 'ui-alert', icon: '🚨', label: 'Alert', href: '/ui/alert' },
-      { id: 'ui-avatar', icon: '👤', label: 'Avatar', href: '/ui/avatar' },
-      { id: 'ui-badge', icon: '🏷️', label: 'Badge', href: '/ui/badge' },
-      { id: 'ui-card', icon: '🃏', label: 'Card', href: '/ui/card' },
-      { id: 'ui-progress', icon: '📈', label: 'Progress', href: '/ui/progress' },
-      { id: 'ui-rating', icon: '⭐', label: 'Rating', href: '/ui/rating' },
-      { id: 'ui-toast', icon: '🍞', label: 'Toast', href: '/ui/toast' },
-      { id: 'ui-tooltip', icon: '💬', label: 'Tooltip', href: '/ui/tooltip' },
-      { id: 'ui-skeleton', icon: '💀', label: 'Skeleton', href: '/ui/skeleton' },
-      { id: 'ui-autocomplete', icon: '🔍', label: 'Autocomplete', href: '/ui/autocomplete' },
-      { id: 'ui-button-group', icon: '🔗', label: 'Button Group', href: '/ui/button-group' },
-      { id: 'ui-checkbox', icon: '☑️', label: 'Checkbox', href: '/ui/checkbox' },
-      { id: 'ui-number-field', icon: '🔢', label: 'Number Field', href: '/ui/number-field' },
-      { id: 'ui-radio-group', icon: '🔘', label: 'Radio Group', href: '/ui/radio-group' },
-      { id: 'ui-select', icon: '🔽', label: 'Select', href: '/ui/select' },
-      { id: 'ui-slider', icon: '🎚️', label: 'Slider', href: '/ui/slider' },
-      { id: 'ui-switch', icon: '🔌', label: 'Switch', href: '/ui/switch' },
-      { id: 'ui-text-field', icon: '📝', label: 'Text Field', href: '/ui/text-field' },
-      { id: 'ui-transfer-list', icon: '⇆', label: 'Transfer List', href: '/ui/transfer-list' },
+    etiqueta: 'UI',
+    icono: '🧩',
+    hijos: [
+      { id: 'ui-button', icono: '🔘', etiqueta: 'Botón', href: '/ui/button' },
+      { id: 'ui-alert', icono: '🚨', etiqueta: 'Alerta', href: '/ui/alert' },
+      { id: 'ui-avatar', icono: '👤', etiqueta: 'Avatar', href: '/ui/avatar' },
+      { id: 'ui-badge', icono: '🏷️', etiqueta: 'Insignia', href: '/ui/badge' },
+      { id: 'ui-card', icono: '🃏', etiqueta: 'Tarjeta', href: '/ui/card' },
+      { id: 'ui-progress', icono: '📈', etiqueta: 'Progreso', href: '/ui/progress' },
+      { id: 'ui-rating', icono: '⭐', etiqueta: 'Valoración', href: '/ui/rating' },
+      { id: 'ui-toast', icono: '🍞', etiqueta: 'Notificación', href: '/ui/toast' },
+      { id: 'ui-tooltip', icono: '💬', etiqueta: 'Tooltip', href: '/ui/tooltip' },
+      { id: 'ui-skeleton', icono: '💀', etiqueta: 'Esqueleto', href: '/ui/skeleton' },
+      { id: 'ui-autocomplete', icono: '🔍', etiqueta: 'Autocompletado', href: '/ui/autocomplete' },
+      { id: 'ui-button-group', icono: '🔗', etiqueta: 'Grupo Botones', href: '/ui/button-group' },
+      { id: 'ui-checkbox', icono: '☑️', etiqueta: 'Casilla', href: '/ui/checkbox' },
+      { id: 'ui-number-field', icono: '🔢', etiqueta: 'Campo Numérico', href: '/ui/number-field' },
+      { id: 'ui-radio-group', icono: '🔘', etiqueta: 'Grupo Radio', href: '/ui/radio-group' },
+      { id: 'ui-select', icono: '🔽', etiqueta: 'Selector', href: '/ui/select' },
+      { id: 'ui-slider', icono: '🎚️', etiqueta: 'Deslizador', href: '/ui/slider' },
+      { id: 'ui-switch', icono: '🔌', etiqueta: 'Interruptor', href: '/ui/switch' },
+      { id: 'ui-text-field', icono: '📝', etiqueta: 'Campo Texto', href: '/ui/text-field' },
+      { id: 'ui-transfer-list', icono: '⇆', etiqueta: 'Lista Transf.', href: '/ui/transfer-list' },
     ],
   },
   {
     id: 'data-view',
-    label: 'Data View',
-    icon: '📊',
-    children: [
-      { id: 'data-table', icon: '📅', label: 'Table (MRT)', href: '/data-view/table' },
+    etiqueta: 'Vista de Datos',
+    icono: '📊',
+    hijos: [
+      { id: 'data-table', icono: '📅', etiqueta: 'Tabla (MRT)', href: '/data-view/table' },
     ],
   },
   {
     id: 'layout',
-    label: 'Layout',
-    icon: '🏗️',
-    children: [
-      { id: 'layout-sidebar', icon: '📁', label: 'Sidebar', href: '/layout/sidebar' },
-      { id: 'layout-box', icon: '📦', label: 'Box', href: '/layout/box' },
-      { id: 'layout-stack', icon: '📚', label: 'Stack', href: '/layout/stack' },
-      { id: 'layout-grid', icon: '▦', label: 'Grid', href: '/layout/grid' },
-      { id: 'layout-container', icon: '🖼️', label: 'Container', href: '/layout/container' },
-      { id: 'layout-image-list', icon: '📸', label: 'Image List', href: '/layout/image-list' },
+    etiqueta: 'Diseño',
+    icono: '🏗️',
+    hijos: [
+      { id: 'layout-sidebar', icono: '📁', etiqueta: 'Barra Lateral', href: '/layout/sidebar' },
+      { id: 'layout-box', icono: '📦', etiqueta: 'Caja', href: '/layout/box' },
+      { id: 'layout-stack', icono: '📚', etiqueta: 'Pila', href: '/layout/stack' },
+      { id: 'layout-grid', icono: '▦', etiqueta: 'Cuadrícula', href: '/layout/grid' },
+      { id: 'layout-container', icono: '🖼️', etiqueta: 'Contenedor', href: '/layout/container' },
+      { id: 'layout-image-list', icono: '📸', etiqueta: 'Lista Imágenes', href: '/layout/image-list' },
     ],
   },
   {
     id: 'utils',
-    label: 'Utils',
-    icon: '🛠️',
-    children: [
-      { id: 'utils-modal', icon: '🪟', label: 'Modal', href: '/utils/modal' },
-      { id: 'utils-popover', icon: '💬', label: 'Popover', href: '/utils/popover' },
-      { id: 'utils-popper', icon: '📌', label: 'Popper', href: '/utils/popper' },
-      { id: 'utils-portal', icon: '🚪', label: 'Portal', href: '/utils/portal' },
-      { id: 'utils-click-away', icon: '👆', label: 'Click Away', href: '/utils/click-away' },
-      { id: 'utils-textarea', icon: '📝', label: 'Textarea Auto', href: '/utils/textarea' },
-      { id: 'utils-transitions', icon: '✨', label: 'Transitions', href: '/utils/transitions' },
+    etiqueta: 'Utilidades',
+    icono: '🛠️',
+    hijos: [
+      { id: 'utils-modal', icono: '🪟', etiqueta: 'Modal', href: '/utils/modal' },
+      { id: 'utils-popover', icono: '💬', etiqueta: 'Popover', href: '/utils/popover' },
+      { id: 'utils-popper', icono: '📌', etiqueta: 'Popper', href: '/utils/popper' },
+      { id: 'utils-portal', icono: '🚪', etiqueta: 'Portal', href: '/utils/portal' },
+      { id: 'utils-click-away', icono: '👆', etiqueta: 'Click Fuera', href: '/utils/click-away' },
+      { id: 'utils-textarea', icono: '📝', etiqueta: 'Area Texto', href: '/utils/textarea' },
+      { id: 'utils-transitions', icono: '✨', etiqueta: 'Transiciones', href: '/utils/transitions' },
     ],
   },
   {
     id: 'navigation',
-    label: 'Navigation',
-    icon: '🧭',
-    children: [
-      { id: 'nav-bottom', icon: '⬇️', label: 'Bottom Nav', href: '/navigation/bottom-nav' },
-      { id: 'nav-breadcrumbs', icon: '🍞', label: 'Breadcrumbs', href: '/navigation/breadcrumbs' },
-      { id: 'nav-drawer', icon: '🗄️', label: 'Drawer', href: '/navigation/drawer' },
-      { id: 'nav-menu', icon: '🍔', label: 'Menu', href: '/navigation/menu' },
-      { id: 'nav-link', icon: '🔗', label: 'Link', href: '/navigation/link' },
-      { id: 'nav-pagination', icon: '📄', label: 'Pagination', href: '/navigation/pagination' },
-      { id: 'nav-speed-dial', icon: '⚡', label: 'Speed Dial', href: '/navigation/speed-dial' },
-      { id: 'nav-stepper', icon: '👣', label: 'Stepper', href: '/navigation/stepper' },
-      { id: 'nav-tabs', icon: '📑', label: 'Tabs', href: '/navigation/tabs' },
+    etiqueta: 'Navegación',
+    icono: '🧭',
+    hijos: [
+      { id: 'nav-bottom', icono: '⬇️', etiqueta: 'Nav. Inferior', href: '/navigation/bottom-nav' },
+      { id: 'nav-breadcrumbs', icono: '🍞', etiqueta: 'Migas Pan', href: '/navigation/breadcrumbs' },
+      { id: 'nav-drawer', icono: '🗄️', etiqueta: 'Cajón Lateral', href: '/navigation/drawer' },
+      { id: 'nav-menu', icono: '🍔', etiqueta: 'Menú', href: '/navigation/menu' },
+      { id: 'nav-link', icono: '🔗', etiqueta: 'Enlace', href: '/navigation/link' },
+      { id: 'nav-pagination', icono: '📄', etiqueta: 'Paginación', href: '/navigation/pagination' },
+      { id: 'nav-speed-dial', icono: '⚡', etiqueta: 'Marc. Rápida', href: '/navigation/speed-dial' },
+      { id: 'nav-stepper', icono: '👣', etiqueta: 'Pasos', href: '/navigation/stepper' },
+      { id: 'nav-tabs', icono: '📑', etiqueta: 'Pestañas', href: '/navigation/tabs' },
     ],
   },
   {
     id: 'date-pickers',
-    label: 'Date Pickers',
-    icon: '📅',
-    children: [
-      { id: 'dp-date', icon: '📆', label: 'Date Picker', href: '/date-pickers/date' },
-      { id: 'dp-time', icon: '⏰', label: 'Time Picker', href: '/date-pickers/time' },
-      { id: 'dp-datetime', icon: '🗓️', label: 'Date Time', href: '/date-pickers/datetime' },
-      { id: 'dp-clock', icon: '🕰️', label: 'Digital Clock', href: '/date-pickers/clock' },
+    etiqueta: 'Fechas',
+    icono: '📅',
+    hijos: [
+      { id: 'dp-date', icono: '📆', etiqueta: 'Fecha', href: '/date-pickers/date' },
+      { id: 'dp-time', icono: '⏰', etiqueta: 'Hora', href: '/date-pickers/time' },
+      { id: 'dp-datetime', icono: '🗓️', etiqueta: 'Fecha y Hora', href: '/date-pickers/datetime' },
+      { id: 'dp-clock', icono: '🕰️', etiqueta: 'Reloj Digital', href: '/date-pickers/clock' },
     ],
   },
   {
     id: 'mui-x',
-    label: 'MUI X',
-    icon: '⚡',
-    children: [
-      { id: 'muix-datagrid', icon: '▦', label: 'Data Grid', href: '/mui-x/data-grid' },
-      { id: 'muix-charts', icon: '📈', label: 'Charts', href: '/mui-x/charts' },
+    etiqueta: 'MUI X',
+    icono: '⚡',
+    hijos: [
+      { id: 'muix-datagrid', icono: '▦', etiqueta: 'Data Grid', href: '/mui-x/data-grid' },
+      { id: 'muix-charts', icono: '📈', etiqueta: 'Gráficos', href: '/mui-x/charts' },
     ],
   },
   {
     id: 'demos',
-    label: 'Demos Reales',
-    icon: '🚀',
-    children: [
-      { id: 'demo-crud', icon: '📝', label: 'CRUD Completo', href: '/demos/crud' },
-      { id: 'demo-employee', icon: '👥', label: 'CRUD Empleados', href: '/demos/employee-crud' },
-      { id: 'demo-billing', icon: '🧾', label: 'Facturación', href: '/demos/billing' },
+    etiqueta: 'Demos Reales',
+    icono: '🚀',
+    hijos: [
+      { id: 'demo-crud', icono: '📝', etiqueta: 'CRUD Completo', href: '/demos/crud' },
+      { id: 'demo-employee', icono: '👥', etiqueta: 'CRUD Empleados', href: '/demos/employee-crud' },
+      { id: 'demo-billing', icono: '🧾', etiqueta: 'Facturación', href: '/demos/billing' },
     ],
   }
 ];
@@ -251,11 +251,11 @@ const baseMenuItems: CodeplexMenuItem[] = [
 
 // Internal component to bridge CodeplexTheme -> MUI Theme
 const MuiThemeWrapper = ({ children }: { children: React.ReactNode }) => {
-  const { theme } = useTheme();
+  const { tema } = usarTema();
 
   const muiTheme = useMemo(() => createTheme({
     palette: {
-      mode: theme as PaletteMode,
+      mode: tema as PaletteMode,
       primary: {
         main: '#3b82f6', // blue-500 matching Tailwind
       },
@@ -273,7 +273,7 @@ const MuiThemeWrapper = ({ children }: { children: React.ReactNode }) => {
         }
       }
     }
-  }), [theme]);
+  }), [tema]);
 
   return (
     <ThemeProvider theme={muiTheme}>
@@ -292,45 +292,45 @@ export function App() {
   const menuItems = markActive(baseMenuItems, location.pathname);
 
   // Breadcrumbs dynamic calculation (implied for now)
-  const breadcrumbs: CodeplexBreadcrumb[] = [
-    { label: 'Inicio', href: '/' },
-    ...(location.pathname !== '/' ? [{ label: location.pathname.split('/').pop() || 'Page' }] : [])
+  const migasPan: CodeplexElementoMigaPan[] = [
+    { etiqueta: 'Inicio', href: '/' },
+    ...(location.pathname !== '/' ? [{ etiqueta: location.pathname.split('/').pop() || 'Página' }] : [])
   ];
 
   const user = {
-    name: 'Demo User',
+    nombre: 'Demo User',
     email: 'demo@codeplex.com',
-    role: 'Desarrollador',
+    rol: 'Desarrollador',
   };
 
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen font-sans text-gray-900 dark:text-gray-100">
       <MuiThemeWrapper>
-        <CodeplexDatesProvider>
+        <CodeplexProveedorFechas>
 
           {/* Sidebar - using navigate from Router */}
-          <CodeplexSidebar
-            items={menuItems}
-            user={user}
-            logoText="Codeplex"
-            collapsed={sidebarCollapsed}
-            onToggle={setSidebarCollapsed}
-            onNavigate={(href) => navigate(href)}
-            onLogout={() => console.log('Logout')}
-            autoCloseOnNavigate={true}
+          <CodeplexBarraLateral
+            elementos={menuItems}
+            usuario={user}
+            textoLogo="Codeplex"
+            colapsado={sidebarCollapsed}
+            alAlternar={setSidebarCollapsed}
+            alNavegar={(href) => navigate(href)}
+            alCerrarSesion={() => console.log('Cerrar Sesión')}
+            cerrarAlNavegar={true}
           />
 
           {/* Header */}
-          <CodeplexHeader
-            title="Codeplex Libraries"
-            breadcrumbs={breadcrumbs}
-            user={user}
-            showSearch={true}
-            sidebarCollapsed={sidebarCollapsed}
-            onSearch={(q) => console.log('Search', q)}
+          <CodeplexCabecera
+            titulo="Codeplex Libraries"
+            migasPan={migasPan}
+            usuario={user}
+            mostrarBusqueda={true}
+            barraLateralColapsada={sidebarCollapsed}
+            alBuscar={(q) => console.log('Buscar', q)}
           >
             <ThemeToggle />
-          </CodeplexHeader>
+          </CodeplexCabecera>
 
           {/* Main Content */}
           <main className={`
@@ -420,16 +420,16 @@ export function App() {
           </main>
 
           {/* Footer */}
-          <CodeplexFooter
-            copyright="© 2025 Codeplex Libraries. Todos los derechos reservados."
-            sidebarCollapsed={sidebarCollapsed}
-            links={[
-              { label: 'Documentación', href: '#' },
-              { label: 'GitHub', href: '#' },
-              { label: 'Licencia', href: '#' },
+          <CodeplexPiePagina
+            derechosAutor="© 2025 Codeplex Libraries. Todos los derechos reservados."
+            barraLateralColapsada={sidebarCollapsed}
+            enlaces={[
+              { etiqueta: 'Documentación', href: '#' },
+              { etiqueta: 'GitHub', href: '#' },
+              { etiqueta: 'Licencia', href: '#' },
             ]}
           />
-        </CodeplexDatesProvider>
+        </CodeplexProveedorFechas>
       </MuiThemeWrapper>
     </div>
   );

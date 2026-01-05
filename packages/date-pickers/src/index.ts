@@ -1,7 +1,7 @@
-export * from './lib/provider/dates-provider';
-export * from './lib/date-picker/date-picker';
-export * from './lib/time-picker/time-picker';
-export * from './lib/date-time-picker/date-time-picker';
-export * from './lib/digital-clock/digital-clock';
+export * from './lib/proveedor/proveedor';
+export * from './lib/selector-fecha/selector-fecha';
+export * from './lib/selector-hora/selector-hora';
+export * from './lib/selector-fecha-hora/selector-fecha-hora';
+export * from './lib/reloj-digital/reloj-digital';
 // DateRangePicker is pending explicit Pro license check/implementation if needed, 
 // leaving out for now or I can add a placeholder

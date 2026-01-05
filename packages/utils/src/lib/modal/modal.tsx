@@ -4,11 +4,11 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export interface CodeplexModalProps extends Omit<MuiModalProps, 'children' | 'title'> {
     children: React.ReactNode;
-    title?: React.ReactNode;
-    description?: string;
-    showCloseIcon?: boolean;
+    titulo?: React.ReactNode;
+    descripcion?: string;
+    mostrarIconoCierre?: boolean;
     contentSx?: SxProps<Theme>; // Prop to customize the inner Box
-    width?: number | string;
+    ancho?: number | string;
 }
 
 const defaultStyle: SxProps<Theme> = {
@@ -28,29 +28,29 @@ const defaultStyle: SxProps<Theme> = {
 
 export const CodeplexModal = ({
     children,
-    title,
-    description,
-    showCloseIcon = true,
+    titulo,
+    descripcion,
+    mostrarIconoCierre = true,
     onClose,
     contentSx,
-    width,
+    ancho,
     ...props
 }: CodeplexModalProps) => {
     return (
         <MuiModal
-            aria-labelledby={title ? 'modal-title' : undefined}
-            aria-describedby={description ? 'modal-description' : undefined}
+            aria-labelledby={titulo ? 'modal-title' : undefined}
+            aria-describedby={descripcion ? 'modal-description' : undefined}
             onClose={onClose}
             {...props}
         >
-            <Box sx={{ ...defaultStyle, ...(width && { width }), ...contentSx }}>
-                <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={title ? 2 : 0}>
-                    {title && (
+            <Box sx={{ ...defaultStyle, ...(ancho && { width: ancho }), ...contentSx }}>
+                <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={titulo ? 2 : 0}>
+                    {titulo && (
                         <Typography id="modal-title" variant="h6" component="h2" sx={{ fontWeight: 600 }}>
-                            {title}
+                            {titulo}
                         </Typography>
                     )}
-                    {showCloseIcon && onClose && (
+                    {mostrarIconoCierre && onClose && (
                         <IconButton
                             aria-label="close"
                             onClick={(e) => onClose(e, 'backdropClick')}
@@ -66,9 +66,9 @@ export const CodeplexModal = ({
                     )}
                 </Box>
 
-                {description && (
+                {descripcion && (
                     <Typography id="modal-description" sx={{ mb: 3 }}>
-                        {description}
+                        {descripcion}
                     </Typography>
                 )}
 

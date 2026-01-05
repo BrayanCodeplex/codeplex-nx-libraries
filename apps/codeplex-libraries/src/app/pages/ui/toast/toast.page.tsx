@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { CodeplexToast, CodeplexButton, CodeplexToastVariant, CodeplexToastPosition } from '@codeplex-sac/ui';
+import { CodeplexNotificacion, CodeplexBoton, CodeplexNotificacionVariante, CodeplexNotificacionPosicion } from '@codeplex-sac/ui';
 
 export const ToastPage = () => {
     const [open, setOpen] = useState(false);
-    const [variant, setVariant] = useState<CodeplexToastVariant>('success');
-    const [position, setPosition] = useState<CodeplexToastPosition>('bottom-right');
+    const [variant, setVariant] = useState<CodeplexNotificacionVariante>('success');
+    const [position, setPosition] = useState<CodeplexNotificacionPosicion>('bottom-right');
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
 
-    const triggerToast = (kind: CodeplexToastVariant, pos?: CodeplexToastPosition) => {
+    const triggerToast = (kind: CodeplexNotificacionVariante, pos?: CodeplexNotificacionPosicion) => {
         setVariant(kind);
         if (pos) setPosition(pos);
 
@@ -42,34 +42,34 @@ export const ToastPage = () => {
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Variantes</h2>
                 <div className="flex flex-wrap gap-3">
-                    <CodeplexButton variant="success" onClick={() => triggerToast('success')}>Success</CodeplexButton>
-                    <CodeplexButton variant="danger" onClick={() => triggerToast('error')}>Error</CodeplexButton>
-                    <CodeplexButton variant="primary" color="info" onClick={() => triggerToast('info')}>Info</CodeplexButton>
-                    <CodeplexButton variant="primary" color="warning" onClick={() => triggerToast('warning')}>Warning</CodeplexButton>
+                    <CodeplexBoton variante="success" alHacerClick={() => triggerToast('success')}>Success</CodeplexBoton>
+                    <CodeplexBoton variante="danger" alHacerClick={() => triggerToast('error')}>Error</CodeplexBoton>
+                    <CodeplexBoton variante="primary" color="info" alHacerClick={() => triggerToast('info')}>Info</CodeplexBoton>
+                    <CodeplexBoton variante="primary" color="warning" alHacerClick={() => triggerToast('warning')}>Warning</CodeplexBoton>
                 </div>
             </section>
 
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Posiciones</h2>
                 <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('success', 'top-left')}>Top Left</CodeplexButton>
-                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('info', 'top-center')}>Top Center</CodeplexButton>
-                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('warning', 'top-right')}>Top Right</CodeplexButton>
-                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('success', 'bottom-left')}>Bottom Left</CodeplexButton>
-                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('info', 'bottom-center')}>Bottom Center</CodeplexButton>
-                    <CodeplexButton variant="outline" size="sm" onClick={() => triggerToast('error', 'bottom-right')}>Bottom Right</CodeplexButton>
+                    <CodeplexBoton variante="outline" tamano="sm" alHacerClick={() => triggerToast('success', 'top-left')}>Top Left</CodeplexBoton>
+                    <CodeplexBoton variante="outline" tamano="sm" alHacerClick={() => triggerToast('info', 'top-center')}>Top Center</CodeplexBoton>
+                    <CodeplexBoton variante="outline" tamano="sm" alHacerClick={() => triggerToast('warning', 'top-right')}>Top Right</CodeplexBoton>
+                    <CodeplexBoton variante="outline" tamano="sm" alHacerClick={() => triggerToast('success', 'bottom-left')}>Bottom Left</CodeplexBoton>
+                    <CodeplexBoton variante="outline" tamano="sm" alHacerClick={() => triggerToast('info', 'bottom-center')}>Bottom Center</CodeplexBoton>
+                    <CodeplexBoton variante="outline" tamano="sm" alHacerClick={() => triggerToast('error', 'bottom-right')}>Bottom Right</CodeplexBoton>
                 </div>
             </section>
 
-            <CodeplexToast
+            <CodeplexNotificacion
                 open={open}
-                variant={variant}
-                position={position}
-                title={title}
-                subtitle={subtitle}
-                showIcon
-                dismissible
-                duration={4000} // Custom duration
+                variante={variant}
+                posicion={position}
+                titulo={title}
+                subtitulo={subtitle}
+                mostrarIcono
+                cerrable
+                duracion={4000} // Custom duration
                 onClose={() => setOpen(false)}
             />
 
@@ -80,12 +80,12 @@ export const ToastPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexToast } from '@codeplex-sac/ui';
+                        <code>{`import { CodeplexNotificacion } from '@codeplex-sac/ui';
 
 /* El Snackbar se cierra automáticamente después de 6s por defecto */
-<CodeplexToast
+<CodeplexNotificacion
   open={isOpen}
-  title="Operación Exitosa"
+  titulo="Operación Exitosa"
   onClose={() => setIsOpen(false)}
 />`}</code>
                     </pre>
@@ -99,18 +99,18 @@ export const ToastPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexToast } from '@codeplex-sac/ui';
+                        <code>{`import { CodeplexNotificacion } from '@codeplex-sac/ui';
 
 // Toast completo controlado por estado
-<CodeplexToast
+<CodeplexNotificacion
   open={showToast}
-  variant="error"
-  position="top-right"
-  title="Error de Conexión"
-  subtitle="No se pudo guardar los cambios. Intente nuevamente."
-  showIcon={true}
-  dismissible={true}
-  duration={3000} // 3 segundos
+  variante="error"
+  posicion="top-right"
+  titulo="Error de Conexión"
+  subtitulo="No se pudo guardar los cambios. Intente nuevamente."
+  mostrarIcono={true}
+  cerrable={true}
+  duracion={3000} // 3 segundos
   onClose={() => setShowToast(false)}
 />`}</code>
                     </pre>

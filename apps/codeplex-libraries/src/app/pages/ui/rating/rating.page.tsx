@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CodeplexRating, CodeplexCard } from '@codeplex-sac/ui';
+import { CodeplexValoracion, CodeplexTarjeta } from '@codeplex-sac/ui';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
@@ -27,44 +27,44 @@ export const RatingPage = () => {
                 </p>
             </div>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Interactivo Controlado</h2>}>
+            <CodeplexTarjeta cabecera={<h2 className="text-xl font-bold">Interactivo Controlado</h2>}>
                 <div className="p-4 space-y-4">
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Valor actual: {ratingValue}</span>
                     </div>
-                    <CodeplexRating
-                        value={ratingValue || 0}
-                        max={5}
-                        size="large"
-                        onChange={(v) => setRatingValue(v)}
-                        showValue
+                    <CodeplexValoracion
+                        valor={ratingValue || 0}
+                        maximo={5}
+                        tamano="large"
+                        alCambiar={(v) => setRatingValue(v)}
+                        mostrarValor
                     />
                     <p className="text-sm text-gray-500">Haz click en las estrellas.</p>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Variantes de Color</h2>}>
+            <CodeplexTarjeta cabecera={<h2 className="text-xl font-bold">Variantes de Color</h2>}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-4">
                     <div>
                         <p className="text-sm text-gray-500 mb-2">Warning (Default)</p>
-                        <CodeplexRating value={4} variant="warning" readOnly />
+                        <CodeplexValoracion valor={4} variante="warning" soloLectura />
                     </div>
                     <div>
                         <p className="text-sm text-gray-500 mb-2">Success</p>
-                        <CodeplexRating value={5} variant="success" readOnly />
+                        <CodeplexValoracion valor={5} variante="success" soloLectura />
                     </div>
                     <div>
                         <p className="text-sm text-gray-500 mb-2">Error</p>
-                        <CodeplexRating value={2} variant="error" readOnly />
+                        <CodeplexValoracion valor={2} variante="error" soloLectura />
                     </div>
                     <div>
                         <p className="text-sm text-gray-500 mb-2">Primary</p>
-                        <CodeplexRating value={3} variant="primary" readOnly />
+                        <CodeplexValoracion valor={3} variante="primary" soloLectura />
                     </div>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
-            <CodeplexCard header={<h2 className="text-xl font-bold">Custom Icon (Hearts)</h2>}>
+            <CodeplexTarjeta cabecera={<h2 className="text-xl font-bold">Custom Icon (Hearts)</h2>}>
                 <div className="p-4">
                     <StyledHeartRating
                         name="customized-color"
@@ -75,24 +75,24 @@ export const RatingPage = () => {
                         emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
                     />
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
-            <CodeplexCard className="border border-blue-100 dark:border-blue-900/30">
+            <CodeplexTarjeta className="border border-blue-100 dark:border-blue-900/30">
                 <div className="p-6 flex flex-col items-center justify-center space-y-4">
                     <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Experiencia con Feedback</h2>
                     <p className="text-sm text-gray-500">Pasa el mouse sobre las estrellas.</p>
                     <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
-                        <CodeplexRating
-                            value={feedbackValue || 0}
-                            max={5}
-                            size="large"
-                            variant="primary"
-                            tooltips={['Terrible 😡', 'Malo 😞', 'Regular 😐', 'Bueno 🙂', 'Excelente 🤩']}
-                            onChange={(v) => setFeedbackValue(v)}
+                        <CodeplexValoracion
+                            valor={feedbackValue || 0}
+                            maximo={5}
+                            tamano="large"
+                            variante="primary"
+                            textosAyuda={['Terrible 😡', 'Malo 😞', 'Regular 😐', 'Bueno 🙂', 'Excelente 🤩']}
+                            alCambiar={(v) => setFeedbackValue(v)}
                         />
                     </div>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Código mínimo */}
             <section className="mt-8">
@@ -101,9 +101,9 @@ export const RatingPage = () => {
                 </h2>
                 <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-green-400 text-sm">
-                        <code>{`import { CodeplexRating } from '@codeplex-sac/ui';
+                        <code>{`import { CodeplexValoracion } from '@codeplex-sac/ui';
 
-<CodeplexRating value={4} onChange={(val) => console.log(val)} />`}</code>
+<CodeplexValoracion valor={4} alCambiar={(val) => console.log(val)} />`}</code>
                     </pre>
                 </div>
             </section>

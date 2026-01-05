@@ -1,5 +1,5 @@
 import { CodeplexLineChart, CodeplexBarChart, CodeplexPieChart } from '@codeplex-sac/charts';
-import { CodeplexGrid, CodeplexBox } from '@codeplex-sac/layout';
+import { CodeplexCuadricula, CodeplexCaja } from '@codeplex-sac/layout';
 
 export const ChartsPage = () => {
     return (
@@ -11,9 +11,9 @@ export const ChartsPage = () => {
                 </p>
             </div>
 
-            <CodeplexGrid container spacing={4}>
+            <CodeplexCuadricula contenedor espaciado={4}>
                 {/* Line Chart */}
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
                     <CodeplexLineChart
                         title="Ventas Mensuales"
                         subTitle="Comparativa año actual vs anterior"
@@ -24,10 +24,10 @@ export const ChartsPage = () => {
                         xAxis={[{ scaleType: 'point', data: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'] }]}
                         height={350}
                     />
-                </CodeplexGrid>
+                </CodeplexCuadricula>
 
                 {/* Bar Chart */}
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
                     <CodeplexBarChart
                         title="Ingresos por Categoría"
                         series={[
@@ -37,10 +37,10 @@ export const ChartsPage = () => {
                         xAxis={[{ scaleType: 'band', data: ['A', 'B', 'C', 'D', 'E'] }]}
                         height={350}
                     />
-                </CodeplexGrid>
+                </CodeplexCuadricula>
 
                 {/* Pie Chart */}
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
                     <CodeplexPieChart
                         title="Distribución de Usuarios"
                         subTitle="Por dispositivo"
@@ -55,10 +55,10 @@ export const ChartsPage = () => {
                         ]}
                         height={300}
                     />
-                </CodeplexGrid>
+                </CodeplexCuadricula>
 
                 {/* Custom Color Palette */}
-                <CodeplexGrid size={{ xs: 12, md: 6 }}>
+                <CodeplexCuadricula elemento xs={12} md={6}>
                     <CodeplexBarChart
                         title="Colores Personalizados"
                         series={[
@@ -69,8 +69,8 @@ export const ChartsPage = () => {
                         height={300}
                         colors={['#ff5252', '#448aff']}
                     />
-                </CodeplexGrid>
-            </CodeplexGrid>
+                </CodeplexCuadricula>
+            </CodeplexCuadricula>
         </div>
     );
 };

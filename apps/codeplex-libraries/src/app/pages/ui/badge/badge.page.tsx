@@ -1,4 +1,4 @@
-import { CodeplexBadge, CodeplexCard, CodeplexAvatar } from '@codeplex-sac/ui';
+import { CodeplexInsignia, CodeplexTarjeta, CodeplexAvatarUsuario } from '@codeplex-sac/ui';
 
 export const BadgePage = () => {
     return (
@@ -11,145 +11,145 @@ export const BadgePage = () => {
             </div>
 
             {/* Basic Badge */}
-            <CodeplexCard header="Basic badge">
+            <CodeplexTarjeta cabecera="Basic badge">
                 <div className="flex gap-8 p-4">
-                    <CodeplexBadge badgeContent={4} color="primary">
+                    <CodeplexInsignia contenido={4} color="primary">
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
+                    </CodeplexInsignia>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Color */}
-            <CodeplexCard header="Color">
+            <CodeplexTarjeta cabecera="Color">
                 <div className="flex gap-8 p-4">
-                    <CodeplexBadge badgeContent={4} color="secondary">
+                    <CodeplexInsignia contenido={4} color="secondary">
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge badgeContent={4} color="success">
+                    </CodeplexInsignia>
+                    <CodeplexInsignia contenido={4} color="success">
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge badgeContent={4} color="error">
+                    </CodeplexInsignia>
+                    <CodeplexInsignia contenido={4} color="error">
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge badgeContent={4} color="info">
+                    </CodeplexInsignia>
+                    <CodeplexInsignia contenido={4} color="info">
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge badgeContent={4} color="warning">
+                    </CodeplexInsignia>
+                    <CodeplexInsignia contenido={4} color="warning">
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
+                    </CodeplexInsignia>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Badge Visibility */}
-            <CodeplexCard header="Badge visibility">
+            <CodeplexTarjeta cabecera="Badge visibility">
                 <div className="flex gap-8 p-4 items-center">
                     <div className="flex flex-col gap-4 items-center">
-                        <CodeplexBadge color="secondary" badgeContent={0}>
+                        <CodeplexInsignia color="secondary" contenido={0}>
                             <span className="text-2xl">📧</span>
-                        </CodeplexBadge>
+                        </CodeplexInsignia>
                         <span className="text-xs text-gray-500">Hidden (default)</span>
                     </div>
 
                     <div className="flex flex-col gap-4 items-center">
-                        <CodeplexBadge color="secondary" badgeContent={0} showZero>
+                        <CodeplexInsignia color="secondary" contenido={0} mostrarCero>
                             <span className="text-2xl">📧</span>
-                        </CodeplexBadge>
-                        <span className="text-xs text-gray-500">showZero</span>
+                        </CodeplexInsignia>
+                        <span className="text-xs text-gray-500">mostrarCero</span>
                     </div>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Maximum Value */}
-            <CodeplexCard header="Maximum value">
+            <CodeplexTarjeta cabecera="Maximum value">
                 <div className="flex gap-8 p-4">
-                    <CodeplexBadge color="secondary" badgeContent={99}>
+                    <CodeplexInsignia color="secondary" contenido={99}>
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge color="secondary" badgeContent={100}>
+                    </CodeplexInsignia>
+                    <CodeplexInsignia color="secondary" contenido={100}>
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge color="secondary" badgeContent={1000} max={999}>
+                    </CodeplexInsignia>
+                    <CodeplexInsignia color="secondary" contenido={1000} maximo={999}>
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
+                    </CodeplexInsignia>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Dot Badge */}
-            <CodeplexCard header="Dot badge">
+            <CodeplexTarjeta cabecera="Dot badge">
                 <div className="flex gap-8 p-4">
-                    <CodeplexBadge color="secondary" variant="dot">
+                    <CodeplexInsignia color="secondary" variante="dot">
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
+                    </CodeplexInsignia>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Badge Overlap */}
-            <CodeplexCard header="Badge overlap">
+            <CodeplexTarjeta cabecera="Badge overlap">
                 <div className="flex gap-8 p-4 items-center">
-                    <CodeplexBadge color="secondary" badgeContent=" ">
+                    <CodeplexInsignia color="secondary" contenido=" ">
                         <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-none" />
-                    </CodeplexBadge>
-                    <CodeplexBadge color="secondary" badgeContent=" " variant="dot">
+                    </CodeplexInsignia>
+                    <CodeplexInsignia color="secondary" contenido=" " variante="dot">
                         <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-none" />
-                    </CodeplexBadge>
-                    <CodeplexBadge color="secondary" overlap="circular" badgeContent=" ">
+                    </CodeplexInsignia>
+                    <CodeplexInsignia color="secondary" superposicion="circular" contenido=" ">
                         <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-full" />
-                    </CodeplexBadge>
-                    <CodeplexBadge color="secondary" overlap="circular" badgeContent=" " variant="dot">
+                    </CodeplexInsignia>
+                    <CodeplexInsignia color="secondary" superposicion="circular" contenido=" " variante="dot">
                         <div className="w-10 h-10 bg-gray-300 dark:bg-gray-700 rounded-full" />
-                    </CodeplexBadge>
+                    </CodeplexInsignia>
 
-                    <CodeplexBadge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} variant="dot" color="success">
-                        <CodeplexAvatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
-                    </CodeplexBadge>
+                    <CodeplexInsignia superposicion="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} variante="dot" color="success">
+                        <CodeplexAvatarUsuario alt="Remy Sharp" src="https://mui.com/static/images/avatar/1.jpg" />
+                    </CodeplexInsignia>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
 
             {/* Badge Alignment */}
-            <CodeplexCard header="Badge alignment">
+            <CodeplexTarjeta cabecera="Badge alignment">
                 <div className="flex gap-8 p-4">
-                    <CodeplexBadge
+                    <CodeplexInsignia
                         anchorOrigin={{
                             vertical: 'top',
                             horizontal: 'right', // Default
                         }}
-                        badgeContent={1}
+                        contenido={1}
                         color="primary"
                     >
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge
+                    </CodeplexInsignia>
+                    <CodeplexInsignia
                         anchorOrigin={{
                             vertical: 'bottom',
                             horizontal: 'right',
                         }}
-                        badgeContent={1}
+                        contenido={1}
                         color="primary"
                     >
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge
+                    </CodeplexInsignia>
+                    <CodeplexInsignia
                         anchorOrigin={{
                             vertical: 'top',
                             horizontal: 'left',
                         }}
-                        badgeContent={1}
+                        contenido={1}
                         color="primary"
                     >
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
-                    <CodeplexBadge
+                    </CodeplexInsignia>
+                    <CodeplexInsignia
                         anchorOrigin={{
                             vertical: 'bottom',
                             horizontal: 'left',
                         }}
-                        badgeContent={1}
+                        contenido={1}
                         color="primary"
                     >
                         <span className="text-2xl">📧</span>
-                    </CodeplexBadge>
+                    </CodeplexInsignia>
                 </div>
-            </CodeplexCard>
+            </CodeplexTarjeta>
         </div>
     );
 };
