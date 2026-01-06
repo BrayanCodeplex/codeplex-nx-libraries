@@ -11,7 +11,7 @@ import {
 import { CodeplexTabla, type MRT_ColumnDef } from '@codeplex-sac/data-view';
 import { CodeplexModal } from '@codeplex-sac/utils';
 import { CodeplexCuadricula, CodeplexPila, CodeplexCaja, CodeplexContenedor } from '@codeplex-sac/layout';
-import { Edit as EditIcon, Delete as DeleteIcon, Add as AddIcon, Save as SaveIcon } from '@mui/icons-material';
+import { Add as AddIcon, Save as SaveIcon } from '@mui/icons-material';
 
 // --- MOCK DATA ---
 interface Employee {
@@ -205,41 +205,16 @@ export const AdvancedCrudPage = () => {
                 </CodeplexCaja>
 
                 {/* Table */}
+                {/* Table */}
                 <CodeplexTabla
                     columnas={columns}
                     datos={data}
                     titulo="Listado de Personal"
+                    onEditar={handleEdit}
+                    onEliminar={(row) => handleDelete(row.id)}
                     opciones={{
                         enableEditing: true,
                         editDisplayMode: 'cell', // Inline cell editing
-                        enableRowActions: true,
-                        displayColumnDefOptions: {
-                            'mrt-row-actions': {
-                                header: 'Acciones',
-                                size: 100,
-                            },
-                        },
-                        positionActionsColumn: 'last',
-                        renderRowActions: ({ row }) => (
-                            <div className="flex gap-2">
-                                <CodeplexBoton
-                                    variante="ghost"
-                                    tamano="xs"
-                                    color="primary"
-                                    alHacerClick={() => handleEdit(row.original)}
-                                >
-                                    <EditIcon fontSize="small" />
-                                </CodeplexBoton>
-                                <CodeplexBoton
-                                    variante="ghost"
-                                    tamano="xs"
-                                    sx={{ color: 'error.main' }}
-                                    alHacerClick={() => handleDelete(row.original.id)}
-                                >
-                                    <DeleteIcon fontSize="small" />
-                                </CodeplexBoton>
-                            </div>
-                        ),
                     }}
                 />
             </CodeplexPila>

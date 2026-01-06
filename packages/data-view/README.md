@@ -1,144 +1,149 @@
 # @codeplex-sac/data-view
 
-Este paquete contiene componentes avanzados de visualización de datos, centrados principalmente en **CodeplexTable**.
+Este paquete contiene la **CodeplexTabla**, el componente de visualización de datos definitivo para el ecosistema Codeplex.
 
-## CodeplexTable
+## 🚀 CodeplexTabla
 
-`CodeplexTable` es un wrapper robusto y estilizado sobre [Material React Table V3](https://www.material-react-table.com/), diseñado para ofrecer:
+`CodeplexTabla` es una evolución "ultra-funcional" sobre [Material React Table V3](https://www.material-react-table.com/), diseñada para reducir el tiempo de desarrollo de días a minutos.
 
-*   🎨 **Estilado Premium**: Sombras suaves, bordes redondeados y una estética limpia lista para usar.
-*   🇪🇸 **Localización Automática**: Configurado en **Español** por defecto.
-*   ⚡ **Flexibilidad Total**: Permite sobrescribir cualquier configuración de MRT a través de la prop `options`.
-*   📦 **Re-exportaciones Útiles**: Exporta utilidades de MRT para facilitar la creación de toolbars personalizados.
+**Características Principales:**
+*   🇪🇸 **API 100% en Español**: Propiedades intuitivas como `datos`, `columnas`, `fijarFilas`.
+*   🔋 **Defaults Inteligentes**: Selección, ordenamiento, búsqueda y paginación activados por defecto.
+*   🖌️ **Estilo Premium**: Modo "Headless" pre-configurado con bordes, sombras y espaciados cuidados.
+*   🧠 **Funciones Avanzadas Simplificadas**: Agrupación, Totales, Pinning y Filtros Avanzados con flags simples.
 
 ---
 
-### Instalación
-
-Asegúrate de tener las dependencias necesarias en tu proyecto:
+### 📦 Instalación
 
 ```bash
-pnpm add material-react-table @mui/material @mui/icons-material @emotion/react @emotion/styled @mui/x-date-pickers dayjs
+# Instala las dependencias peer
+pnpm add material-react-table @mui/material @mui/icons-material @emotion/react @mui/x-date-pickers dayjs
 ```
 
-### Uso Básico
+### 💻 Uso Básico
 
 ```tsx
-import { CodeplexTable, type MRT_ColumnDef } from '@codeplex-sac/data-view';
-import { useMemo } from 'react';
+import { CodeplexTabla, type MRT_ColumnDef } from '@codeplex-sac/data-view';
 
-// 1. Definir la forma de tus datos
-type Usuario = {
-  id: string;
-  nombre: string;
-  correo: string;
-};
+const columnas = [
+    { accessorKey: 'nombre', header: 'Nombre' },
+    { accessorKey: 'precio', header: 'Precio' },
+];
 
-export const MiTabla = () => {
-  // 2. Definir columnas
-  const columns = useMemo<MRT_ColumnDef<Usuario>[]>(
-    () => [
-      {
-        accessorKey: 'nombre',
-        header: 'Nombre Completo',
-      },
-      {
-        accessorKey: 'correo',
-        header: 'Email',
-      },
-    ],
-    []
-  );
+const datos = [
+    { nombre: 'Producto A', precio: 100 },
+    { nombre: 'Producto B', precio: 200 },
+];
 
-  // 3. Tus datos
-  const data = [
-    { id: '1', nombre: 'Juan Pérez', correo: 'juan@example.com' },
-    { id: '2', nombre: 'Ana Gómez', correo: 'ana@example.com' },
-  ];
-
-  return (
-    <CodeplexTable
-      title="Usuarios del Sistema"
-      columns={columns}
-      data={data}
+export const MiPantalla = () => (
+    <CodeplexTabla
+        titulo="Inventario"
+        datos={datos}
+        columnas={columnas}
+        habilitarExportacion // Activa botón de exportar
+        seleccionable // Activa checkboxes
     />
-  );
-};
+);
 ```
-
-### Props
-
-| Prop | Tipo | Descripción |
-|Ref |Ref |Ref |
-| --- | --- | --- |
-| `data` | `TData[]` | **Requerido**. Array de objetos con los datos a mostrar. |
-| `columns` | `MRT_ColumnDef<TData>[]` | **Requerido**. Definición de las columnas. |
-| `title` | `string` | Opcional. Muestra un título estilizado en la parte superior izquierda. |
-| `loading` | `boolean` | Opcional. Muestra un indicador de carga (skeleton/spinner). |
-| `options` | `Partial<MRT_TableOptions<TData>>` | Opcional. Objeto de configuración profunda. **Aquí puedes sobrescribir CUALQUIER propiedad de Material React Table** (paginación, toolbars, acciones, temas, etc.). |
 
 ---
 
-### Uso Avanzado: Personalización Total
+### 📚 API de Propiedades (Props)
 
-Puedes usar la prop `options` para habilitar características avanzadas como selección de filas, expansión, edición, filtros personalizados, etc.
+| Propiedad | Tipo | Por defecto | Descripción |
+| :--- | :--- | :--- | :--- |
+| **`datos`** | `TData[]` | **Requerido** | Array de objetos fuente. |
+| **`columnas`** | `MRT_ColumnDef[]` | **Requerido** | Definición de columnas. |
+| **`titulo`** | `string` | `''` | Título mostrado en la cabecera. |
+| **`cargando`** | `boolean` | `false` | Muestra indicador de progreso y bloquea interacción. |
+| `habilitarExportacion` | `boolean` | `false` | Muestra botón y menú de exportación (CSV/Excel/PDF). |
+| `filtrosAvanzados` | `boolean` | `false` | Activa facetas, autocompletado y modos (contiene, empieza con...). |
+| `agrupamiento` | `boolean` | `false` | Permite al usuario arrastrar columnas para agrupar filas. |
+| `fijarColumnas` | `boolean` | `false` | Fija automáticamente la selección (Izq) y acciones (Der). Permite pinning manual. |
+| **`fijarFilas`** | `boolean` | `false` | Habilita el anclaje de filas (`row pinning`) superior/inferior. |
+| **`mostrarTotales`** | `boolean` | `false` | Habilita el pie de página fijo (`sticky footer`) para agregaciones. |
+| `ordenarFilas` | `boolean` | `false` | Permite Drag & Drop de filas (desactiva ordenamiento por columnas). |
+| `seleccionable` | `boolean` | `true` | Muestra columnas de checkboxes para selección múltiple. |
+| `expandible` | `boolean` | `false` | Permite expandir filas para ver sub-filas (árbol). |
+| `scrollInfinito` | `boolean` | `false` | Cambia paginación por scroll infinito (requiere `onCargarMas`). |
+| `opciones` | `MRT_TableOptions` | `{}` | **Poder Total**. Sobrescribe cualquier configuración interna de MRT. |
+
+### 🛠️ Interacciones y Eventos
+
+| Propiedad | Descripción |
+| :--- | :--- |
+| `onEditar` | `(row) => void`. Activa botón de lápiz. |
+| `onEliminar` | `(row) => void`. Activa botón de basura. |
+| `accionesMenu` | `({ row, closeMenu }) => ReactNode[]`. Inyecta items en el menú de 3 puntos. |
+| `onCargarMas` | Callback para scroll infinito. |
+
+---
+
+### 🎨 Ejemplos Avanzados
+
+#### 1. Totales y Formato Financiero
+
+Para mostrar totales en el pie de página:
+1. Activa `mostrarTotales`.
+2. Configura la columna con `aggregationFn` y `Footer`.
 
 ```tsx
-<CodeplexTable
-  columns={columns}
-  data={data}
-  loading={isLoading}
-  options={{
-    // Habilitar características de MRT
-    enableRowSelection: true,
-    enableColumnOrdering: true,
-    enablePinning: true,
-    
-    // Personalizar Toolbar Superior
-    renderTopToolbarCustomActions: ({ table }) => (
-      <Button onClick={() => console.log(table.getSelectedRowModel())}>
-        Acción en Lote
-      </Button>
-    ),
-
-    // Props de MUI (Estilos profundos)
-    muiTableHeadCellProps: {
-      sx: { color: 'primary.main' },
-    },
-    
-    // Paginación personalizada
-    initialState: {
-        pagination: { pageSize: 20, pageIndex: 0 }
-    }
-  }}
+<CodeplexTabla
+    mostrarTotales
+    columnas={[
+        {
+            accessorKey: 'monto',
+            header: 'Monto',
+            // Alinear a la derecha
+            muiTableHeadCellProps: { align: 'right' },
+            muiTableBodyCellProps: { align: 'right' },
+            muiTableFooterCellProps: { align: 'right' },
+            // Formato Moneda
+            Cell: ({ cell }) => cell.getValue<number>().toLocaleString('es-PE', { style: 'currency', currency: 'PEN' }),
+            // Lógica de Totales
+            aggregationFn: 'sum',
+            Footer: ({ table }) => {
+                const total = table.getPrePaginationRowModel().rows.reduce((sum, row) => sum + row.getValue<number>('monto'), 0);
+                return <Box>Total: {total}</Box>;
+            }
+        }
+    ]}
 />
 ```
 
-### Localización
+#### 2. Jerarquía Visual (Headers Anidados)
 
-El componente viene traducido al **Español** (`MRT_Localization_ES`) por defecto. Si necesitas cambiarlo (por ejemplo a Inglés), puedes hacerlo vía `options`:
-
-```tsx
-import { MRT_Localization_EN } from 'material-react-table/locales/en';
-
-<CodeplexTable
-  // ...
-  options={{
-    localization: MRT_Localization_EN
-  }}
-/>
-```
-
-### Componentes Exportados
-
-Para facilitar la personalización (especialmente en Custom Toolbars), el paquete re-exporta:
-
-*   `MRT_GlobalFilterTextField`: El campo de búsqueda global.
-*   `MRT_ToggleFiltersButton`: El botón para mostrar/ocultar filtros de columna.
-*   Tipos: `MRT_ColumnDef`, `MRT_RowData`, `MRT_TableOptions`.
-
-Importalos directamente:
+Usa la propiedad `columns` dentro de una columna para crear grupos, y `meta` para colores.
 
 ```tsx
-import { MRT_GlobalFilterTextField } from '@codeplex-sac/data-view';
+{
+    header: 'Finanzas',
+    meta: { headerBackgroundColor: '#e3f2fd' }, // Color de fondo del grupo
+    columns: [
+        { accessorKey: 'ingreso', header: 'Ingreso' },
+        { accessorKey: 'egreso', header: 'Egreso' }
+    ]
+}
 ```
+
+#### 3. Modo Headless (Arquitectura Manual)
+
+`CodeplexTabla` ahora se construye internamente de forma manual para máximo control visual. Si necesitas inyectar componentes entre el toolbar y la tabla, puedes usar los sub-componentes exportados:
+
+```tsx
+import { MRT_TableContainer, MRT_TopToolbar, ... } from '@codeplex-sac/data-view';
+// ... Puedes armar tu propia estructura si CodeplexTabla te queda chica, 
+// o usar la prop `opciones` para inyectar componentes en `renderTopToolbarCustomActions`.
+```
+
+### 🧩 Componentes Exportados
+
+Además de `CodeplexTabla`, exportamos las piezas de MRT para que no tengas que importar de dos librerías:
+
+*   `MRT_ColumnDef` (Tipos)
+*   `MRT_Row` (Tipos)
+*   `MRT_GlobalFilterTextField` (Input de búsqueda suelto)
+*   `MRT_TablePagination` (Paginación suelta)
+*   `MRT_ExpandAllButton` (Botón expandir todo)
+*   ... ¡y todos los demás sub-componentes de MRT!

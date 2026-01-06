@@ -333,14 +333,16 @@ export function App() {
           </CodeplexCabecera>
 
           {/* Main Content */}
-          <main className={`
+          <main
+            className={`
         transition-all duration-300
         pt-20 pb-16
         min-h-screen
         ${sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'}
         px-4 md:px-8
-      `}>
-            <div className="max-w-7xl mx-auto">
+      `}
+          >
+            <div className="mx-auto">
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/ui/button" element={<ButtonPage />} />

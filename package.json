@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "nx serve codeplex-libraries",
     "build": "nx build codeplex-libraries",
-    "test": "nx test codeplex-libraries"
+    "test": "nx test codeplex-libraries",
+    "pub:all": "bun tools/scripts/publish-all.ts",
+    "pub:update": "bun tools/scripts/update-package.ts",
+    "libs:install": "bun tools/scripts/install-codeplex.ts"
   },
   "private": true,
   "workspaces": [

@@ -1,31 +1,32 @@
-import { useMemo, useState } from 'react';
+
+import { useMemo, useState, useEffect } from 'react';
 import {
     type MRT_ColumnDef,
-    MRT_GlobalFilterTextField,
-    MRT_ToggleFiltersButton,
+    type MRT_Row,
+    type MRT_PaginationState,
+    type MRT_SortingState,
+    type MRT_ColumnFiltersState,
     CodeplexTabla,
 } from '@codeplex-sac/data-view';
 import {
     Box,
-    Button,
     ListItemIcon,
     MenuItem,
     Typography,
-    lighten,
-    Chip,
-    Avatar,
-    alpha,
     Tabs,
     Tab,
-    IconButton,
-    Tooltip
+    Chip,
+    Button,
 } from '@mui/material';
 import {
     AttachMoney,
     Description,
-    CheckCircle,
-    Edit,
-    Delete,
+    AccountCircle,
+    Send,
+    Inventory,
+    FilterList,
+    CloudSync,
+    Autorenew,
 } from '@mui/icons-material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -35,6 +36,8 @@ import 'dayjs/locale/es';
 
 // Set global locale
 dayjs.locale('es');
+
+// --- DATOS Y TIPOS ---
 
 export type EstadoFactura = 'Pagado' | 'Pendiente' | 'Vencido' | 'Borrador';
 
@@ -49,358 +52,243 @@ export type Factura = {
     fechaVencimiento: string;
     estado: EstadoFactura;
     items: number;
+    subFilas?: Factura[];
 };
 
-// --- Datos Simulados ---
-export const datosIniciales: Factura[] = [
-    {
-        id: '1',
-        numeroFactura: 'FAC-2024-001',
-        nombreCliente: 'Soluciones Tech SAC',
-        emailCliente: 'contabilidad@techsolutions.com',
-        avatarCliente: 'https://ui-avatars.com/api/?name=Tech+Solutions&background=0D8ABC&color=fff',
-        monto: 15400.00,
-        fechaEmision: '2025-01-15',
-        fechaVencimiento: '2025-02-15',
-        estado: 'Pendiente',
-        items: 3,
-    },
-    {
-        id: '2',
-        numeroFactura: 'FAC-2024-002',
-        nombreCliente: 'Logística Global',
-        emailCliente: 'pagos@globallogistics.co',
-        avatarCliente: 'https://ui-avatars.com/api/?name=Global+Logistics&background=ffd700&color=000',
-        monto: 2500.50,
-        fechaEmision: '2024-12-20',
-        fechaVencimiento: '2025-01-20',
-        estado: 'Vencido',
-        items: 12,
-    },
-    {
-        id: '3',
-        numeroFactura: 'FAC-2024-003',
-        nombreCliente: 'Estudio Creativo',
-        emailCliente: 'finanzas@creativestudio.net',
-        avatarCliente: 'https://ui-avatars.com/api/?name=Estudio+Creativo&background=ff6b6b&color=fff',
-        monto: 850.00,
-        fechaEmision: '2025-02-01',
-        fechaVencimiento: '2025-02-15',
-        estado: 'Pagado',
-        items: 1,
-    },
-    {
-        id: '4',
-        numeroFactura: 'FAC-2024-004',
-        nombreCliente: 'Corp Acme',
-        emailCliente: 'pagos@acme.com',
-        avatarCliente: 'https://ui-avatars.com/api/?name=Acme+Corp&background=4ecdc4&color=fff',
-        monto: 50000.00,
-        fechaEmision: '2025-02-10',
-        fechaVencimiento: '2025-03-10',
-        estado: 'Borrador',
-        items: 5,
-    },
-    {
-        id: '5',
-        numeroFactura: 'FAC-2024-005',
-        nombreCliente: 'Centro StartUp',
-        emailCliente: 'hola@streamhub.io',
-        avatarCliente: 'https://ui-avatars.com/api/?name=StartUp+Hub&background=1a535c&color=fff',
-        monto: 3200.75,
-        fechaEmision: '2025-01-05',
-        fechaVencimiento: '2025-02-05',
-        estado: 'Pagado',
-        items: 8,
-    },
-];
+// Generador de datos aleatorios
+const generarDatos = (cantidad: number, prefijoId: string = ''): Factura[] => {
+    return Array.from({ length: cantidad }).map((_, i) => ({
+        id: `${prefijoId}${i}`,
+        numeroFactura: `FAC-${prefijoId}${2025000 + i}`,
+        nombreCliente: `Cliente ${prefijoId}${i}`,
+        emailCliente: `cliente${prefijoId}${i}@empresa.com`,
+        avatarCliente: '',
+        monto: Math.floor(Math.random() * 10000),
+        fechaEmision: '2025-01-01',
+        fechaVencimiento: '2025-02-01',
+        estado: ['Pendiente', 'Pagado', 'Vencido', 'Borrador'][Math.floor(Math.random() * 4)] as EstadoFactura,
+        items: Math.floor(Math.random() * 10) + 1,
+    }));
+};
 
-// --- Componentes ---
+const datosEstaticos = generarDatos(20);
+// Agregar subfilas a uno para demo de árbol
+datosEstaticos[0].subFilas = generarDatos(3, 'SUB-');
 
-const TablaMinimalista = () => {
+// --- EJEMPLOS ---
+
+/**
+ * Muestra Filtros Avanzados, Facetas y Búsqueda.
+ */
+const TablaFiltros = () => {
+    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
+        {
+            header: 'Información Base',
+            meta: { headerBackgroundColor: '#e3f2fd' }, // Azul claro
+            columns: [
+                {
+                    header: 'Identificación',
+                    meta: { headerBackgroundColor: '#bbdefb' }, // Azul más intenso
+                    columns: [
+                        { accessorKey: 'numeroFactura', header: 'Factura', filterVariant: 'autocomplete' },
+                        { accessorKey: 'nombreCliente', header: 'Cliente', filterVariant: 'text' },
+                    ]
+                }
+            ],
+        },
+        {
+            header: 'Gestión Financiera',
+            meta: { headerBackgroundColor: '#f3e5f5' }, // Lila claro
+            columns: [
+                {
+                    header: 'Cobranza',
+                    meta: { headerBackgroundColor: '#e1bee7' }, // Lila más intenso
+                    columns: [
+                        {
+                            accessorKey: 'monto',
+                            header: 'Monto Total',
+                            filterVariant: 'range-slider',
+                            muiFilterSliderProps: {
+                                marks: true,
+                                max: 10000,
+                                min: 0,
+                                step: 100,
+                            },
+                            // (A) Alineación y Formato
+                            muiTableHeadCellProps: { align: 'right' },
+                            muiTableBodyCellProps: { align: 'right' },
+                            muiTableFooterCellProps: { align: 'right' },
+                            Cell: ({ cell }) => cell.getValue<number>()?.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' }),
+
+                            // (B) Agregación (Totales)
+                            aggregationFn: 'sum',
+                            AggregatedCell: ({ cell }) => (
+                                <Box sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                                    {cell.getValue<number>()?.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' })}
+                                </Box>
+                            ),
+                            Footer: ({ table }) => {
+                                // Calcular totales dinámicamente
+                                const montosPagina = table.getRowModel().rows.map((row) => row.getValue<number>('monto'));
+                                const totalPagina = montosPagina.reduce((a, b) => a + b, 0);
+
+                                const montosTotal = table.getPrePaginationRowModel().rows.map((row) => row.getValue<number>('monto'));
+                                const totalGlobal = montosTotal.reduce((a, b) => a + b, 0);
+
+                                return (
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                        <Box component="span" sx={{ fontSize: '0.8rem', color: 'text.secondary' }}>
+                                            Pág: {totalPagina.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' })}
+                                        </Box>
+                                        <Box component="span" sx={{ fontWeight: 'bold' }}>
+                                            Tot: {totalGlobal.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' })}
+                                        </Box>
+                                    </Box>
+                                );
+                            }
+                        },
+                        {
+                            accessorKey: 'estado',
+                            header: 'Estado Actual',
+                            filterVariant: 'multi-select',
+                            filterSelectOptions: ['Pagado', 'Pendiente', 'Vencido', 'Borrador']
+                        },
+                    ]
+                },
+                {
+                    header: 'Fechas',
+                    meta: { headerBackgroundColor: '#fce4ec' }, // Rosa claro
+                    columns: [
+                        {
+                            accessorFn: (row) => new Date(row.fechaVencimiento),
+                            id: 'vencimiento',
+                            header: 'Vencimiento',
+                            filterVariant: 'date-range',
+                            Cell: ({ cell }) => cell.getValue<Date>()?.toLocaleDateString(),
+                        }
+                    ]
+                }
+            ],
+        },
+    ], []);
+
+    return (
+        <CodeplexTabla
+            columnas={columnas}
+            datos={datosEstaticos}
+            titulo="Avanzada (Dashboard)"
+
+            // Props Nuevas
+            filtrosAvanzados // Activa facetes, modos de filtro, etc.
+            agrupamiento // (1) Agrupación de columnas
+            habilitarExportacion // (2) Exportación (Todo/Pagina)
+            ordenarFilas // (4) Mover filas
+
+            // (6) Acciones 1 y 2 (Editar/Eliminar) + 3 Puntitos
+            onEditar={(row) => alert(`Editando ${row.numeroFactura}`)}
+            onEliminar={(row) => alert(`Eliminando ${row.numeroFactura}`)}
+            accionesMenu={({ closeMenu, row }) => [
+                <MenuItem key="1" onClick={closeMenu}><ListItemIcon><Description /></ListItemIcon> Ver Detalles</MenuItem>,
+                <MenuItem key="2" onClick={closeMenu}><ListItemIcon><Send /></ListItemIcon> Enviar por Correo</MenuItem>
+            ]}
+            fijarColumnas
+
+            fijarFilas // (5) Fijar filas (Row Pinning)
+            mostrarTotales // (7) Mostrar totales en Footer
+
+            opciones={{
+                getRowId: (row) => row.id, // Importante: usar el ID para fixar
+                initialState: {
+                    showColumnFilters: true, // Buscador por columna
+                    // grouping: ['estado'], // Agrupado por defecto para demo
+                    columnPinning: {
+                        right: ['nombreCliente'], // Fijar 'monto' a la derecha (junto a acciones)
+                    },
+                    // rowPinning: {
+                    //     top: ['0', '1'], // Fijar las dos primeras filas (IDs '0' y '1')
+                    // }
+                },
+            }}
+        />
+    );
+};
+
+/**
+ * Muestra Datos Remotos con paginación manual enviada al backend simulado.
+ */
+const TablaRemota = () => {
+    const [datos, setDatos] = useState<Factura[]>([]);
+    const [cargando, setCargando] = useState(false);
+    const [paginacion, setPaginacion] = useState<MRT_PaginationState>({ pageIndex: 0, pageSize: 10 });
+    const [orden, setOrden] = useState<MRT_SortingState>([]);
+    const [filtros, setFiltros] = useState<MRT_ColumnFiltersState>([]);
+    const [total, setTotal] = useState(0);
+
+    // Simular fetch
+    useEffect(() => {
+        const fetchData = async () => {
+            setCargando(true);
+            // Simular delay de red
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Simular filtrado/paginación server-side
+            const start = paginacion.pageIndex * paginacion.pageSize;
+            const end = start + paginacion.pageSize;
+            setDatos(generarDatos(paginacion.pageSize, `P${paginacion.pageIndex}-`));
+            setTotal(100); // 100 items total simulados
+            setCargando(false);
+        };
+        fetchData();
+    }, [paginacion, orden, filtros]);
+
     const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
         { accessorKey: 'numeroFactura', header: 'Factura' },
         { accessorKey: 'nombreCliente', header: 'Cliente' },
-        {
-            accessorKey: 'monto',
-            header: 'Monto',
-            Cell: ({ cell }) => `S/ ${cell.getValue<number>().toLocaleString()}`
-        },
         { accessorKey: 'estado', header: 'Estado' },
     ], []);
 
-    return <CodeplexTabla
-        columnas={columnas}
-        datos={datosIniciales}
-        titulo="Ejemplo Minimalista"
-        opciones={{
-            enableTopToolbar: false,
-            enableBottomToolbar: false,
-        }}
-    />;
-};
-
-const TablaAvanzada = () => {
-    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(
-        () => [
-            {
-                id: 'info_factura',
-                header: 'Detalles de Factura',
-                columns: [
-                    {
-                        accessorKey: 'numeroFactura',
-                        header: 'N° Factura',
-                        size: 140,
-                        enableClickToCopy: true,
-                        filterVariant: 'autocomplete',
-                        Cell: ({ cell }) => (
-                            <Box sx={{ fontFamily: 'monospace', fontWeight: 600, color: 'text.primary' }}>
-                                {cell.getValue<string>()}
-                            </Box>
-                        )
-                    },
-                    {
-                        accessorFn: (row) => `${row.nombreCliente}`,
-                        id: 'cliente',
-                        header: 'Cliente',
-                        size: 250,
-                        Cell: ({ row }) => (
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <Avatar
-                                    src={row.original.avatarCliente}
-                                    alt={row.original.nombreCliente}
-                                    sx={{ width: 32, height: 32 }}
-                                />
-                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Typography variant="body2" fontWeight={600}>
-                                        {row.original.nombreCliente}
-                                    </Typography>
-                                    <Typography variant="caption" color="text.secondary">
-                                        {row.original.emailCliente}
-                                    </Typography>
-                                </Box>
-                            </Box>
-                        ),
-                    },
-                ],
-            },
-            {
-                id: 'finanzas',
-                header: 'Finanzas',
-                columns: [
-                    {
-                        accessorKey: 'monto',
-                        filterFn: 'between',
-                        header: 'Monto',
-                        size: 160,
-                        Cell: ({ cell }) => (
-                            <Box
-                                component="span"
-                                sx={() => ({
-                                    color: cell.getValue<number>() > 10000 ? 'success.main' : 'text.primary',
-                                    fontWeight: 700,
-                                })}
-                            >
-                                {cell.getValue<number>()?.toLocaleString?.('es-PE', {
-                                    style: 'currency',
-                                    currency: 'PEN',
-                                })}
-                            </Box>
-                        ),
-                    },
-                    {
-                        accessorKey: 'estado',
-                        header: 'Estado',
-                        size: 120,
-                        filterVariant: 'select',
-                        filterSelectOptions: ['Pagado', 'Pendiente', 'Vencido', 'Borrador'],
-                        Cell: ({ cell }) => {
-                            const estado = cell.getValue<EstadoFactura>();
-                            let color: any = 'default';
-                            if (estado === 'Pagado') color = 'success';
-                            if (estado === 'Pendiente') color = 'warning';
-                            if (estado === 'Vencido') color = 'error';
-                            return (
-                                <Chip
-                                    label={estado}
-                                    color={color}
-                                    size="small"
-                                    variant="filled"
-                                    sx={{ fontWeight: 600, minWidth: 80 }}
-                                />
-                            );
-                        },
-                    },
-                    {
-                        accessorFn: (row) => new Date(row.fechaVencimiento),
-                        id: 'fechaVencimiento',
-                        header: 'Vencimiento',
-                        filterVariant: 'date',
-                        sortingFn: 'datetime',
-                        Cell: ({ cell }) => dayjs(cell.getValue<Date>()).format('DD MMM, YYYY'),
-                    },
-                ],
-            },
-        ],
-        [],
-    );
-
     return (
         <CodeplexTabla
             columnas={columnas}
-            datos={datosIniciales}
-            titulo="Facturación Avanzada"
-            habilitarExportacion
+            datos={datos}
+            titulo="Datos Remotos (Server-Side)"
+            cargando={cargando}
+
+            // Configuración Manual (Backend)
+            paginacionManual
+            ordenamientoManual
+            filtradoManual
+            totalRegistros={total}
+
+            // Listeners
             opciones={{
-                enableColumnFilterModes: true,
-                enableColumnOrdering: true,
-                enableGrouping: true,
-                enableColumnPinning: true,
-                enableFacetedValues: true,
-                enableRowActions: true,
-                enableRowSelection: true,
-                initialState: {
-                    showColumnFilters: true,
-                    showGlobalFilter: true,
-                    columnPinning: {
-                        left: ['mrt-row-expand', 'mrt-row-select'],
-                        right: ['mrt-row-actions'],
-                    },
-                    sorting: [{ id: 'fechaVencimiento', desc: false }],
-                },
-                paginationDisplayMode: 'pages',
-                positionToolbarAlertBanner: 'bottom',
-                muiPaginationProps: {
-                    color: 'primary',
-                    shape: 'rounded',
-                    variant: 'outlined',
-                },
-                renderDetailPanel: ({ row }) => (
-                    <Box sx={{ p: 3, backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.05) }}>
-                        <Typography variant="h6" gutterBottom>Ítems: {row.original.items}</Typography>
-                        <Typography variant="body2">Detalles del desglose de la factura aquí...</Typography>
-                    </Box>
-                ),
-                renderRowActionMenuItems: ({ closeMenu, row }) => [
-                    <MenuItem key="view" onClick={() => closeMenu()}>
-                        <ListItemIcon><Description fontSize="small" /></ListItemIcon> Ver Factura
-                    </MenuItem>,
-                    <MenuItem key="pay" onClick={() => closeMenu()} disabled={row.original.estado === 'Pagado'}>
-                        <ListItemIcon><AttachMoney fontSize="small" /></ListItemIcon> Registrar Pago
-                    </MenuItem>,
-                ],
-                renderTopToolbar: ({ table }) => (
-                    <Box sx={(theme) => ({
-                        backgroundColor: lighten(theme.palette.background.default, 0.05),
-                        display: 'flex', gap: '0.5rem', p: '8px', justifyContent: 'space-between', borderRadius: 1
-                    })}>
-                        <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                            <MRT_GlobalFilterTextField table={table} />
-                            <MRT_ToggleFiltersButton table={table} />
-                        </Box>
-                        <Box>
-                            <Box sx={{ display: 'flex', gap: '0.5rem' }}>
-                                <Button
-                                    color="primary"
-                                    startIcon={<CheckCircle />}
-                                    disabled={!table.getIsSomeRowsSelected()}
-                                    variant="contained"
-                                    size="small"
-                                    onClick={() => alert('Pagado')}
-                                >
-                                    Marcar Pagado
-                                </Button>
-                            </Box>
-                        </Box>
-                    </Box>
-                ),
+                onPaginationChange: setPaginacion,
+                onSortingChange: setOrden,
+                onColumnFiltersChange: setFiltros,
+                state: { pagination: paginacion, sorting: orden, columnFilters: filtros }
             }}
         />
     );
 };
 
-const TablaCRUD = () => {
-    const [datosTabla, setDatosTabla] = useState<Factura[]>(() => datosIniciales);
+/**
+ * Muestra Scroll Infinito cargando datos a medida que se baja.
+ */
+const TablaInfinita = () => {
+    const [datos, setDatos] = useState<Factura[]>(() => generarDatos(20));
+    const [cargando, setCargando] = useState(false);
 
-    const manejarGuardarFila = ({ exitEditingMode, row, values }: any) => {
-        datosTabla[row.index] = values;
-        setDatosTabla([...datosTabla]);
-        exitEditingMode();
+    const cargarMas = async () => {
+        if (cargando) return;
+        setCargando(true);
+        await new Promise(r => setTimeout(r, 1000));
+        const nuevos = generarDatos(20, `MORE-${datos.length}-`);
+        setDatos(prev => [...prev, ...nuevos]);
+        setCargando(false);
     };
 
     const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
-        { accessorKey: 'id', header: 'ID', enableEditing: false, size: 80 },
-        { accessorKey: 'nombreCliente', header: 'Cliente' },
-        { accessorKey: 'monto', header: 'Monto', filterFn: 'between' },
-        {
-            accessorKey: 'estado',
-            header: 'Estado',
-            editVariant: 'select',
-            editSelectOptions: ['Pagado', 'Pendiente', 'Vencido', 'Borrador']
-        },
-    ], []);
-
-    return (
-        <CodeplexTabla
-            columnas={columnas}
-            datos={datosTabla}
-            titulo="Gestión CRUD (Edición Modal)"
-            opciones={{
-                enableEditing: true,
-                onEditingRowSave: manejarGuardarFila,
-                renderRowActions: ({ row, table }) => (
-                    <Box sx={{ display: 'flex', gap: '1rem' }}>
-                        <Tooltip title="Editar">
-                            <IconButton onClick={() => table.setEditingRow(row)}>
-                                <Edit />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Eliminar">
-                            <IconButton color="error" onClick={() => {
-                                const nuevosDatos = [...datosTabla];
-                                nuevosDatos.splice(row.index, 1);
-                                setDatosTabla(nuevosDatos);
-                            }}>
-                                <Delete />
-                            </IconButton>
-                        </Tooltip>
-                    </Box>
-                ),
-                renderTopToolbarCustomActions: ({ table }) => (
-                    <Button variant="contained" onClick={() => {
-                        alert('Crear nueva factura (simulado)');
-                    }}>
-                        Crear Nueva Factura
-                    </Button>
-                )
-            }}
-        />
-    );
-};
-
-const TablaVirtualizada = () => {
-    // Generar 500 filas falsas al vuelo
-    const datosLargos = useMemo(() => {
-        const filas = [];
-        for (let i = 0; i < 500; i++) {
-            filas.push({
-                id: i.toString(),
-                numeroFactura: `FAC-${2025000 + i}`,
-                nombreCliente: `Cliente ${i}`,
-                emailCliente: `cliente${i}@test.com`,
-                avatarCliente: '',
-                monto: Math.floor(Math.random() * 10000),
-                fechaEmision: '2025-01-01',
-                fechaVencimiento: '2025-02-01',
-                estado: 'Pendiente' as EstadoFactura,
-                items: Math.floor(Math.random() * 10)
-            });
-        }
-        return filas;
-    }, []);
-
-    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
-        { accessorKey: 'id', header: 'ID', size: 60 },
+        { accessorKey: 'id', header: 'ID', size: 80 },
         { accessorKey: 'numeroFactura', header: 'Factura' },
         { accessorKey: 'nombreCliente', header: 'Cliente' },
         { accessorKey: 'monto', header: 'Monto' },
@@ -409,48 +297,135 @@ const TablaVirtualizada = () => {
     return (
         <CodeplexTabla
             columnas={columnas}
-            datos={datosLargos}
-            titulo="Virtualización (500 filas)"
-            opciones={{
-                enableRowVirtualization: true,
-                enablePagination: false,
-                enableBottomToolbar: false,
-                muiTableContainerProps: { sx: { maxHeight: '500px' } },
-            }}
+            datos={datos}
+            titulo="Scroll Infinito (Lazy Loading)"
+            cargando={cargando}
+
+            // Props Nuevas
+            scrollInfinito
+            onCargarMas={cargarMas}
+            totalRegistros={1000} // Total virtual
         />
     );
 };
 
+// --- RESTO DE EJEMPLOS ANTERIORES (Actualizados) ---
+
+const TablaBasica = () => {
+    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
+        { accessorKey: 'numeroFactura', header: 'Factura' },
+        { accessorKey: 'nombreCliente', header: 'Cliente' },
+        { accessorKey: 'monto', header: 'Monto' },
+        { accessorKey: 'estado', header: 'Estado' },
+    ], []);
+    return (
+        <CodeplexTabla
+            columnas={columnas}
+            datos={datosEstaticos}
+            titulo="Básico & Pinning"
+            fijarColumnas
+            clickParaCopiar
+            fijarFilas
+        />
+    );
+};
+
+const TablaEdicion = () => {
+    const [datos, setDatos] = useState(() => datosEstaticos);
+    const [modo, setModo] = useState<'linea' | 'celda'>('linea');
+    const handleSave = ({ values, row, exitEditingMode }: any) => {
+        const nuevos = [...datos];
+        nuevos[row.index] = values;
+        setDatos(nuevos);
+        exitEditingMode();
+    };
+    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
+        { accessorKey: 'numeroFactura', header: 'Factura', enableEditing: false },
+        { accessorKey: 'nombreCliente', header: 'Cliente' },
+        { accessorKey: 'monto', header: 'Monto' },
+    ], []);
+    return (
+        <Box>
+            <Box mb={2} display="flex" gap={2}>
+                <Button variant={modo === 'linea' ? 'contained' : 'outlined'} onClick={() => setModo('linea')}>Modo Línea</Button>
+                <Button variant={modo === 'celda' ? 'contained' : 'outlined'} onClick={() => setModo('celda')}>Modo Celda</Button>
+            </Box>
+            <CodeplexTabla columnas={columnas} datos={datos} titulo="Edición CRUD" modoEdicion={modo} onGuardarFila={handleSave} />
+        </Box>
+    );
+};
+
+const TablaArbol = () => {
+    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
+        { accessorKey: 'numeroFactura', header: 'Factura' },
+        { accessorKey: 'nombreCliente', header: 'Cliente' },
+        { accessorKey: 'monto', header: 'Monto', aggregationFn: 'sum', AggregatedCell: ({ cell }) => <Box fontWeight="bold">S/ {cell.getValue<number>()}</Box> }
+    ], []);
+    return <CodeplexTabla columnas={columnas} datos={datosEstaticos} titulo="Árbol y Agrupamiento" arbol agrupamiento expandible />;
+};
+
+const TablaInteractiva = () => {
+    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
+        { accessorKey: 'nombreCliente', header: 'Cliente' },
+        { accessorKey: 'estado', header: 'Estado' }
+    ], []);
+    return (
+        <CodeplexTabla
+            columnas={columnas}
+            datos={datosEstaticos}
+            titulo="Drag & Drop Rows"
+            ordenarFilas
+            accionesMenu={({ closeMenu }) => [<MenuItem key="1" onClick={closeMenu}>Acción Custom</MenuItem>]}
+        />
+    );
+};
+
+const TablaVirtualizada = () => {
+    const datosLargos = useMemo(() => generarDatos(1000), []);
+    const columnas = useMemo<MRT_ColumnDef<Factura>[]>(() => [
+        { accessorKey: 'id', header: 'ID', size: 60 },
+        { accessorKey: 'nombreCliente', header: 'Cliente' },
+        { accessorKey: 'monto', header: 'Monto' },
+    ], []);
+    return <CodeplexTabla columnas={columnas} datos={datosLargos} titulo="Virtualización 1k filas" virtualizacion opciones={{ enablePagination: false, enableBottomToolbar: false, muiTableContainerProps: { sx: { maxHeight: '500px' } } }} />;
+};
+
+
+// --- PÁGINA PRINCIPAL ---
 
 export const TablePage = () => {
-    const [valorPestana, setValorPestana] = useState(0);
-
-    const manejarCambio = (evento: React.SyntheticEvent, nuevoValor: number) => {
-        setValorPestana(nuevoValor);
-    };
+    const [tab, setTab] = useState(0);
 
     return (
         <div className="space-y-6 animate-fade-in pb-10">
             <CodeplexEncabezadoPrincipal
-                titulo="Facturación y Contabilidad"
-                subtitulo="Ejemplos de tablas avanzadas con filtrado, edición y virtualización."
+                titulo="Galería de Componentes - Tablas"
+                subtitulo="Showcase completo de todas las funcionalidades de CodeplexTabla."
             />
 
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={valorPestana} onChange={manejarCambio} aria-label="ejemplos de tabla">
-                    <Tab label="Avanzada (Dashboard)" />
-                    <Tab label="Gestión CRUD" />
-                    <Tab label="Virtualización" />
-                    <Tab label="Minimalista" />
+                <Tabs value={tab} onChange={(_, v) => setTab(v)} variant="scrollable" scrollButtons="auto">
+                    <Tab label="Avanzada (Dashboard)" icon={<FilterList />} iconPosition="start" />
+                    <Tab label="Gestión CRUD" icon={<AttachMoney />} iconPosition="start" />
+                    <Tab label="Virtualización" icon={<AccountCircle />} iconPosition="start" />
+                    <Tab label="Minimalista" icon={<Description />} iconPosition="start" />
+                    <Tab label="Árbol & Grupos" icon={<Inventory />} iconPosition="start" />
+                    <Tab label="Interactividad" icon={<Send />} iconPosition="start" />
+                    <Tab label="Datos Remotos" icon={<CloudSync />} iconPosition="start" />
+                    <Tab label="Scroll Infinito" icon={<Autorenew />} iconPosition="start" />
                 </Tabs>
             </Box>
 
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
-                <Box sx={{ mt: 3 }}>
-                    {valorPestana === 0 && <TablaAvanzada />}
-                    {valorPestana === 1 && <TablaCRUD />}
-                    {valorPestana === 2 && <TablaVirtualizada />}
-                    {valorPestana === 3 && <TablaMinimalista />}
+                <Box sx={{ mt: 3, p: 1 }}>
+                    {tab === 0 && <TablaFiltros />}
+                    {tab === 1 && <TablaEdicion />}
+                    {tab === 2 && <TablaVirtualizada />}
+                    {tab === 3 && <TablaBasica />} {/* Usamos Básica como Minimalista mejorada */}
+                    {tab === 4 && <TablaArbol />}
+                    {tab === 5 && <TablaInteractiva />}
+                    {tab === 6 && <TablaRemota />}
+                    {tab === 7 && <TablaInfinita />}
                 </Box>
             </LocalizationProvider>
         </div>
